@@ -4,13 +4,13 @@
     "name_ru": "Юсукэ",
     "target_level": "A2後半 (A1後半スタート)",
     "started_date": "2026-09-12",
-    "last_active_date": "2026-10-07",
-    "consecutive_days": 24,
-    "total_sessions_completed": 115,
-    "current_streak": 24,
+    "last_active_date": "2026-10-08",
+    "consecutive_days": 25,
+    "total_sessions_completed": 118,
+    "current_streak": 25,
     "intimacy": {
       "level": 6,
-      "exp": 115,
+      "exp": 161,
       "max_exp": 378,
       "title": "至高のアンサンブル",
       "description": "言葉を超えて心を通わせる、生涯の音楽の友として互いを深くリスペクトしています。"
@@ -53,7 +53,8 @@
       24,
       25,
       26
-    ]
+    ],
+    "encore_completed_today": true
   },
   "tag_stats": {
     "case.prp": {
@@ -244,11 +245,18 @@
       "avg_rt_ms": 17317,
       "consecutive_correct": 6,
       "status": "stable"
+    },
+    "gerund.perfective": {
+      "seen": 6,
+      "correct": 6,
+      "avg_rt_ms": 14592,
+      "consecutive_correct": 6,
+      "status": "reflex"
     }
   },
   "behavior_logs": {
     "total_dwell_seconds": 120,
-    "branches_opened_count": 1057,
+    "branches_opened_count": 1085,
     "audio_replays_count": 8,
     "grammar_mutations_count": 128
   },
@@ -1077,6 +1085,27 @@
       "type": "salon",
       "quiz_count": 0,
       "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-08T21:15:29.342636",
+      "session_id": "day27_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-08T21:18:03.963633",
+      "session_id": "day27_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-08T21:20:55.891346",
+      "session_id": "day27_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
     }
   ],
   "bookmarked_words": [
@@ -1092,9 +1121,9 @@
       "collocation_ja": "本物の喜び",
       "collocation_cloze": "настоящая [ ❓ ]",
       "alena_scene": "練習を終えたアリョーナが、満足そうに鍵盤から手を離して微笑む瞬間",
-      "mastery_level": 3,
-      "review_count": 1,
-      "last_reviewed_at": "2026-09-22 11:00"
+      "mastery_level": 1,
+      "review_count": 3,
+      "last_reviewed_at": "2026-10-08 15:56"
     },
     {
       "word": "рояль",
@@ -1108,9 +1137,9 @@
       "collocation_ja": "グランドピアノを弾く",
       "collocation_cloze": "играть на [ ❓ ]",
       "alena_scene": "午後の日差しが、黒く磨き抜かれたピアノの天板に柔らかく反射している",
-      "mastery_level": 2,
-      "review_count": 1,
-      "last_reviewed_at": "2026-09-22 11:00"
+      "mastery_level": 1,
+      "review_count": 3,
+      "last_reviewed_at": "2026-10-08 15:56"
     },
     {
       "word": "консерватория",
@@ -1124,9 +1153,9 @@
       "collocation_ja": "モスクワ音楽院",
       "collocation_cloze": "Московская [ ❓ ]",
       "alena_scene": "ボリシャヤ・ニキーツカヤ通りに佇む、チャイコフスキー記念モスクワ音楽院の白亜の玄関",
-      "mastery_level": 3,
-      "review_count": 1,
-      "last_reviewed_at": "2026-09-22 11:08"
+      "mastery_level": 1,
+      "review_count": 3,
+      "last_reviewed_at": "2026-10-08 15:56"
     },
     {
       "word": "положить",
@@ -1141,8 +1170,8 @@
       "collocation_cloze": "[ ❓ ] партитуру",
       "alena_scene": "ラフマニノフの重いスコアを、傷つけないよう大切そうに譜面台へ置く仕草",
       "mastery_level": 1,
-      "review_count": 1,
-      "last_reviewed_at": "2026-09-22 11:02"
+      "review_count": 3,
+      "last_reviewed_at": "2026-10-08 15:56"
     },
     {
       "word": "заканчиваться",
@@ -1157,9 +1186,9 @@
       "collocation_ja": "リハーサルが終わる",
       "collocation_cloze": "репетиция [ ❓ ]",
       "alena_scene": "夕暮れ時、最後の和音の余韻が静かにホールに溶けていく",
-      "mastery_level": 3,
-      "review_count": 1,
-      "last_reviewed_at": "2026-09-22 11:01"
+      "mastery_level": 1,
+      "review_count": 5,
+      "last_reviewed_at": "2026-10-08 21:18"
     },
     {
       "word": "наступать",
@@ -1174,9 +1203,9 @@
       "collocation_ja": "静寂が訪れる",
       "collocation_cloze": "[ ❓ ] тишина",
       "alena_scene": "最後の音符のあと、誰も息をしないような濃密な静寂",
-      "mastery_level": 3,
-      "review_count": 1,
-      "last_reviewed_at": "2026-09-22 11:01"
+      "mastery_level": 1,
+      "review_count": 5,
+      "last_reviewed_at": "2026-10-08 21:18"
     },
     {
       "word": "оставаться",
@@ -2583,6 +2612,26 @@
       "example_ru": "Алёна аккомпанировала ей на рояле, чутко прислушиваясь к каждому движению смычка.",
       "example_ja": "アリョーナはピアノで彼女に伴奏をつけ、弓のあらゆる動きに繊細に耳を澄ませていました。",
       "saved_at": "2026-10-07 23:08"
+    },
+    {
+      "word": "уверенно",
+      "base": "уверенно",
+      "pos": "副詞 (Наречие・不変化詞)",
+      "meaning": "確信を持って、堂々と、自信ありげに",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-08 21:16"
+    },
+    {
+      "word": "спешить/по-",
+      "base": "спешить/по-",
+      "pos": "不完了 / 完了",
+      "meaning": "急ぐ, 焦る, 時計が進む",
+      "notes": "①動作を素早く行うこと（急ぐ： спешить на поезд: 電車に急ぐ ）、②時計の針が早く進むこと（ Часы спешат: 時計が進んでいる ）。 ・体ペア: спешить (不完了) / поспешить (完了: 急ぐ/焦る) ・ Поспешишь — людей насмешишь : 「（ことわざ）急がば回れ（焦ると笑いものになる）」 ・ спешить делать... : 「急いで〜する」 発展表現: спешка （急ぎ・焦り/女性名詞）",
+      "example_ru": "Попрощавшись с коллегами, Таня не спеша направилась в сторону дома, слушая хруст снега под ногами.",
+      "example_ja": "同僚たちに別れを告げ、ターニャは足元の雪を踏みしめる音を聴きながら、ゆっくりと家路につきました。",
+      "saved_at": "2026-10-08 21:20"
     }
   ],
   "milestone_progress": {

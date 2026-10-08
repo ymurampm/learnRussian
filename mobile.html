@@ -52,7 +52,12 @@
          ====================================================================== -->
     <section class="tab-content active" id="flashTabContent">
       <div class="flash-control-bar">
-        <span id="cardCountBadge" style="font-weight: 600; color: #a3b8cc;">1 / 111</span>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span id="cardCountBadge" style="font-weight: 600; color: #a3b8cc;">1 / 111</span>
+          <button class="shuffle-btn" id="btnShuffle" title="単語の並び順をランダムにシャッフル">
+            🔀 シャッフル
+          </button>
+        </div>
         <button class="autoplay-toggle-btn" id="btnAutoPlay">
           🌧️ 雨の日オート
         </button>
@@ -96,16 +101,41 @@
 
             <div class="back-action-row">
               <button class="action-sound-btn" id="btnReplayWord">
-                🔊 単語発音
+                🔊 単語
+              </button>
+              <button class="action-sound-btn" id="btnPlayCollocation">
+                🔊 連語
               </button>
               <button class="action-conjugation-btn" id="btnPlayConjugation">
-                🎹 活用朗読 (C)
+                🎹 朗読 (C)
+              </button>
+              <button class="declension-toggle-btn" id="btnToggleDeclension">
+                ▼ 格変化
               </button>
             </div>
 
-            <div class="back-example-box">
+            <!-- Foldable Declension Table Drawer -->
+            <div class="declension-drawer" id="declensionDrawer" style="display: none;">
+              <div class="declension-grid" id="declensionGrid"></div>
+            </div>
+
+            <!-- Example Box (Tap to Speak) -->
+            <div class="back-example-box" id="exampleBox" title="タップして例文を朗読">
+              <div class="example-header-hint">
+                <span class="example-speak-badge">🔊 タップで朗読</span>
+                <span class="example-colloc-badge" id="exampleCollocBadge">連語: настоящая радость</span>
+              </div>
               <div class="example-ru-line" id="exampleRuLine">Играть дуэт с Алёной — это настоящая радость.</div>
               <div class="example-ja-line" id="exampleJaLine">アリョーナと連弾を弾くことは、私にとって本物の喜びです。</div>
+            </div>
+
+            <!-- Memory Tips Capsule -->
+            <div class="memory-tips-capsule" id="memoryTipsCapsule">
+              <div class="tips-header-row">
+                <span>💡 記憶のTips (語源・ニュアンス)</span>
+              </div>
+              <div class="tips-content" id="tipsContent"></div>
+              <div class="tips-chips-row" id="tipsChipsRow"></div>
             </div>
 
             <div class="alena-context-capsule" id="alenaSceneCapsule">

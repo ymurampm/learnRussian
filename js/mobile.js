@@ -47,7 +47,7 @@
       if (this.synth) this.synth.cancel();
     }
 
-    speakSequence(items, rate = 1.0, onDone = null) {
+    speakSequence(items, rate = 1.0, onStep = null, onDone = null) {
       if (!items || items.length === 0) {
         if (onDone) onDone();
         return;
@@ -58,9 +58,11 @@
           if (onDone) onDone();
           return;
         }
+        const curIdx = idx;
         const text = items[idx++];
+        if (onStep) onStep(curIdx, text);
         this.speak(text, rate, () => {
-          setTimeout(next, 250);
+          setTimeout(next, 220);
         });
       };
       next();
@@ -126,7 +128,27 @@
       const localWords = JSON.parse(localStorage.getItem('tanya_starred_words') || 'null');
 
       if (localWords && Array.isArray(localWords) && localWords.length > 0) {
-        this.starredWords = localWords;
+        // Seamlessly merge new linguistic data (tips, declensions, examples) while preserving user review status
+        const seedMap = new Map((seed.bookmarked_words || []).map(w => [(w.word || '').toLowerCase(), w]));
+        this.starredWords = localWords.map(lw => {
+          const sw = seedMap.get((lw.word || '').toLowerCase());
+          if (sw) {
+            return {
+              ...sw,
+              ...lw,
+              declension_table: sw.declension_table || lw.declension_table,
+              anatomy: sw.anatomy || lw.anatomy,
+              notes: sw.notes || lw.notes,
+              network: sw.network || lw.network,
+              collocation_ru: sw.collocation_ru || lw.collocation_ru,
+              collocation_ja: sw.collocation_ja || lw.collocation_ja,
+              example_ru: sw.example_ru || lw.example_ru,
+              example_ja: sw.example_ja || lw.example_ja
+            };
+          }
+          return lw;
+        });
+        localStorage.setItem('tanya_starred_words', JSON.stringify(this.starredWords));
       } else if (seed.bookmarked_words && seed.bookmarked_words.length > 0) {
         this.starredWords = seed.bookmarked_words;
         localStorage.setItem('tanya_starred_words', JSON.stringify(this.starredWords));
@@ -171,8 +193,8 @@
       // Card Flip (tap wrapper)
       const cardWrapper = document.getElementById('cardWrapper');
       cardWrapper.addEventListener('click', (e) => {
-        // Ignore if clicking on specific buttons inside
-        if (e.target.closest('button') || e.target.closest('.hint-btn')) return;
+        // Ignore if clicking on buttons, chips, or interactive example
+        if (e.target.closest('button') || e.target.closest('.hint-btn') || e.target.closest('#exampleBox') || e.target.closest('.declension-chip')) return;
         this.toggleFlip();
       });
 
@@ -186,16 +208,52 @@
         this.primeHeadSound();
       });
 
+      // Shuffle Button
+      const btnShuffle = document.getElementById('btnShuffle');
+      if (btnShuffle) {
+        btnShuffle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.shuffleCards();
+        });
+      }
+
       // Back Face Actions
       document.getElementById('btnReplayWord').addEventListener('click', (e) => {
         e.stopPropagation();
         const card = this.getCurrentCard();
         if (card) this.audio.speak(card.word, 1.0);
       });
+
+      const btnPlayCollocation = document.getElementById('btnPlayCollocation');
+      if (btnPlayCollocation) {
+        btnPlayCollocation.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.playCollocation();
+        });
+      }
+
       document.getElementById('btnPlayConjugation').addEventListener('click', (e) => {
         e.stopPropagation();
         this.playConjugationRhythm();
       });
+
+      const btnToggleDeclension = document.getElementById('btnToggleDeclension');
+      if (btnToggleDeclension) {
+        btnToggleDeclension.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.toggleDeclensionDrawer();
+        });
+      }
+
+      // Example Box Tap-to-Speak
+      const exampleBox = document.getElementById('exampleBox');
+      if (exampleBox) {
+        exampleBox.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.playExampleSentence();
+        });
+      }
+
 
       // Thumb Buttons
       document.getElementById('btnRateReview').addEventListener('click', () => this.handleRate('review'));
@@ -320,6 +378,14 @@
       document.getElementById('exampleRuLine').textContent = card.example_ru || '';
       document.getElementById('exampleJaLine').textContent = card.example_ja || '';
 
+      const collocBadge = document.getElementById('exampleCollocBadge');
+      if (collocBadge) {
+        collocBadge.textContent = card.collocation_ru ? `連語: ${card.collocation_ru}` : '';
+      }
+
+      this.renderDeclensionGrid(card);
+      this.renderMemoryTips(card);
+
       const alenaContext = document.getElementById('alenaSceneCapsule');
       if (card.alena_scene) {
         alenaContext.textContent = `🎹 ${card.alena_scene}`;
@@ -327,6 +393,160 @@
       } else {
         alenaContext.style.display = 'none';
       }
+
+      // Reset scroll position to top
+      const backFace = document.querySelector('.card-face.back');
+      if (backFace) backFace.scrollTop = 0;
+    }
+
+    shuffleCards() {
+      if (this.starredWords.length <= 1) return;
+      for (let i = this.starredWords.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [this.starredWords[i], this.starredWords[j]] = [this.starredWords[j], this.starredWords[i]];
+      }
+      this.currentIndex = 0;
+      this.isFlipped = false;
+      document.getElementById('flipCard')?.classList.remove('flipped');
+      this.renderCard();
+      this.showToast(`🔀 単語の並び順をシャッフルしました！ (全${this.starredWords.length}語)`);
+    }
+
+    playCollocation() {
+      const card = this.getCurrentCard();
+      if (!card) return;
+      const colloc = card.collocation_ru || card.word;
+      this.audio.speak(colloc, 0.95);
+      this.showToast(`🔊 連語: «${colloc}»`);
+    }
+
+    playExampleSentence() {
+      const card = this.getCurrentCard();
+      if (!card || !card.example_ru) return;
+      const box = document.getElementById('exampleBox');
+      if (box) box.classList.add('speaking');
+      this.audio.speak(card.example_ru, 0.9, () => {
+        if (box) box.classList.remove('speaking');
+      });
+    }
+
+    toggleDeclensionDrawer() {
+      const drawer = document.getElementById('declensionDrawer');
+      const btn = document.getElementById('btnToggleDeclension');
+      if (!drawer) return;
+      const isOpen = drawer.style.display !== 'none';
+      drawer.style.display = isOpen ? 'none' : 'block';
+      if (btn) {
+        btn.classList.toggle('open', !isOpen);
+        btn.innerHTML = isOpen ? '▼ 格変化' : '▲ 格変化';
+      }
+    }
+
+    renderDeclensionGrid(card) {
+      const grid = document.getElementById('declensionGrid');
+      const drawer = document.getElementById('declensionDrawer');
+      const toggleBtn = document.getElementById('btnToggleDeclension');
+      if (!grid) return;
+      grid.innerHTML = '';
+      if (drawer) drawer.style.display = 'none';
+      if (toggleBtn) {
+        toggleBtn.classList.remove('open');
+        toggleBtn.innerHTML = '▼ 格変化';
+      }
+
+      const table = card.declension_table;
+      if (table && Array.isArray(table) && table.length > 1) {
+        table.slice(1).forEach((row, idx) => {
+          if (!Array.isArray(row) || row.length === 0) return;
+          const label = row[0];
+          const sg = row[1] || '';
+          const pl = row[2] || '';
+          const displayVal = pl ? `${sg} / ${pl}` : sg;
+          const speechVal = sg || pl || card.word;
+
+          const chip = document.createElement('div');
+          chip.className = 'declension-chip';
+          chip.dataset.formIndex = idx;
+          chip.dataset.speech = speechVal;
+          chip.innerHTML = `<span class="case-label">${label}</span><span class="case-val">${displayVal}</span>`;
+          chip.onclick = (e) => {
+            e.stopPropagation();
+            this.audio.speak(speechVal, 0.95);
+          };
+          grid.appendChild(chip);
+        });
+      } else {
+        const fallbackForms = this.generateSampleDeclensions(card.word, card.pos);
+        fallbackForms.forEach((f, idx) => {
+          const chip = document.createElement('div');
+          chip.className = 'declension-chip';
+          chip.dataset.formIndex = idx;
+          chip.dataset.speech = f.val;
+          chip.innerHTML = `<span class="case-label">${f.label}</span><span class="case-val">${f.val}</span>`;
+          chip.onclick = (e) => {
+            e.stopPropagation();
+            this.audio.speak(f.val, 0.95);
+          };
+          grid.appendChild(chip);
+        });
+      }
+    }
+
+    renderMemoryTips(card) {
+      const tipsCapsule = document.getElementById('memoryTipsCapsule');
+      const tipsContent = document.getElementById('tipsContent');
+      const tipsChipsRow = document.getElementById('tipsChipsRow');
+      if (!tipsCapsule || !tipsContent || !tipsChipsRow) return;
+
+      tipsChipsRow.innerHTML = '';
+      let textParts = [];
+
+      if (card.anatomy) {
+        textParts.push(card.anatomy);
+      }
+      if (card.notes && card.notes !== card.anatomy) {
+        textParts.push(card.notes);
+      }
+
+      if (card.network && Array.isArray(card.network) && card.network.length > 0) {
+        card.network.forEach(item => {
+          const chip = document.createElement('span');
+          chip.className = 'tips-chip';
+          chip.textContent = `🔗 ${item}`;
+          tipsChipsRow.appendChild(chip);
+        });
+      }
+
+      if (textParts.length > 0 || (card.network && card.network.length > 0)) {
+        tipsContent.textContent = textParts.join('\n\n');
+        tipsCapsule.style.display = 'block';
+      } else {
+        const fallbackTip = this.generateMorphologyTip(card);
+        if (fallbackTip) {
+          tipsContent.textContent = fallbackTip;
+          tipsCapsule.style.display = 'block';
+        } else {
+          tipsCapsule.style.display = 'none';
+        }
+      }
+    }
+
+    generateMorphologyTip(card) {
+      const w = (card.word || '').toLowerCase();
+      const pos = card.pos || '';
+      if (w.endsWith('ость') || w.endsWith('есть')) {
+        return '・語尾 -ость / -есть: 性質や状態を表す第3変化女性名詞（生・与・前置格は -и、造格は -ью）。';
+      }
+      if (w.endsWith('ение') || w.endsWith('ание')) {
+        return '・語尾 -ение / -ание: 動作や結果を表す中性名詞（前置格は -ии）。';
+      }
+      if (w.endsWith('тель')) {
+        return '・接尾辞 -тель: 〜する人・装置を表す男性名詞（учитель, строитель）。';
+      }
+      if (pos.includes('動詞')) {
+        return '・動詞変化: 完了体(СВ) / 不完了体(НСВ)のペアや前置詞との格支配に注目しましょう。';
+      }
+      return null;
     }
 
     startFermataTimer() {
@@ -355,9 +575,10 @@
         if (this.fermataTimer) clearInterval(this.fermataTimer);
         const card = this.getCurrentCard();
         if (card) {
-          // Play audio on flip
-          setTimeout(() => this.audio.speak(card.word, 1.0), 150);
+          setTimeout(() => this.audio.speak(card.word, 1.0), 120);
         }
+      } else {
+        this.startFermataTimer();
       }
     }
 
@@ -406,27 +627,84 @@
       const card = this.getCurrentCard();
       if (!card) return;
       const btn = document.getElementById('btnPlayConjugation');
+      const drawer = document.getElementById('declensionDrawer');
+      const toggleBtn = document.getElementById('btnToggleDeclension');
       btn.classList.add('playing');
 
-      // Generate rhythm declensions/conjugations
-      const word = card.word;
-      const forms = this.generateSampleConjugations(word, card.pos);
+      if (drawer && drawer.style.display === 'none') {
+        drawer.style.display = 'block';
+        if (toggleBtn) {
+          toggleBtn.classList.add('open');
+          toggleBtn.innerHTML = '▲ 格変化';
+        }
+      }
 
-      this.audio.speakSequence(forms, 1.1, () => {
-        btn.classList.remove('playing');
-      });
+      const chips = Array.from(document.querySelectorAll('#declensionGrid .declension-chip'));
+      const speechItems = chips.map(c => c.dataset.speech || card.word);
+      if (speechItems.length === 0) {
+        speechItems.push(card.word);
+      }
+
+      this.audio.speakSequence(
+        speechItems,
+        1.05,
+        (stepIdx) => {
+          chips.forEach((c, idx) => c.classList.toggle('active', idx === stepIdx));
+        },
+        () => {
+          btn.classList.remove('playing');
+          chips.forEach(c => c.classList.remove('active'));
+        }
+      );
     }
 
-    generateSampleConjugations(word, pos) {
-      // Basic 6-form rhythm builder for dynamic practice
-      if (word.endsWith('ть') || word.endsWith('ться')) {
-        const stem = word.replace(/(ться|ть)$/, '');
+    generateSampleDeclensions(word, pos) {
+      if (!word) return [];
+      const clean = word.toLowerCase();
+      if (clean.endsWith('ть') || clean.endsWith('ться')) {
+        const isReflexive = clean.endsWith('ся') || clean.endsWith('сь');
+        const base = clean.replace(/(ться|ть)$/, '');
+        const ref = isReflexive ? 'сь' : '';
+        const refS = isReflexive ? 'ся' : '';
         return [
-          `${stem}ю`, `${stem}ешь`, `${stem}ет`,
-          `${stem}ем`, `${stem}ете`, `${stem}ют`
+          { label: 'я (1単)', val: `${base}ю${ref}` },
+          { label: 'ты (2単)', val: `${base}ешь${refS}` },
+          { label: 'он (3単)', val: `${base}ет${refS}` },
+          { label: 'мы (1複)', val: `${base}ем${refS}` },
+          { label: 'вы (2複)', val: `${base}ете${ref}` },
+          { label: 'они (3複)', val: `${base}ют${refS}` }
         ];
       }
-      return [word];
+      if (clean.endsWith('ость') || clean.endsWith('есть')) {
+        const stem = clean.slice(0, -1);
+        return [
+          { label: '主格', val: clean },
+          { label: '生格', val: `${stem}и` },
+          { label: '与格', val: `${stem}и` },
+          { label: '対格', val: clean },
+          { label: '造格', val: `${stem}ью` },
+          { label: '前置格', val: `о ${stem}и` }
+        ];
+      }
+      if (clean.endsWith('а')) {
+        const stem = clean.slice(0, -1);
+        return [
+          { label: '主格', val: clean },
+          { label: '生格', val: `${stem}ы` },
+          { label: '与格', val: `${stem}е` },
+          { label: '対格', val: `${stem}у` },
+          { label: '造格', val: `${stem}ой` },
+          { label: '前置格', val: `о ${stem}е` }
+        ];
+      }
+      return [
+        { label: '主格', val: clean },
+        { label: '生格', val: `${clean}а` },
+        { label: '与格', val: `${clean}у` },
+        { label: '対格', val: clean },
+        { label: '造格', val: `${clean}ом` },
+        { label: '前置格', val: `о ${clean}е` }
+      ];
     }
 
     handleRate(result) {
@@ -472,16 +750,25 @@
       if (!this.isAutoPlay) return;
       this.stopAutoPlay();
 
-      // Step 1: Wait 4 seconds on front, then flip
+      // Step 1: Wait 4 seconds on front (mental recall period), then flip
       this.autoPlayTimer = setTimeout(() => {
         if (!this.isAutoPlay) return;
         this.toggleFlip();
 
-        // Step 2: Wait 3 seconds on back, then auto-rate and advance
+        // Step 2: Word is pronounced on flip; follow up with collocation at 1200ms!
+        setTimeout(() => {
+          if (!this.isAutoPlay || !this.isFlipped) return;
+          const card = this.getCurrentCard();
+          if (card && card.collocation_ru) {
+            this.audio.speak(card.collocation_ru, 0.95);
+          }
+        }, 1200);
+
+        // Step 3: Wait 4 seconds on back for absorption, then auto-rate and advance
         this.autoPlayTimer = setTimeout(() => {
           if (!this.isAutoPlay) return;
           this.handleRate('mastered');
-        }, 3200);
+        }, 4000);
       }, 4000);
     }
 
