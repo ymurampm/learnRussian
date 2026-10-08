@@ -22,16 +22,79 @@ const App = {
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden) {
         this.checkDateSync();
+        this.checkMobileGistSync();
       }
     });
     window.addEventListener('focus', () => {
       this.checkDateSync();
+      this.checkMobileGistSync();
     });
 
-    // 2. Periodic sync check every 60 seconds (for 01:00 AM cutoff transitions)
+    // 2. Initial silent sync check 2s after launch
+    setTimeout(() => this.checkMobileGistSync(), 2000);
+
+    // 3. Periodic sync check every 60 seconds (for 01:00 AM cutoff transitions)
     setInterval(() => {
       this.checkDateSync();
     }, 60000);
+  },
+
+  async checkMobileGistSync() {
+    const now = Date.now();
+    if (this._lastGistCheck && (now - this._lastGistCheck < 45000)) return;
+    this._lastGistCheck = now;
+
+    try {
+      const res = await fetch('/api/sync/github_pull', { method: 'POST' });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data.status === 'success' && data.reviews_processed > 0) {
+        this.showFloatingToast(data.tanya_message || `スマホでの復習（${data.reviews_processed}語）を取り込みました！`);
+        await this.loadState();
+      }
+    } catch (e) {
+      // Background check fails silently
+    }
+  },
+
+  showFloatingToast(message) {
+    let toast = document.getElementById('globalFloatingToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'globalFloatingToast';
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: #151d2a;
+        color: #fef08a;
+        border: 1px solid var(--gold-primary);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        opacity: 0;
+        transform: translateY(10px);
+      `;
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<span>📱</span> <span>${message}</span>`;
+    toast.style.display = 'flex';
+    requestAnimationFrame(() => {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+    });
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px)';
+      setTimeout(() => { toast.style.display = 'none'; }, 300);
+    }, 5000);
   },
 
   async checkDateSync() {
