@@ -5796,6 +5796,9 @@ class TanyaRequestHandler(http.server.SimpleHTTPRequestHandler):
         elif path == '/api/sync/github_status':
             self.handle_sync_status()
 
+        elif path == '/api/sync/qr_code.png':
+            self.handle_sync_qr_code()
+
         else:
             self.send_json_response({"error": "Not Found"}, 404)
 
@@ -5881,6 +5884,31 @@ class TanyaRequestHandler(http.server.SimpleHTTPRequestHandler):
             "has_token": has_token,
             "last_synced_at": config.get('last_synced_at', '')
         })
+
+    def handle_sync_qr_code(self):
+        config = load_json('github_sync_config.json', {})
+        gist_id = config.get('gist_id', '')
+        token = config.get('github_token', '')
+        url = f"https://ymurampm.github.io/learnRussian/mobile.html#gist={gist_id}&token={token}"
+        try:
+            import qrcode
+            import io
+            qr = qrcode.QRCode(box_size=6, border=2)
+            qr.add_data(url)
+            qr.make(fit=True)
+            img = qr.make_image(fill_color="black", back_color="white")
+            buf = io.BytesIO()
+            img.save(buf, format='PNG')
+            png_bytes = buf.getvalue()
+
+            self.send_response(200)
+            self.send_header('Content-Type', 'image/png')
+            self.send_header('Content-Length', str(len(png_bytes)))
+            self.send_header('Cache-Control', 'no-cache')
+            self.end_headers()
+            self.wfile.write(png_bytes)
+        except Exception as e:
+            self.send_json_response({"error": str(e)}, 500)
 
     def handle_sync_config(self, payload):
         config = load_json('github_sync_config.json', {})

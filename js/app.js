@@ -232,6 +232,24 @@ const App = {
           notice.style.display = 'inline';
           setTimeout(() => notice.style.display = 'none', 3000);
         }
+        // Refresh QR image
+        const qrImg = document.querySelector('#mobileSyncModal img[src*="qr_code.png"]');
+        if (qrImg) qrImg.src = '/api/sync/qr_code.png?t=' + Date.now();
+      };
+    }
+
+    const btnCopyPairingUrl = document.getElementById('btnCopyPairingUrl');
+    if (btnCopyPairingUrl) {
+      btnCopyPairingUrl.onclick = async () => {
+        const gistId = document.getElementById('pcGistIdInput')?.value.trim() || '489fc67d044b666cd983e20f60376cc0';
+        const token = document.getElementById('pcGithubTokenInput')?.value.trim() || '';
+        const url = `https://ymurampm.github.io/learnRussian/mobile.html#gist=${gistId}&token=${token}`;
+        try {
+          await navigator.clipboard.writeText(url);
+          alert('📱 iPhone用連携URLをクリップボードにコピーしました！');
+        } catch (e) {
+          prompt('以下のURLをコピーしてください:', url);
+        }
       };
     }
 

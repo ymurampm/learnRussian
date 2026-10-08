@@ -675,14 +675,26 @@
         </div>
 
         <div style="padding-top: 14px; border-top: 1px dashed rgba(255,255,255,0.12);">
-          <h4 style="font-size: 0.88rem; color: #fef08a; margin-bottom: 4px;">📱 スマホ（iPhone）で開くには？</h4>
-          <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.45; margin-bottom: 8px;">
-            GitHub PagesのURL（または自宅Wi-Fiの場合は <code style="color: var(--gold-light);">http://192.168.0.248:8085/mobile.html</code>）をiPhoneのSafariで開き、<strong>「共有」→「ホーム画面に追加」</strong>してください。独立したアプリとして快適に使えます！
-          </p>
-          <div style="display: flex; gap: 8px;">
-            <a href="/mobile.html" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); border-radius: 8px; color: var(--gold-light); font-size: 0.82rem; text-decoration: none;">
-              <span>🔗 PC上でモバイル画面を試す (/mobile.html)</span>
-            </a>
+          <h4 style="font-size: 0.88rem; color: #fef08a; margin-bottom: 8px;">📱 iPhone との連携（QRコード読み取り）</h4>
+          <div style="display: flex; gap: 16px; align-items: center; background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 12px; padding: 12px;">
+            <div style="background: #ffffff; padding: 6px; border-radius: 8px; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+              <img src="/api/sync/qr_code.png" alt="ペアリングQRコード" style="width: 120px; height: 120px; display: block; border-radius: 4px;">
+            </div>
+            <div style="flex: 1; font-size: 0.8rem; color: #cbd5e1; line-height: 1.5;">
+              <div style="margin-bottom: 4px; font-weight: 600; color: #fef08a;">📷 iPhoneの標準カメラでスキャン</div>
+              <p style="margin: 0 0 6px 0; color: #94a3b8; font-size: 0.78rem;">
+                スキャンして開くだけで、Gist認証情報が自動設定されます。
+                開いた後、Safariの <strong>[共有 ⎋] &rarr; [ホーム画面に追加]</strong> を行うと独立PWAアプリとして起動します。
+              </p>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <a href="/mobile.html" target="_blank" style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); border-radius: 6px; color: var(--gold-light); font-size: 0.75rem; text-decoration: none;">
+                  <span>🔗 PC上で試す</span>
+                </a>
+                <button type="button" id="btnCopyPairingUrl" style="padding: 4px 10px; background: rgba(212,175,55,0.15); border: 1px solid var(--gold-primary); border-radius: 6px; color: var(--gold-light); font-size: 0.75rem; cursor: pointer;">
+                  📋 URLをコピー
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
