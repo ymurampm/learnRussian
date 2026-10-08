@@ -174,10 +174,15 @@
       </p>
 
       <label class="input-label" for="gistIdInput">GitHub Gist ID</label>
-      <input type="text" class="text-input" id="gistIdInput" placeholder="例: 7a8b9c0d1e2f3a4b..." autocomplete="off">
+      <input type="text" class="text-input" id="gistIdInput" value="489fc67d044b666cd983e20f60376cc0" placeholder="例: 7a8b9c0d1e2f3a4b..." autocomplete="off">
 
       <label class="input-label" for="githubTokenInput">GitHub Personal Access Token (PAT)</label>
-      <input type="password" class="text-input" id="githubTokenInput" placeholder="ghp_... (gists読み書き権限)" autocomplete="off">
+      <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+        <input type="password" class="text-input" id="githubTokenInput" placeholder="ghp_... (gists読み書き権限)" autocomplete="off" style="flex: 1; margin-bottom: 0;">
+        <button type="button" id="btnPasteToken" style="padding: 0 14px; background: rgba(212,175,55,0.15); border: 1px solid var(--gold-border); border-radius: 10px; color: var(--gold-light); font-size: 0.8rem; font-weight: 600; cursor: pointer; white-space: nowrap;">
+          📋 貼付
+        </button>
+      </div>
 
       <button class="primary-modal-btn" id="btnPushGist">
         ☁️ PCへ進捗を送信 (Push)

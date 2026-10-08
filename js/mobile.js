@@ -6,6 +6,8 @@
 (function () {
   'use strict';
 
+  const DEFAULT_GIST_ID = '489fc67d044b666cd983e20f60376cc0';
+
   // --- Audio Engine (Web Speech API) ---
   class MobileAudioPlayer {
     constructor() {
@@ -93,20 +95,30 @@
     }
 
     initData() {
-      // Auto-configure from URL hash if provided: #gist=...&token=...
-      if (window.location.hash) {
-        try {
-          const hashParams = new URLSearchParams(window.location.hash.slice(1));
-          const hashGist = hashParams.get('gist');
-          const hashToken = hashParams.get('token');
-          if (hashGist) localStorage.setItem('tanya_gist_id', hashGist);
-          if (hashToken) localStorage.setItem('tanya_github_token', hashToken);
-          if (hashGist || hashToken) {
-            history.replaceState(null, '', window.location.pathname + window.location.search);
-          }
-        } catch (e) {
-          console.warn('Hash config failed:', e);
+      // Auto-configure from URL query (?gist=...&token=...) or hash (#gist=...&token=...)
+      try {
+        const hashParams = window.location.hash ? new URLSearchParams(window.location.hash.slice(1)) : null;
+        const searchParams = new URLSearchParams(window.location.search);
+
+        const incomingGist = (hashParams && hashParams.get('gist')) || searchParams.get('gist');
+        const incomingToken = (hashParams && hashParams.get('token')) || searchParams.get('token');
+
+        if (incomingGist) localStorage.setItem('tanya_gist_id', incomingGist);
+        if (incomingToken) localStorage.setItem('tanya_github_token', incomingToken);
+
+        // Pre-fill default Gist ID if missing
+        if (!localStorage.getItem('tanya_gist_id')) {
+          localStorage.setItem('tanya_gist_id', DEFAULT_GIST_ID);
         }
+
+        if (incomingGist || incomingToken) {
+          history.replaceState(null, '', window.location.pathname);
+          setTimeout(() => {
+            this.showToast('✨ GitHub同期設定を自動登録しました！');
+          }, 300);
+        }
+      } catch (e) {
+        console.warn('URL auto-config failed:', e);
       }
 
       // 1. Load Seed Data from window.TANYA_MOBILE_SEED if available
@@ -219,6 +231,31 @@
       document.getElementById('githubTokenInput').addEventListener('input', (e) => {
         localStorage.setItem('tanya_github_token', e.target.value.trim());
       });
+
+      const btnPasteToken = document.getElementById('btnPasteToken');
+      if (btnPasteToken) {
+        btnPasteToken.addEventListener('click', async () => {
+          try {
+            const text = await navigator.clipboard.readText();
+            if (text && text.trim()) {
+              const cleaned = text.trim();
+              document.getElementById('githubTokenInput').value = cleaned;
+              localStorage.setItem('tanya_github_token', cleaned);
+              this.showToast('✅ トークンをペースト＆保存しました！');
+            } else {
+              this.showToast('クリップボードが空です');
+            }
+          } catch (e) {
+            const val = prompt('GitHub Personal Access Token (ghp_...) を貼り付けてください:');
+            if (val && val.trim()) {
+              const cleaned = val.trim();
+              document.getElementById('githubTokenInput').value = cleaned;
+              localStorage.setItem('tanya_github_token', cleaned);
+              this.showToast('✅ トークンを保存しました！');
+            }
+          }
+        });
+      }
 
       // Background Sleep/Tab Switch Auto-sync
       document.addEventListener('visibilitychange', () => {
@@ -555,7 +592,7 @@
 
     // --- GitHub Gist Sync Engine ---
     getGistConfig() {
-      const gistId = localStorage.getItem('tanya_gist_id') || '';
+      const gistId = localStorage.getItem('tanya_gist_id') || DEFAULT_GIST_ID;
       const token = localStorage.getItem('tanya_github_token') || '';
       return { gistId, token };
     }
