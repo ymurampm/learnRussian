@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <!-- PWA & Mobile Viewport Configuration for iOS Standalone -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Tanya">
+  <meta name="theme-color" content="#0b0f17">
+  
+  <title>Tanya Russian Mobile Studio</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+
+  <!-- Top App Header -->
+  <header class="mobile-header">
+    <div class="header-top-row">
+      <div class="brand-capsule">
+        <span class="brand-icon">🎹</span>
+        <div class="brand-text">
+          <h1>Tanya Mobile</h1>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="sync-badge-btn" id="btnOpenSync">
+          ☁️ 同期
+        </button>
+      </div>
+    </div>
+
+    <!-- Mode Tabs -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" id="tabBtnFlash">
+        ⭐ スター単語
+      </button>
+      <button class="tab-btn" id="tabBtnListen">
+        🎧 リスニング (2級)
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-container">
+
+    <!-- ======================================================================
+         Tab 1: Starred Flashcard Studio
+         ====================================================================== -->
+    <section class="tab-content active" id="flashTabContent">
+      <div class="flash-control-bar">
+        <span id="cardCountBadge" style="font-weight: 600; color: #a3b8cc;">1 / 111</span>
+        <button class="autoplay-toggle-btn" id="btnAutoPlay">
+          🌧️ 雨の日オート
+        </button>
+      </div>
+
+      <!-- Card Container (Tap to Flip) -->
+      <div class="card-wrapper" id="cardWrapper">
+        <div class="flip-card" id="flipCard">
+          
+          <!-- Front Side (Active Recall) -->
+          <div class="card-face front">
+            <div class="card-top-badges">
+              <span class="pos-tag" id="cardPosTag">女性名詞</span>
+              <span class="fermata-badge" id="fermataBadge">𝄐 0s</span>
+            </div>
+
+            <div class="card-center-ru">
+              <div class="ru-main-word" id="frontRuWord">радость</div>
+              <div class="collocation-cloze" id="frontClozeLine">настоящая [ ❓ ]</div>
+            </div>
+
+            <div class="micro-hints-box">
+              <div class="hint-trigger-row">
+                <button class="hint-btn" id="btnHintStem">💡 語根ヒント</button>
+                <button class="hint-btn" id="btnHintSound">🔊 出だし音</button>
+              </div>
+              <div class="hint-content-drawer" id="hintContentDrawer"></div>
+            </div>
+
+            <div class="card-flip-prompt">
+              👆 タップしてウラ面を確認
+            </div>
+          </div>
+
+          <!-- Back Side (Deep Consolidation) -->
+          <div class="card-face back">
+            <div class="back-meaning-box">
+              <div class="back-word-title" id="backRuWord">радость</div>
+              <div class="back-meaning-text" id="backMeaningText">喜び, 歓喜</div>
+            </div>
+
+            <div class="back-action-row">
+              <button class="action-sound-btn" id="btnReplayWord">
+                🔊 単語発音
+              </button>
+              <button class="action-conjugation-btn" id="btnPlayConjugation">
+                🎹 活用朗読 (C)
+              </button>
+            </div>
+
+            <div class="back-example-box">
+              <div class="example-ru-line" id="exampleRuLine">Играть дуэт с Алёной — это настоящая радость.</div>
+              <div class="example-ja-line" id="exampleJaLine">アリョーナと連弾を弾くことは、私にとって本物の喜びです。</div>
+            </div>
+
+            <div class="alena-context-capsule" id="alenaSceneCapsule">
+              🎹 音楽院のレッスン室での情景
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Thumb Zone Rating Actions -->
+      <div class="thumb-actions-bar">
+        <button class="thumb-btn review" id="btnRateReview">
+          🌱 まだ
+        </button>
+        <button class="thumb-btn mastered" id="btnRateMastered">
+          🌸 覚えた
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         Tab 2: Listening Studio (2級対策)
+         ====================================================================== -->
+    <section class="tab-content" id="listenTabContent">
+      <div class="listening-header-box">
+        <div class="listening-day-picker">
+          <span style="font-size: 0.82rem; color: #cbd5e1; font-weight: 600;">レッスン日:</span>
+          <select class="day-select-dropdown" id="daySelectDropdown"></select>
+        </div>
+        <div class="listening-title" id="listeningTitle">四重奏の余韻、共に奏でた仲間たち</div>
+        <div class="listening-greeting" id="listeningGreeting">Добрый вечер! 心安らぐロシア語の響きをどうぞ。</div>
+      </div>
+
+      <!-- Player Controls -->
+      <div class="player-control-dock">
+        <button class="play-main-btn" id="btnPlayListening">▶</button>
+        <div style="font-size: 0.82rem; color: #a3b8cc;">
+          スピード (耳慣らし)
+        </div>
+        <div class="speed-control-group">
+          <button class="speed-btn active" data-rate="1.0">1.0x</button>
+          <button class="speed-btn" data-rate="1.2">1.2x</button>
+          <button class="speed-btn" data-rate="1.5">1.5x</button>
+        </div>
+      </div>
+
+      <!-- Synchronized Transcript Feed -->
+      <div class="transcript-feed" id="transcriptFeed"></div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       GitHub Gist & Passcode Sync Modal
+       ====================================================================== -->
+  <div class="modal-backdrop" id="syncModal">
+    <div class="modal-box">
+      <div class="modal-title-row">
+        <h2>☁️ PC同期設定 (Gist)</h2>
+        <button class="modal-close-btn" id="btnCloseSync">&times;</button>
+      </div>
+
+      <p style="font-size: 0.8rem; color: #94a3b8; line-height: 1.45; margin-bottom: 14px;">
+        外出先での学習データを、自宅のPC（Tanya Salon）とワンクリックで同期します。
+      </p>
+
+      <label class="input-label" for="gistIdInput">GitHub Gist ID</label>
+      <input type="text" class="text-input" id="gistIdInput" placeholder="例: 7a8b9c0d1e2f3a4b..." autocomplete="off">
+
+      <label class="input-label" for="githubTokenInput">GitHub Personal Access Token (PAT)</label>
+      <input type="password" class="text-input" id="githubTokenInput" placeholder="ghp_... (gists読み書き権限)" autocomplete="off">
+
+      <button class="primary-modal-btn" id="btnPushGist">
+        ☁️ PCへ進捗を送信 (Push)
+      </button>
+
+      <button class="secondary-modal-btn" id="btnPullGist">
+        📥 最新の⭐単語を取得 (Pull)
+      </button>
+
+      <div style="margin-top: 18px; padding-top: 14px; border-top: 1px dashed rgba(212, 163, 89, 0.25);">
+        <div style="font-size: 0.78rem; color: #fef08a; font-weight: 600; margin-bottom: 4px;">
+          📜 バックアップ：ふっかつの呪文
+        </div>
+        <p style="font-size: 0.75rem; color: #94a3b8; margin-bottom: 6px;">
+          Gistを使わずに手入力でPCへ持ち帰る場合の8文字コード:
+        </p>
+        <div style="background: #0b0f17; border: 1px solid var(--border-subtle); padding: 8px; border-radius: 8px; font-family: monospace; font-size: 1.1rem; color: var(--gold-light); text-align: center; letter-spacing: 2px;" id="passcodeDisplay">
+          D25-9KF4
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notice" id="toastNotice"></div>
+
+  <!-- Bundled Seed Data & Application Script -->
+  <script src="js/mobile_seed.js"></script>
+  <script src="js/mobile.js"></script>
+</body>
+</html>

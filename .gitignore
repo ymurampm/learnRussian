@@ -1,0 +1,17 @@
+# Local sensitive sync config
+data/github_sync_config.json
+data/*.tmp
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local audio cache
+audio_cache/
+
+# Scratch & logs
+scratch/
+logs/
+
+# Test screenshots
+screenshot_*.png

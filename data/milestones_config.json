@@ -1,0 +1,135 @@
+{
+  "target_exam": {
+    "name": "ロシア語能力検定2級",
+    "target_date": "2027-10-15",
+    "target_level_description": "露検2級 合格水準（文法・読解・聴取）",
+    "scope_app": {
+      "title": "本アプリの担当領域",
+      "description": "文法・語彙・聴取の反射的定着（タイピングなし・条件反射レベルの自動化、瞬時判断）",
+      "icon": "⚡"
+    },
+    "scope_italki": {
+      "title": "italkiの担当領域",
+      "description": "和文露訳・口頭作文（文の組み立て、実践的会話・産出トレーニング）",
+      "icon": "🗣️"
+    }
+  },
+  "phases": [
+    {
+      "phase_id": "phase1",
+      "phase_num": 1,
+      "name": "判定なし中心期（基礎接触）",
+      "subtitle": "プレッシャーフリーで全基本文法に触れる",
+      "start_date": "2026-09-01",
+      "end_date": "2026-11-30",
+      "focus_tags": [
+        "case.nom",
+        "case.gen",
+        "case.dat",
+        "case.acc",
+        "case.ins",
+        "case.prp",
+        "verb.aspect_nsv",
+        "verb.aspect_sv",
+        "verb.irregular",
+        "adj.declension",
+        "syntax.conjunction"
+      ],
+      "criteria": {
+        "type": "coverage",
+        "description": "初期タグセット全体に最低1回触れている状態",
+        "min_seen": 1,
+        "target_status": "seen"
+      }
+    },
+    {
+      "phase_id": "phase2",
+      "phase_num": 2,
+      "name": "3級タグの反射化",
+      "subtitle": "移動動詞・比較級・数詞主格の安定化",
+      "start_date": "2026-12-01",
+      "end_date": "2027-03-31",
+      "focus_tags": [
+        "verb.motion_uni",
+        "verb.motion_multi",
+        "adj.comparative",
+        "adj.short",
+        "numeral.agreement",
+        "syntax.relative",
+        "verb.reflexive",
+        "verb.imperative"
+      ],
+      "criteria": {
+        "type": "reflex",
+        "description": "3級相当タグの正答率と判断が安定（正答率75%以上、着実な解答（平均35秒以内））",
+        "min_accuracy": 0.75,
+        "max_avg_rt_ms": 35000,
+        "target_status": "stable"
+      }
+    },
+    {
+      "phase_id": "phase3",
+      "phase_num": 3,
+      "name": "2級固有タグの強化",
+      "subtitle": "数詞斜格変化・体用法・形動詞/副動詞",
+      "start_date": "2027-04-01",
+      "end_date": "2027-07-31",
+      "focus_tags": [
+        "numeral.declension_all",
+        "verb.aspect_sv",
+        "syntax.adverbial",
+        "syntax.conditional",
+        "participle.active",
+        "participle.passive",
+        "gerund.verbal_adverb"
+      ],
+      "criteria": {
+        "type": "reflex",
+        "description": "2級相当固有タグの理解が安定（正答率80%以上、着実な解答（平均30秒以内））",
+        "min_accuracy": 0.80,
+        "max_avg_rt_ms": 30000,
+        "target_status": "stable"
+      }
+    },
+    {
+      "phase_id": "phase4",
+      "phase_num": 4,
+      "name": "直前総復習・聴取耐性期",
+      "subtitle": "全タグ横断・通常〜高速リスニング",
+      "start_date": "2027-08-01",
+      "end_date": "2027-09-30",
+      "focus_tags": [
+        "case.prp",
+        "case.acc",
+        "case.gen",
+        "case.dat",
+        "case.ins",
+        "verb.aspect_sv",
+        "verb.motion_uni",
+        "verb.motion_multi",
+        "syntax.relative",
+        "numeral.declension_all"
+      ],
+      "criteria": {
+        "type": "mastery",
+        "description": "全タグ横断演習で高精度な判断（正答率85%以上、安定した解答（平均25秒以内））",
+        "min_accuracy": 0.85,
+        "max_avg_rt_ms": 25000,
+        "target_status": "reflex"
+      }
+    },
+    {
+      "phase_id": "phase5",
+      "phase_num": 5,
+      "name": "受験本番（成果発揮）",
+      "subtitle": "ロシア語能力検定2級 合格",
+      "start_date": "2027-10-01",
+      "end_date": "2027-10-31",
+      "focus_tags": [],
+      "criteria": {
+        "type": "exam",
+        "description": "ロシア語能力検定2級 受験（本アプリで鍛えた反射力とitalkiの作文・口頭力を統合）"
+      }
+    }
+  ]
+}

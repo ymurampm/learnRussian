@@ -1,0 +1,604 @@
+{
+  "last_run": "2026-10-02 20:57:19",
+  "status": "success",
+  "purity_validation": "pass",
+  "historical_facts_validation": "pass",
+  "token_grammar_validation": "pass",
+  "buffer": {
+    "status": "ok",
+    "total_days": 30,
+    "max_buffer_day": 30,
+    "furthest_reached": 21,
+    "unconsumed_days": 9,
+    "day_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "session_summary": [
+      {
+        "day": 1,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 2,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 3,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 4,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 5,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 6,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 7,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 8,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 9,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 10,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 11,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 12,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 13,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 14,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 15,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 16,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 17,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 18,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 19,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 20,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 21,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 22,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 23,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 24,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 25,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 26,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 27,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 28,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 29,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 30,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      }
+    ],
+    "solvability": {
+      "is_valid": true,
+      "total_questions": 169,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  "user_summary": {
+    "user_name": "Yusuke",
+    "streak": 18,
+    "intimacy_level": 5,
+    "intimacy_title": "至高のアンサンブル",
+    "days_gap": 1,
+    "rusty_tags": [],
+    "stable_tags": [
+      "case.acc",
+      "case.gen",
+      "verb.aspect_sv",
+      "verb.motion_multi",
+      "numeral.agreement",
+      "syntax.relative",
+      "syntax.adverbial",
+      "numeral.declension_all"
+    ],
+    "reflex_tags": [
+      "case.prp",
+      "case.ins",
+      "verb.aspect_nsv",
+      "verb.motion_uni",
+      "adj.declension",
+      "verb.irregular",
+      "adj.comparative",
+      "verb.reflexive",
+      "verb.imperative",
+      "syntax.conditional",
+      "participle.passive_past",
+      "pronoun.indefinite",
+      "syntax.impersonal"
+    ],
+    "daily_greeting": "Прекрасный день, Юсукэ! 毎日の継続（18日連続）、本当に素晴らしい集中力です。今日も美しいロシア語の響きを一緒に楽しみましょう！"
+  },
+  "milestone_audit": {
+    "last_audit_date": "2026-10-02",
+    "target_exam": {
+      "name": "ロシア語能力検定2級",
+      "target_date": "2027-10-15",
+      "target_level_description": "露検2級 合格水準（文法・読解・聴取）",
+      "scope_app": {
+        "title": "本アプリの担当領域",
+        "description": "文法・語彙・聴取の反射的定着（タイピングなし・条件反射レベルの自動化、瞬時判断）",
+        "icon": "⚡"
+      },
+      "scope_italki": {
+        "title": "italkiの担当領域",
+        "description": "和文露訳・口頭作文（文の組み立て、実践的会話・産出トレーニング）",
+        "icon": "🗣️"
+      }
+    },
+    "active_phase": {
+      "phase_id": "phase1",
+      "phase_num": 1,
+      "name": "判定なし中心期（基礎接触）",
+      "subtitle": "プレッシャーフリーで全基本文法に触れる",
+      "start_date": "2026-09-01",
+      "end_date": "2026-11-30",
+      "is_active": true,
+      "progress_pct": 81,
+      "passed_count": 9,
+      "total_focus_count": 11,
+      "passed_tags": [
+        "case.gen",
+        "case.dat",
+        "case.acc",
+        "case.ins",
+        "case.prp",
+        "verb.aspect_nsv",
+        "verb.aspect_sv",
+        "verb.irregular",
+        "adj.declension"
+      ],
+      "unreached_tags": [
+        "case.nom",
+        "syntax.conjunction"
+      ],
+      "criteria_desc": "初期タグセット全体に最低1回触れている状態"
+    },
+    "pace_status": "ahead",
+    "pace_label": "順調・先行中 (Ahead)",
+    "expected_pct": 34,
+    "actual_pct": 81,
+    "coaching_message": "Юсукэ、素晴らしいペースです！2027年10月の2級合格に向けて、今のフェーズの定着が前倒しで進んでいます。この調子で、少し先の応用的な表現もリラックスして覗いてみましょうか♪",
+    "recommended_tags": [
+      {
+        "tag": "case.nom",
+        "name": "主格 (Именительный)"
+      },
+      {
+        "tag": "syntax.conjunction",
+        "name": "等位・従属接続詞"
+      }
+    ],
+    "phases": [
+      {
+        "phase_id": "phase1",
+        "phase_num": 1,
+        "name": "判定なし中心期（基礎接触）",
+        "subtitle": "プレッシャーフリーで全基本文法に触れる",
+        "start_date": "2026-09-01",
+        "end_date": "2026-11-30",
+        "is_active": true,
+        "progress_pct": 81,
+        "passed_count": 9,
+        "total_focus_count": 11,
+        "passed_tags": [
+          "case.gen",
+          "case.dat",
+          "case.acc",
+          "case.ins",
+          "case.prp",
+          "verb.aspect_nsv",
+          "verb.aspect_sv",
+          "verb.irregular",
+          "adj.declension"
+        ],
+        "unreached_tags": [
+          "case.nom",
+          "syntax.conjunction"
+        ],
+        "criteria_desc": "初期タグセット全体に最低1回触れている状態"
+      },
+      {
+        "phase_id": "phase2",
+        "phase_num": 2,
+        "name": "3級タグの反射化",
+        "subtitle": "移動動詞・比較級・数詞主格の安定化",
+        "start_date": "2026-12-01",
+        "end_date": "2027-03-31",
+        "is_active": false,
+        "progress_pct": 87,
+        "passed_count": 7,
+        "total_focus_count": 8,
+        "passed_tags": [
+          "verb.motion_uni",
+          "verb.motion_multi",
+          "adj.comparative",
+          "numeral.agreement",
+          "syntax.relative",
+          "verb.reflexive",
+          "verb.imperative"
+        ],
+        "unreached_tags": [
+          "adj.short"
+        ],
+        "criteria_desc": "3級相当タグの反応速度・正答率が安定（正答率75%以上、平均反応時間3.5秒以内）"
+      },
+      {
+        "phase_id": "phase3",
+        "phase_num": 3,
+        "name": "2級固有タグの強化",
+        "subtitle": "数詞斜格変化・体用法・形動詞/副動詞",
+        "start_date": "2027-04-01",
+        "end_date": "2027-07-31",
+        "is_active": false,
+        "progress_pct": 57,
+        "passed_count": 4,
+        "total_focus_count": 7,
+        "passed_tags": [
+          "numeral.declension_all",
+          "verb.aspect_sv",
+          "syntax.adverbial",
+          "syntax.conditional"
+        ],
+        "unreached_tags": [
+          "participle.active",
+          "participle.passive",
+          "gerund.verbal_adverb"
+        ],
+        "criteria_desc": "2級相当固有タグの反応速度・正答率が安定（正答率80%以上、平均反応時間3.0秒以内）"
+      },
+      {
+        "phase_id": "phase4",
+        "phase_num": 4,
+        "name": "直前総復習・聴取耐性期",
+        "subtitle": "全タグ横断・通常〜高速リスニング",
+        "start_date": "2027-08-01",
+        "end_date": "2027-09-30",
+        "is_active": false,
+        "progress_pct": 30,
+        "passed_count": 3,
+        "total_focus_count": 10,
+        "passed_tags": [
+          "case.prp",
+          "case.ins",
+          "verb.motion_uni"
+        ],
+        "unreached_tags": [
+          "case.acc",
+          "case.gen",
+          "case.dat",
+          "verb.aspect_sv",
+          "verb.motion_multi",
+          "syntax.relative",
+          "numeral.declension_all"
+        ],
+        "criteria_desc": "全タグ横断演習で安定した正答率（正答率85%以上、平均反応時間2.5秒以内、条件反射化）"
+      },
+      {
+        "phase_id": "phase5",
+        "phase_num": 5,
+        "name": "受験本番（成果発揮）",
+        "subtitle": "ロシア語能力検定2級 合格",
+        "start_date": "2027-10-01",
+        "end_date": "2027-10-31",
+        "is_active": false,
+        "progress_pct": 0,
+        "passed_count": 0,
+        "total_focus_count": 0,
+        "passed_tags": [],
+        "unreached_tags": [],
+        "criteria_desc": "ロシア語能力検定2級 受験（本アプリで鍛えた反射力とitalkiの作文・口頭力を統合）"
+      }
+    ],
+    "tag_readiness": [
+      {
+        "tag": "case.nom",
+        "name": "主格 (Именительный)",
+        "level": "A1",
+        "color": "#3b82f6",
+        "seen": 0,
+        "accuracy_pct": 0,
+        "avg_rt_ms": 2500,
+        "status": "developing",
+        "is_passed": false
+      },
+      {
+        "tag": "case.gen",
+        "name": "生格 (Родительный)",
+        "level": "A1-A2",
+        "color": "#8b5cf6",
+        "seen": 11,
+        "accuracy_pct": 90,
+        "avg_rt_ms": 3500,
+        "status": "stable",
+        "is_passed": true
+      },
+      {
+        "tag": "case.dat",
+        "name": "与格 (Дательный)",
+        "level": "A2",
+        "color": "#f97316",
+        "seen": 1,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 3500,
+        "status": "developing",
+        "is_passed": true
+      },
+      {
+        "tag": "case.acc",
+        "name": "対格 (Винительный)",
+        "level": "A1-A2",
+        "color": "#10b981",
+        "seen": 10,
+        "accuracy_pct": 90,
+        "avg_rt_ms": 3500,
+        "status": "stable",
+        "is_passed": true
+      },
+      {
+        "tag": "case.ins",
+        "name": "造格 (Творительный)",
+        "level": "A2",
+        "color": "#d97706",
+        "seen": 4,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 2100,
+        "status": "reflex",
+        "is_passed": true
+      },
+      {
+        "tag": "case.prp",
+        "name": "前置格 (Предложный)",
+        "level": "A1",
+        "color": "#06b6d4",
+        "seen": 18,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 2100,
+        "status": "reflex",
+        "is_passed": true
+      },
+      {
+        "tag": "verb.aspect_nsv",
+        "name": "不完了体 (НСВ)",
+        "level": "A1-A2",
+        "color": "#0284c7",
+        "seen": 6,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 2100,
+        "status": "reflex",
+        "is_passed": true
+      },
+      {
+        "tag": "verb.aspect_sv",
+        "name": "完了体 (СВ)",
+        "level": "A2",
+        "color": "#e11d48",
+        "seen": 9,
+        "accuracy_pct": 88,
+        "avg_rt_ms": 3500,
+        "status": "stable",
+        "is_passed": true
+      },
+      {
+        "tag": "verb.irregular",
+        "name": "不規則・特殊活用動詞",
+        "level": "A1-A2",
+        "color": "#ec4899",
+        "seen": 6,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 2100,
+        "status": "reflex",
+        "is_passed": true
+      },
+      {
+        "tag": "adj.declension",
+        "name": "形容詞の性・数・格変化",
+        "level": "A1-A2",
+        "color": "#84cc16",
+        "seen": 7,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 2100,
+        "status": "reflex",
+        "is_passed": true
+      },
+      {
+        "tag": "syntax.conjunction",
+        "name": "等位・従属接続詞",
+        "level": "A1-A2",
+        "color": "#64748b",
+        "seen": 0,
+        "accuracy_pct": 0,
+        "avg_rt_ms": 2500,
+        "status": "developing",
+        "is_passed": false
+      }
+    ]
+  },
+  "backup_path": "C:\\Antigravity\\Projects\\learnRussian\\data\\backups\\20261002_205719"
+}

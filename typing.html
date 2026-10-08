@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タイピングサロン | Tanya Russian モスクワ音楽院</title>
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+<body>
+
+  <!-- Input Warning Banner (For English input mode) -->
+  <div id="warningOverlay" class="warning-overlay">
+    <span>⚠️ ロシア語入力に切り替えてください [Alt+Shift または Win+Space]</span>
+  </div>
+
+  <!-- Header (Conservatory Salon Header) -->
+  <header class="typing-header">
+    <div class="brand-section">
+      <a href="/index.html" class="btn-back">
+        <span>←</span> 音楽院サロンへ戻る
+      </a>
+      <div class="app-title">
+        <h1>🎹 Tanya Russian タイピングサロン</h1>
+        <span>モスクワ音楽院ピアノ室 (ThinkPad JIS 109 運指対応)</span>
+      </div>
+    </div>
+
+    <div class="header-stats">
+      <div class="stat-chip">
+        <span class="stat-label">WPM</span>
+        <span id="valWpm" class="stat-val">0</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-label">正確度</span>
+        <span id="valAccuracy" class="stat-val">100%</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-label">総打鍵数</span>
+        <span id="valTotalKeys" class="stat-val">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mode & Stage Selector -->
+  <div class="mode-container">
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="level0">Level 0: キー位置・運指マスター</button>
+      <button class="mode-tab" data-mode="level1">Level 1: A1 実戦ミックス</button>
+    </div>
+
+    <div class="stage-selector-container">
+      <select id="stageSelect" class="stage-select">
+        <!-- Dynamically populated from typing_curriculum.json -->
+      </select>
+    </div>
+
+    <!-- Cursive (Italic) Font Controls -->
+    <div class="font-controls">
+      <button id="btnToggleCursive" class="btn-cursive-toggle" title="筆記体（イタリック）表示のON/OFF">
+        <span>✍️ 筆記体 (Курсив):</span> <strong id="cursiveStatusLabel">OFF</strong>
+      </button>
+      <button id="btnOpenCursiveGuide" class="btn-guide-modal" title="筆記体トラップ早見表を開く">
+        <span>📖 早見表</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Practice Area -->
+  <main class="practice-container">
+    <!-- Tanya Teacher Guidance & Encouragement Bar -->
+    <div class="tanya-guidance-bar">
+      <div class="tanya-avatar-frame">
+        <img id="tanyaAvatarImg" src="/assets/images/tanya_smiling.jpg" alt="ターニャ先生" class="tanya-avatar-img">
+      </div>
+      <div class="tanya-speech-bubble">
+        <strong>ターニャ先生:</strong>
+        <span id="tanyaSpeechText">ピアノの鍵盤に指を置くように、手元の力を抜いて画面のガイドを見て弾いて（打って）みてね♪</span>
+      </div>
+    </div>
+
+    <!-- Prompt Card (Conservatory Music Stand Style) -->
+    <div class="prompt-card">
+      <div class="prompt-meta">
+        <span id="categoryBadge" class="badge-category">Level 0 運指ドリル</span>
+        <button id="btnPlayAudio" class="audio-btn" title="ネイティブ音声を聞く">
+          <span>🔊</span> 発音を聴く
+        </button>
+      </div>
+
+      <!-- Target Text Display -->
+      <div id="targetText" class="target-text-container">
+        <!-- Chars rendered by JS -->
+      </div>
+
+      <!-- Japanese Translation -->
+      <div id="translationText" class="translation-text">
+        <!-- Translation rendered by JS -->
+      </div>
+
+      <!-- Spelling & Grammar Note -->
+      <div id="noteBox" class="note-box" style="display: none;">
+        <!-- Notes rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Finger & Next Key Hint Bar -->
+    <div class="finger-hint-bar">
+      <div class="next-char-indicator">
+        <div id="nextCharBadge" class="next-char-badge">А</div>
+        <div class="finger-guide-text">
+          <span id="fingerName" class="finger-name">左手・人差し指</span>
+          <span id="fingerDesc" class="finger-desc">ホームポジションの基準キーです</span>
+        </div>
+      </div>
+
+      <div class="keyboard-toggle-options">
+        <span>💡 手元を見ず、画面の光るキーを見て打ちましょう</span>
+      </div>
+    </div>
+
+    <!-- ThinkPad JIS 109 On-Screen Keyboard (Piano & Wood Aesthetic) -->
+    <div class="keyboard-wrapper">
+      <div id="kbContainer">
+        <!-- Rows rendered by JS -->
+      </div>
+    </div>
+
+    <!-- 33-Key Mastery Matrix (Level 0 Progress Tracker) -->
+    <div class="mastery-panel">
+      <div class="mastery-header">
+        <span class="mastery-title">📊 キリル文字 33キー習熟度マップ（各キー20回打鍵でマスター）</span>
+        <span id="valMasteryPct" class="mastery-pct">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div id="progressBarFill" class="progress-bar-fill"></div>
+      </div>
+      <div id="matrixGrid" class="matrix-grid">
+        <!-- 33 chips rendered by JS -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Cursive Trap Reference Modal -->
+  <div id="cursiveModal" class="modal-overlay">
+    <div class="modal-box">
+      <button id="btnCloseCursiveGuide" class="modal-close-btn" title="閉じる">&times;</button>
+      <h2 class="modal-header-title">✍️ ロシア語 筆記体（イタリック）解読ガイド</h2>
+      <p class="modal-intro">
+        ロシア語の筆記体やイタリック（斜体）は、ブロック体（活字体）と形がまったく違う文字があります。<br>
+        タイピング練習で「この文字を打つ」を繰り返すことで、自然と読めるようになります！
+      </p>
+
+      <h3 style="font-size: 0.95rem; color: var(--gold-light); margin-bottom: 10px;">⚡ 最重要！形が激変する「5大トラップ文字」</h3>
+      <div class="trap-card-grid">
+        <div class="trap-card">
+          <span class="trap-card-header">T（テー）の小文字</span>
+          <div class="trap-letters-comparison">
+            <span class="trap-standard">т</span>
+            <span class="trap-arrow">➔</span>
+            <span class="trap-cursive">т</span>
+          </div>
+          <span class="trap-note">英語の「m」に見える！</span>
+        </div>
+
+        <div class="trap-card">
+          <span class="trap-card-header">D（デー）の小文字</span>
+          <div class="trap-letters-comparison">
+            <span class="trap-standard">д</span>
+            <span class="trap-arrow">➔</span>
+            <span class="trap-cursive">д</span>
+          </div>
+          <span class="trap-note">英語の「g」に見える！</span>
+        </div>
+
+        <div class="trap-card">
+          <span class="trap-card-header">I（イー）の小文字</span>
+          <div class="trap-letters-comparison">
+            <span class="trap-standard">и</span>
+            <span class="trap-arrow">➔</span>
+            <span class="trap-cursive">и</span>
+          </div>
+          <span class="trap-note">英語の「u」に見える！</span>
+        </div>
+
+        <div class="trap-card">
+          <span class="trap-card-header">P（ペー）の小文字</span>
+          <div class="trap-letters-comparison">
+            <span class="trap-standard">п</span>
+            <span class="trap-arrow">➔</span>
+            <span class="trap-cursive">п</span>
+          </div>
+          <span class="trap-note">英語の「n」に見える！</span>
+        </div>
+
+        <div class="trap-card">
+          <span class="trap-card-header">G（ゲー）の小文字</span>
+          <div class="trap-letters-comparison">
+            <span class="trap-standard">г</span>
+            <span class="trap-arrow">➔</span>
+            <span class="trap-cursive">г</span>
+          </div>
+          <span class="trap-note">英語の「s/r」に似ている！</span>
+        </div>
+      </div>
+
+      <h3 style="font-size: 0.95rem; color: var(--gold-light); margin-bottom: 10px;">🔍 ほかにも注意したい文字たち</h3>
+      <div class="trap-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));">
+        <div class="trap-card">
+          <span class="trap-card-header">B（ヴェー）</span>
+          <div class="trap-letters-comparison">
+            <span class="trap-standard">в</span>
+            <span class="trap-arrow">➔</span>
+            <span class="trap-cursive">в</span>
+          </div>
+        </div>
+        <div class="trap-card">
+          <span class="trap-card-header">CH（チェー）</span>
+          <div class="trap-letters-comparison">
+            <span class="trap-standard">ч</span>
+            <span class="trap-arrow">➔</span>
+            <span class="trap-cursive">ч</span>
+          </div>
+        </div>
+        <div class="trap-card">
+          <span class="trap-card-header">L（エル）</span>
+          <div class="trap-letters-comparison">
+            <span class="trap-standard">л</span>
+            <span class="trap-arrow">➔</span>
+            <span class="trap-cursive">л</span>
+          </div>
+        </div>
+        <div class="trap-card">
+          <span class="trap-card-header">SH / SHCH</span>
+          <div class="trap-letters-comparison">
+            <span class="trap-standard">ш / щ</span>
+            <span class="trap-arrow">➔</span>
+            <span class="trap-cursive">ш / щ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-tanya-tip">
+        <strong>ターニャ先生のワンポイント:</strong><br>
+        ロシア人の手書きの手紙やメモ、楽譜の速度表記、小説の斜体などでは、この筆記体が当たり前に使われます。<br>
+        「筆記体モード」をONにしてタイピング練習をすると、画面の <em>т</em> (*m*の形) を見て無意識に「T」キーを押せるようになり、あっという間に読めるようになりますよ♪
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/typing.js"></script>
+</body>
+</html>

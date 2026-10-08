@@ -1,0 +1,547 @@
+/* ==========================================================================
+   Tanya Russian Trainer - Moscow Conservatory Aesthetic Theme
+   Colors: Mahogany Wood, Emerald Velvet, Brass Gold, Antique Ivory
+   ========================================================================== */
+
+:root {
+  /* Conservatory Dark Theme Palette */
+  --bg-primary: #120e0d;
+  --bg-secondary: #1a1514;
+  --bg-card: #241d1b;
+  --bg-card-hover: #2e2422;
+  --bg-highlight: #332725;
+  
+  --emerald: #10b981;
+  --emerald-dark: #064e3b;
+  --emerald-light: #34d399;
+  
+  --gold: #d4af37;
+  --gold-light: #f3e5ab;
+  --gold-dark: #997b19;
+  
+  --crimson: #be123c;
+  --crimson-soft: #f43f5e;
+  
+  --text-primary: #f8f5ee;
+  --text-secondary: #d1c7b7;
+  --text-muted: #8e8271;
+  
+  --border-color: #3d312e;
+  --border-focus: #d4af37;
+
+  /* Grammatical Case Colors */
+  --case-nom: #3b82f6; /* 主格: Blue */
+  --case-gen: #a855f7; /* 生格: Purple */
+  --case-dat: #f97316; /* 与格: Orange */
+  --case-acc: #10b981; /* 対格: Emerald */
+  --case-ins: #d97706; /* 造格: Amber */
+  --case-prp: #06b6d4; /* 前置格: Cyan */
+  
+  /* Status Colors */
+  --status-reflex: #10b981; /* 条件反射 */
+  --status-stable: #0ea5e9; /* 安定 */
+  --status-developing: #eab308; /* 習得中 */
+  --status-rusty: #f97316; /* 要復習・遅い */
+
+  --font-serif: "Georgia", "Cambria", "Times New Roman", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
+  --font-mono: "Consolas", "Courier New", monospace;
+  
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.6);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Russian text emphasis */
+.ru-text {
+  font-family: var(--font-serif);
+  letter-spacing: 0.02em;
+}
+
+/* Top App Header (Strictly Single-Line Compact Bar) */
+.app-header {
+  height: var(--header-height);
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.brand-title {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.brand-title h1 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.brand-subtitle {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: nowrap;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.header-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  padding: 3px 5px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.nav-btn:hover {
+  background: var(--bg-card);
+  color: var(--gold-light);
+  border-color: var(--border-color);
+}
+
+.nav-btn.active {
+  background: var(--bg-card);
+  color: var(--gold);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
+.nav-divider {
+  display: inline-block;
+  width: 1px;
+  height: 18px;
+  background: var(--border-color);
+  margin: 0 4px;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.nav-btn-highlight {
+  border: 1px solid rgba(212, 175, 55, 0.4) !important;
+  background: rgba(212, 175, 55, 0.08) !important;
+  color: var(--gold-light) !important;
+  font-weight: 600;
+}
+
+.nav-btn-highlight:hover {
+  background: rgba(212, 175, 55, 0.18) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+.nav-btn-map {
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  background: rgba(212, 175, 55, 0.05) !important;
+  color: var(--gold-light) !important;
+  font-weight: 600;
+}
+
+.nav-btn-map:hover {
+  background: rgba(212, 175, 55, 0.15) !important;
+  border-color: var(--gold) !important;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  margin-left: 8px;
+}
+
+/* Mode Switcher Pill */
+.mode-pill-toggle {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.mode-pill-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-pill-btn.active {
+  background: var(--emerald-dark);
+  color: var(--emerald-light);
+  font-weight: 600;
+}
+
+/* Tanya Status Capsule */
+.tanya-capsule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 4px 12px 4px 6px;
+  border-radius: 30px;
+}
+
+.tanya-avatar-small {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+}
+
+.tanya-capsule-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tanya-level-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.tanya-streak {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Main Container */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+/* Absence Notice Banner */
+.absence-banner {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.15) 0%, rgba(212, 175, 55, 0.15) 100%);
+  border: 1px solid var(--emerald);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  animation: fadeIn 0.4s ease;
+}
+
+.absence-banner img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--emerald-light);
+}
+
+.absence-banner-text {
+  flex: 1;
+}
+
+.absence-banner-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--emerald-light);
+  margin-bottom: 2px;
+}
+
+.absence-banner-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.absence-close-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.absence-close-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+/* Keyboard Hint Footer Bar */
+.shortcut-bar {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 8px 24px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kbd-badge {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--gold-light);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* Moscow Conservatory All-Features Hub */
+.features-hub-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.features-hub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.features-hub-hint {
+  font-size: 0.78rem;
+  color: var(--gold-light);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 4px 12px;
+  border-radius: 14px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-category-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feature-category-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.feature-cat-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.feature-category-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feature-item-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.feature-item-btn:hover {
+  background: rgba(212, 175, 55, 0.05);
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+
+.feature-item-btn.highlight {
+  border-color: rgba(212, 175, 55, 0.5);
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.feature-item-btn.highlight:hover {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.12);
+}
+
+.feature-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.feature-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.feature-item-desc {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* Responsive header adjustments for laptops and smaller displays */
+@media (max-width: 1440px) {
+  .brand-subtitle {
+    display: none;
+  }
+  .header-nav .kbd-badge {
+    display: none;
+  }
+  .nav-btn {
+    padding: 3px 5px;
+    font-size: 0.73rem;
+  }
+  .nav-divider {
+    margin: 0 2px;
+  }
+  .mode-pill-btn {
+    padding: 3px 8px;
+    font-size: 0.72rem;
+  }
+  .tanya-capsule {
+    gap: 8px;
+    padding: 3px 10px 3px 5px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .header-day-capsule .header-session-badge {
+    display: none;
+  }
+  .tanya-capsule-info .tanya-streak {
+    display: none;
+  }
+}
+

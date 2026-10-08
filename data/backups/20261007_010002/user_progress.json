@@ -1,0 +1,2780 @@
+{
+  "user_profile": {
+    "name": "Yusuke",
+    "name_ru": "Юсукэ",
+    "target_level": "A2後半 (A1後半スタート)",
+    "started_date": "2026-09-12",
+    "last_active_date": "2026-10-06",
+    "consecutive_days": 23,
+    "total_sessions_completed": 110,
+    "current_streak": 23,
+    "intimacy": {
+      "level": 6,
+      "exp": 84,
+      "max_exp": 378,
+      "title": "至高のアンサンブル",
+      "description": "言葉を超えて心を通わせる、生涯の音楽の友として互いを深くリスペクトしています。"
+    },
+    "study_mode": "non_graded_friendly",
+    "tts_voice": "default_ru_female",
+    "tts_speed": 0.75,
+    "daily_greeting": {
+      "date": "2026-10-05",
+      "text": "Доброе утро, Юсукэ! 昨日は目的・譲歩の従属節 (чтобы, хотя)の練習、お疲れさまでした。難しい変化も、ピアノのスケールのように毎日少しずつ馴染ませていけば大丈夫です。今日も音楽院でお待ちしています♪",
+      "days_gap": 1,
+      "top_rusty_tag": "syntax.subordinate"
+    },
+    "current_study_day": 25,
+    "last_advanced_date": "2026-10-06",
+    "completed_study_days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ]
+  },
+  "tag_stats": {
+    "case.prp": {
+      "seen": 18,
+      "correct": 18,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 18,
+      "status": "reflex"
+    },
+    "case.acc": {
+      "seen": 10,
+      "correct": 9,
+      "avg_rt_ms": 3500,
+      "consecutive_correct": 3,
+      "status": "stable"
+    },
+    "case.gen": {
+      "seen": 11,
+      "correct": 10,
+      "avg_rt_ms": 3500,
+      "consecutive_correct": 10,
+      "status": "stable"
+    },
+    "case.dat": {
+      "seen": 1,
+      "correct": 1,
+      "avg_rt_ms": 3500,
+      "consecutive_correct": 1,
+      "status": "developing"
+    },
+    "case.ins": {
+      "seen": 4,
+      "correct": 4,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 4,
+      "status": "reflex"
+    },
+    "verb.aspect_nsv": {
+      "seen": 6,
+      "correct": 6,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 6,
+      "status": "reflex"
+    },
+    "verb.aspect_sv": {
+      "seen": 9,
+      "correct": 8,
+      "avg_rt_ms": 3500,
+      "consecutive_correct": 8,
+      "status": "stable"
+    },
+    "verb.motion_uni": {
+      "seen": 5,
+      "correct": 5,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 5,
+      "status": "reflex"
+    },
+    "verb.motion_multi": {
+      "seen": 6,
+      "correct": 5,
+      "avg_rt_ms": 3500,
+      "consecutive_correct": 3,
+      "status": "stable"
+    },
+    "adj.declension": {
+      "seen": 7,
+      "correct": 7,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 7,
+      "status": "reflex"
+    },
+    "verb.irregular": {
+      "seen": 6,
+      "correct": 6,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 6,
+      "status": "reflex"
+    },
+    "adj.comparative": {
+      "seen": 6,
+      "correct": 6,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 6,
+      "status": "reflex"
+    },
+    "numeral.agreement": {
+      "seen": 6,
+      "correct": 5,
+      "avg_rt_ms": 3500,
+      "consecutive_correct": 4,
+      "status": "stable"
+    },
+    "syntax.relative": {
+      "seen": 6,
+      "correct": 5,
+      "avg_rt_ms": 3500,
+      "consecutive_correct": 2,
+      "status": "stable"
+    },
+    "verb.reflexive": {
+      "seen": 6,
+      "correct": 6,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 6,
+      "status": "reflex"
+    },
+    "verb.imperative": {
+      "seen": 3,
+      "correct": 3,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 3,
+      "status": "reflex"
+    },
+    "syntax.conditional": {
+      "seen": 9,
+      "correct": 6,
+      "avg_rt_ms": 3067,
+      "consecutive_correct": 1,
+      "status": "rusty"
+    },
+    "participle.passive_past": {
+      "seen": 6,
+      "correct": 6,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 6,
+      "status": "reflex"
+    },
+    "syntax.adverbial": {
+      "seen": 6,
+      "correct": 5,
+      "avg_rt_ms": 3500,
+      "consecutive_correct": 4,
+      "status": "stable"
+    },
+    "pronoun.indefinite": {
+      "seen": 4,
+      "correct": 4,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 4,
+      "status": "reflex"
+    },
+    "pronoun.negative": {
+      "seen": 2,
+      "correct": 0,
+      "avg_rt_ms": 3500,
+      "consecutive_correct": 0,
+      "status": "developing"
+    },
+    "syntax.impersonal": {
+      "seen": 6,
+      "correct": 6,
+      "avg_rt_ms": 2100,
+      "consecutive_correct": 6,
+      "status": "reflex"
+    },
+    "numeral.declension_all": {
+      "seen": 6,
+      "correct": 5,
+      "avg_rt_ms": 3500,
+      "consecutive_correct": 2,
+      "status": "stable"
+    },
+    "participle.active": {
+      "seen": 6,
+      "correct": 6,
+      "avg_rt_ms": 23438,
+      "consecutive_correct": 6,
+      "status": "stable"
+    },
+    "syntax.subordinate": {
+      "seen": 6,
+      "correct": 4,
+      "avg_rt_ms": 20703,
+      "consecutive_correct": 3,
+      "status": "rusty"
+    },
+    "verb.motion_prefixed": {
+      "seen": 6,
+      "correct": 6,
+      "avg_rt_ms": 19346,
+      "consecutive_correct": 6,
+      "status": "stable"
+    }
+  },
+  "behavior_logs": {
+    "total_dwell_seconds": 120,
+    "branches_opened_count": 1035,
+    "audio_replays_count": 8,
+    "grammar_mutations_count": 128
+  },
+  "unlocked_memoirs": [
+    "memoir_01_first_day_conservatory",
+    "モスクワ音楽院の記憶 I",
+    "シューベルトの幻想曲",
+    "真鍮の練習室の鍵",
+    "Горячий чай (温かいレモンティー)",
+    "Рояль Рахманинова (ラフマニノフのピアノ)",
+    "Золотая осень (黄金の秋)",
+    "Глубокий звук (深みのある響き)",
+    "Малый зал (音楽院小ホール)",
+    "Чуткий слух (研ぎ澄まされた耳)",
+    "Крылья мечты (夢の翼)",
+    "Виртуоз консерватории (音楽院のヴィルトゥオーゾ)",
+    "Хранитель традиций (伝統の守り手)",
+    "Мастер полифонии (ポリフォニーの達人)",
+    "Сосредоточенность (静謐なる集中)",
+    "Мастер ансамбля (アンサンブルの達人)",
+    "badge_day21_conditional_dreamer",
+    "badge_day22_active_melody",
+    "badge_day23_subordinate_resolve",
+    "badge_day24_prefixed_journey",
+    "badge_day25_collective_harmony"
+  ],
+  "session_history": [
+    {
+      "timestamp": "2026-09-12T17:01:21.274229",
+      "session_id": "day1_morning",
+      "type": "input_exploration",
+      "quiz_count": 3,
+      "intimacy_gain": 8
+    },
+    {
+      "timestamp": "2026-09-12T17:28:53.995385",
+      "session_id": "day1_morning",
+      "type": "input_exploration",
+      "quiz_count": 4,
+      "intimacy_gain": 8
+    },
+    {
+      "timestamp": "2026-09-12T17:46:02.965562",
+      "session_id": "day1_morning",
+      "type": "input_exploration",
+      "quiz_count": 4,
+      "intimacy_gain": 8
+    },
+    {
+      "timestamp": "2026-09-12T18:01:14.144330",
+      "session_id": "day1_morning",
+      "type": "input_exploration",
+      "quiz_count": 4,
+      "intimacy_gain": 8
+    },
+    {
+      "timestamp": "2026-09-12T18:26:24.125456",
+      "session_id": "day1_morning",
+      "type": "input_exploration",
+      "quiz_count": 4,
+      "intimacy_gain": 8
+    },
+    {
+      "timestamp": "2026-09-12T19:18:17.407774",
+      "session_id": "day1_noon",
+      "type": "speed_check",
+      "quiz_count": 5,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-12T22:10:28.595370",
+      "session_id": "day1_noon",
+      "type": "speed_check",
+      "quiz_count": 5,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-12T22:12:12.138931",
+      "session_id": "day1_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-12T22:12:40.308324",
+      "session_id": "day1_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-12T23:51:08.514245",
+      "session_id": "day1_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-13T10:53:17.044552",
+      "session_id": "day2_morning",
+      "type": "input_exploration",
+      "quiz_count": 3,
+      "intimacy_gain": 8
+    },
+    {
+      "timestamp": "2026-09-13T10:59:35.645032",
+      "session_id": "day2_noon",
+      "type": "speed_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-13T11:01:38.370182",
+      "session_id": "day2_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-14T21:34:06.237184",
+      "session_id": "day3_morning",
+      "type": "input_exploration",
+      "quiz_count": 3,
+      "intimacy_gain": 8
+    },
+    {
+      "timestamp": "2026-09-14T21:39:50.320861",
+      "session_id": "day3_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-14T21:40:37.599168",
+      "session_id": "day3_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-15T21:55:54.104120",
+      "session_id": "day4_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-15T22:20:00.853297",
+      "session_id": "day4_morning",
+      "type": "input_exploration",
+      "quiz_count": 4,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-15T22:21:41.470703",
+      "session_id": "day4_noon",
+      "type": "speed_check",
+      "quiz_count": 4,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-16T23:07:46.679002",
+      "session_id": "day5_morning",
+      "type": "input_exploration",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-16T23:10:51.100263",
+      "session_id": "day5_noon",
+      "type": "speed_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-16T23:13:27.207909",
+      "session_id": "day5_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-16T23:14:20.447641",
+      "session_id": "day5_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-17T23:29:06.810461",
+      "session_id": "day6_morning",
+      "type": "input_exploration",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-17T23:35:17.446098",
+      "session_id": "day6_noon",
+      "type": "speed_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-17T23:36:22.082304",
+      "session_id": "day6_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-17T23:43:43.361659",
+      "session_id": "day6_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-19T00:08:57.709211",
+      "session_id": "day7_morning",
+      "type": "input_exploration",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-19T00:14:25.773378",
+      "session_id": "day7_noon",
+      "type": "speed_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-19T00:16:53.380132",
+      "session_id": "day7_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-19T00:17:03.304840",
+      "session_id": "day7_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-19T23:34:09.007550",
+      "session_id": "day8_morning",
+      "type": "input_exploration",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-19T23:36:02.237337",
+      "session_id": "day8_noon",
+      "type": "speed_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-19T23:37:20.518576",
+      "session_id": "day8_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-19T23:37:48.838169",
+      "session_id": "day8_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-20T23:19:37.046578",
+      "session_id": "day9_morning",
+      "type": "input_exploration",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-20T23:21:49.151091",
+      "session_id": "day9_noon",
+      "type": "speed_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-20T23:23:21.349348",
+      "session_id": "day9_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-20T23:23:47.710543",
+      "session_id": "day9_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-21T11:24:55.221408",
+      "session_id": "day10_morning",
+      "type": "input_exploration",
+      "quiz_count": 3,
+      "intimacy_gain": 8
+    },
+    {
+      "timestamp": "2026-09-21T11:29:34.533605",
+      "session_id": "day10_noon",
+      "type": "speed_check",
+      "quiz_count": 3,
+      "intimacy_gain": 8
+    },
+    {
+      "timestamp": "2026-09-21T11:33:59.620716",
+      "session_id": "day10_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-22T09:52:20.593936",
+      "session_id": "day11_noon",
+      "type": "weakness_speed",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-22T09:55:39.243502",
+      "session_id": "day11_noon",
+      "type": "weakness_speed",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-23T22:28:09.565005",
+      "session_id": "day12_noon",
+      "type": "weakness_speed",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-23T22:28:23.234479",
+      "session_id": "day12_morning",
+      "type": "input_exploration",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-23T22:35:58.874981",
+      "session_id": "day12_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-23T22:36:00.255348",
+      "session_id": "day12_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-23T22:36:10.376874",
+      "session_id": "day12_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-23T22:39:50.203254",
+      "session_id": "day12_morning",
+      "type": "input_exploration",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-23T23:19:42.961001",
+      "session_id": "day12_morning",
+      "type": "input_exploration",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-24T23:09:13.513201",
+      "session_id": "day13_morning",
+      "type": "input_exploration",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-24T23:11:50.797131",
+      "session_id": "day13_noon",
+      "type": "weakness_speed",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-24T23:12:49.239224",
+      "session_id": "day13_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-24T23:13:43.758812",
+      "session_id": "day13_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-25T22:39:50.842804",
+      "session_id": "day14_morning",
+      "type": "input_exploration",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-25T22:45:03.822766",
+      "session_id": "day14_noon",
+      "type": "weakness_speed",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-25T22:47:02.832142",
+      "session_id": "day14_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-25T22:47:36.276056",
+      "session_id": "day14_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-26T11:01:49.520838",
+      "session_id": "day15_morning",
+      "type": "input_exploration",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-26T11:15:58.257080",
+      "session_id": "day15_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-26T11:16:27.260796",
+      "session_id": "day15_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-26T11:18:50.471821",
+      "session_id": "day15_morning",
+      "type": "input_exploration",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-26T11:19:04.134971",
+      "session_id": "day15_morning",
+      "type": "input_exploration",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-27T18:21:21.589912",
+      "session_id": "day16_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-27T18:25:27.873495",
+      "session_id": "day16_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-27T20:20:34.889977",
+      "session_id": "day16_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-27T20:21:16.741777",
+      "session_id": "day16_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-29T21:02:34.935143",
+      "session_id": "day17_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-29T21:05:39.277099",
+      "session_id": "day17_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-29T21:48:14.743258",
+      "session_id": "day17_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-29T21:48:29.045323",
+      "session_id": "day17_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-09-29T21:50:45.777888",
+      "session_id": "day18_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-30T00:00:22.678945",
+      "session_id": "day18_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-30T22:25:29.363715",
+      "session_id": "day19_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-09-30T22:29:30.735259",
+      "session_id": "day19_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-30T23:01:28.790688",
+      "session_id": "day19_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-09-30T23:01:34.290487",
+      "session_id": "day19_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-02T00:15:18.529692",
+      "session_id": "day20_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-02T00:16:33.329267",
+      "session_id": "day20_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-10-02T00:17:44.577085",
+      "session_id": "day20_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-10-02T00:17:49.940412",
+      "session_id": "day20_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-02T22:04:24.510470",
+      "session_id": "day21_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-02T22:41:00.900224",
+      "session_id": "day21_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-02T22:43:15.290996",
+      "session_id": "day21_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-10-02T22:43:35.463827",
+      "session_id": "day21_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-03T09:37:16.569866",
+      "session_id": "day22_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-03T10:11:32.577276",
+      "session_id": "day22_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-03T10:14:23.207140",
+      "session_id": "day22_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-10-03T10:14:33.676867",
+      "session_id": "day22_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-04T20:36:31.510732",
+      "session_id": "day23_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-04T20:40:29.874989",
+      "session_id": "day23_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-04T20:43:04.290966",
+      "session_id": "day23_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-10-04T20:43:19.685603",
+      "session_id": "day23_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-04T20:58:06.989694",
+      "session_id": "day15_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-04T20:59:31.930345",
+      "session_id": "day15_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-04T20:59:33.709950",
+      "session_id": "day20_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-05T22:11:04.465579",
+      "session_id": "day24_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-05T22:14:20.845765",
+      "session_id": "day24_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-05T22:16:05.754018",
+      "session_id": "day24_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-10-05T22:16:29.147515",
+      "session_id": "day24_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "session_id": "day25_morning",
+      "type": "morning",
+      "completed_at": "2026-10-06 08:30",
+      "intimacy_gain": 5
+    },
+    {
+      "session_id": "day25_noon",
+      "type": "noon",
+      "completed_at": "2026-10-06 12:45",
+      "intimacy_gain": 5
+    },
+    {
+      "session_id": "day25_evening",
+      "type": "evening",
+      "completed_at": "2026-10-06 20:15",
+      "intimacy_gain": 6
+    },
+    {
+      "session_id": "day25_story",
+      "type": "story",
+      "completed_at": "2026-10-06 21:00",
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-07T00:06:19.606999",
+      "session_id": "day25_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-07T00:06:40.581976",
+      "session_id": "day25_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-07T00:39:10.678008",
+      "session_id": "flashcard_salon_1791301150366",
+      "type": "salon",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-07T00:41:26.728839",
+      "session_id": "flashcard_salon_1791301286414",
+      "type": "salon",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-07T00:43:54.632070",
+      "session_id": "flashcard_salon_1791301434311",
+      "type": "salon",
+      "quiz_count": 0,
+      "intimacy_gain": 5
+    }
+  ],
+  "bookmarked_words": [
+    {
+      "word": "радость",
+      "base": "радость",
+      "pos": "女性名詞",
+      "meaning": "喜び, 歓喜, 喜ばしい事",
+      "saved_at": "2026-09-12 18:43",
+      "example_ru": "Играть дуэт с Алёной — это настоящая радость для меня.",
+      "example_ja": "アリョーナと連弾を弾くことは、私にとって本物の喜びです。",
+      "collocation_ru": "настоящая радость",
+      "collocation_ja": "本物の喜び",
+      "collocation_cloze": "настоящая [ ❓ ]",
+      "alena_scene": "練習を終えたアリョーナが、満足そうに鍵盤から手を離して微笑む瞬間",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:00"
+    },
+    {
+      "word": "рояль",
+      "base": "рояль",
+      "pos": "男性名詞 (軟子音変化)",
+      "meaning": "グランドピアノ",
+      "saved_at": "2026-09-12 18:51",
+      "example_ru": "В старом классе консерватории стоит старинный рояль «Бехштейн».",
+      "example_ja": "音楽院の古い教室には、年代物のベヒシュタインのグランドピアノが置かれています。",
+      "collocation_ru": "играть на рояле",
+      "collocation_ja": "グランドピアノを弾く",
+      "collocation_cloze": "играть на [ ❓ ]",
+      "alena_scene": "午後の日差しが、黒く磨き抜かれたピアノの天板に柔らかく反射している",
+      "mastery_level": 2,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:00"
+    },
+    {
+      "word": "консерватория",
+      "base": "консерватория",
+      "pos": "女性名詞 (軟変化 -ия)",
+      "meaning": "音楽院、コンセルヴァトワール",
+      "saved_at": "2026-09-12 18:51",
+      "example_ru": "Московская консерватория хранит вековые традиции русской музыки.",
+      "example_ja": "モスクワ音楽院は、ロシア音楽の何世紀にもわたる伝統を受け継いでいます。",
+      "collocation_ru": "Московская консерватория",
+      "collocation_ja": "モスクワ音楽院",
+      "collocation_cloze": "Московская [ ❓ ]",
+      "alena_scene": "ボリシャヤ・ニキーツカヤ通りに佇む、チャイコフスキー記念モスクワ音楽院の白亜の玄関",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:08"
+    },
+    {
+      "word": "положить",
+      "base": "положить",
+      "pos": "動詞 (完了体) ⇔ класть (不完了体)",
+      "meaning": "（横にして）置く",
+      "saved_at": "2026-09-12 19:11",
+      "example_ru": "Алёна аккуратно положила новую партитуру на рояль.",
+      "example_ja": "アリョーナは新しい総譜（楽譜）をそっとグランドピアノの上に置きました。",
+      "collocation_ru": "положить партитуру",
+      "collocation_ja": "楽譜を（横にして）置く",
+      "collocation_cloze": "[ ❓ ] партитуру",
+      "alena_scene": "ラフマニノフの重いスコアを、傷つけないよう大切そうに譜面台へ置く仕草",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:02"
+    },
+    {
+      "word": "заканчиваться",
+      "base": "заканчиваться",
+      "pos": "動詞 (НСВ・再帰動詞) ⇔ закончиться (СВ)",
+      "meaning": "終わる、終了する",
+      "notes": "【文中での役割】従属節の述語（現在3人称単数 заканчивается）",
+      "example_ru": "Когда заканчивается репетиция, в Большом зале консерватории наступает удивительная тишина.",
+      "example_ja": "リハーサルが終わると、音楽院の大ホールには素晴らしい静寂が訪れます。",
+      "saved_at": "2026-09-12 23:47",
+      "collocation_ru": "репетиция заканчивается",
+      "collocation_ja": "リハーサルが終わる",
+      "collocation_cloze": "репетиция [ ❓ ]",
+      "alena_scene": "夕暮れ時、最後の和音の余韻が静かにホールに溶けていく",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:01"
+    },
+    {
+      "word": "наступать",
+      "base": "наступать",
+      "pos": "動詞 (НСВ) ⇔ наступить (СВ)",
+      "meaning": "（時節・状態が）訪れる、やって来る",
+      "notes": "【文中での役割】主節の述語（現在3人称単数 наступает）",
+      "example_ru": "Когда заканчивается репетиция, в Большом зале консерватории наступает удивительная тишина.",
+      "example_ja": "リハーサルが終わると、音楽院の大ホールには素晴らしい静寂が訪れます。",
+      "saved_at": "2026-09-12 23:47",
+      "collocation_ru": "наступает тишина",
+      "collocation_ja": "静寂が訪れる",
+      "collocation_cloze": "[ ❓ ] тишина",
+      "alena_scene": "最後の音符のあと、誰も息をしないような濃密な静寂",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:01"
+    },
+    {
+      "word": "оставаться",
+      "base": "оставаться",
+      "pos": "動詞 (НСВ・再帰動詞) ⇔ остаться (СВ)",
+      "meaning": "残る、とどまる",
+      "notes": "【文中での役割】述語（現在3人称単数 остаётся）",
+      "example_ru": "На сцене остаётся только один большой рояль в лучах света.",
+      "example_ja": "ステージの上には、光の筋の中にたった1台のグランドピアノだけが残っています。",
+      "saved_at": "2026-09-12 23:48",
+      "collocation_ru": "оставаться в классе",
+      "collocation_ja": "教室に残る",
+      "collocation_cloze": "[ ❓ ] в классе",
+      "alena_scene": "他の学生たちが帰った後も、二人で遅くまで響きを確かめ合う時間",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:01"
+    },
+    {
+      "word": "сцена",
+      "base": "сцена",
+      "pos": "女性名詞 (硬変化)",
+      "meaning": "舞台、ステージ、場面",
+      "notes": "【文中での役割】場所の前置格（на сцене）",
+      "example_ru": "На сцене остаётся только один большой рояль в лучах света.",
+      "example_ja": "ステージの上には、光の筋の中にたった1台のグランドピアノだけが残っています。",
+      "saved_at": "2026-09-12 23:48",
+      "collocation_ru": "выходить на сцену",
+      "collocation_ja": "舞台（ステージ）に出る",
+      "collocation_cloze": "выходить на [ ❓ ]",
+      "alena_scene": "大ホールの舞台袖。スポットライトの光と緊張感",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:00"
+    },
+    {
+      "word": "свет",
+      "base": "свет",
+      "pos": "男性名詞 (硬子音変化)",
+      "meaning": "光、明かり、照明",
+      "notes": "【文中での役割】名詞句の生格（в лучах света）",
+      "example_ru": "На сцене остаётся только один большой рояль в лучах света.",
+      "example_ja": "ステージの上には、光の筋の中にたった1台のグランドピアノだけが残っています。",
+      "saved_at": "2026-09-12 23:48",
+      "collocation_ru": "мягкий свет",
+      "collocation_ja": "柔らかな光",
+      "collocation_cloze": "мягкий [ ❓ ]",
+      "alena_scene": "高い窓から斜めに差し込む、モスクワの淡い午後の木漏れ日",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:00"
+    },
+    {
+      "word": "люстра",
+      "base": "люстра",
+      "pos": "女性名詞 (硬変化)",
+      "meaning": "シャンデリア、吊り下げ電灯",
+      "notes": "【文中での役割】主語（巨大なクリスタル・シャンデリア）",
+      "example_ru": "Огромная хрустальная люстра под потолком медленно затухает.",
+      "example_ja": "天井の下の巨大なクリスタル・シャンデリアが、ゆっくりと消えていきます。",
+      "saved_at": "2026-09-12 23:48",
+      "collocation_ru": "хрустальная люстра",
+      "collocation_ja": "クリスタルのシャンデリア",
+      "collocation_cloze": "хрустальная [ ❓ ]",
+      "alena_scene": "大ホールの天井で壮大にきらめく歴史あるクリスタルガラス",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:00"
+    },
+    {
+      "word": "затухать",
+      "base": "затухать",
+      "pos": "動詞 (НСВ) ⇔ затухнуть (СВ)",
+      "meaning": "（光や音が）徐々に消える、減衰する",
+      "notes": "【文中での役割】述語（現在3人称単数 затухает）",
+      "example_ru": "Огромная хрустальная люстра под потолком медленно затухает.",
+      "example_ja": "天井の下の巨大なクリスタル・シャンデリアが、ゆっくりと消えていきます。",
+      "saved_at": "2026-09-12 23:49",
+      "collocation_ru": "свет затухает",
+      "collocation_ja": "灯りが薄れていく（減光する）",
+      "collocation_cloze": "свет [ ❓ ]",
+      "alena_scene": "開演のブザーとともに客席の灯りがゆっくりと落ちていく",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:02"
+    },
+    {
+      "word": "красота",
+      "base": "красота",
+      "pos": "女性名詞 (硬変化)",
+      "meaning": "美、美しさ、麗しさ",
+      "notes": "【文中での役割】主語（真の音楽と永遠の美）",
+      "example_ru": "В этой тишине живёт настоящая музыка и вечная красота искусства.",
+      "example_ja": "この静寂の中にこそ、真の音楽と、芸術の永遠の美しさが息づいています。",
+      "saved_at": "2026-09-12 23:50",
+      "collocation_ru": "красота звука",
+      "collocation_ja": "音色の美しさ",
+      "collocation_cloze": "[ ❓ ] звука",
+      "alena_scene": "アリョーナが奏でる一音一音の、透明感あふれる響きの美しさ",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:00"
+    },
+    {
+      "word": "обладать",
+      "base": "обладать",
+      "pos": "重要動詞 (НСВ)",
+      "meaning": "〜を備えている、有している",
+      "notes": "述語動詞（過去男性 обладал）",
+      "example_ru": "Сергей Рахманинов сам обладал огромными руками и уникальным чувством гармонии.",
+      "example_ja": "セルゲイ・ラフマニノフ自身、非常に大きな手と比類なき和声感覚を備えていました。",
+      "saved_at": "2026-09-13 11:00",
+      "collocation_ru": "обладать талантом",
+      "collocation_ja": "才能を備えている",
+      "collocation_cloze": "[ ❓ ] талантом",
+      "alena_scene": "ターニャ先生が「あなたには豊かな感性がある」と頷く場面",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:02"
+    },
+    {
+      "word": "огромный",
+      "base": "огромный",
+      "pos": "形容詞",
+      "meaning": "並外れて大きい、巨大な",
+      "notes": "複数造格（огромными）",
+      "example_ru": "Сергей Рахманинов сам обладал огромными руками и уникальным чувством гармонии.",
+      "example_ja": "セルゲイ・ラフマニノフ自身、非常に大きな手と比類なき和声感覚を備えていました。",
+      "saved_at": "2026-09-13 11:00",
+      "collocation_ru": "огромный зал",
+      "collocation_ja": "巨大な（大）ホール",
+      "collocation_cloze": "[ ❓ ] зал",
+      "alena_scene": "チャイコフスキー像が見守る、モスクワ音楽院の威風堂々たる大ホール",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:01"
+    },
+    {
+      "word": "хотя",
+      "base": "хотя",
+      "pos": "譲歩の接続詞 (Неизменяемое слово)",
+      "meaning": "〜だけれども、〜にもかかわらず",
+      "notes": "",
+      "example_ru": "Хотя пальцы устали, Алёна продолжала репетировать с улыбкой.",
+      "example_ja": "指は疲れていたけれども、アリョーナは微笑みながらリハーサルを続けました。",
+      "saved_at": "2026-09-14 20:52",
+      "collocation_ru": "хотя трудно",
+      "collocation_ja": "難しいけれども",
+      "collocation_cloze": "[ ❓ ] трудно",
+      "alena_scene": "難しいパッセージを何度も何度も、笑顔を絶やさずに弾き直すアリョーナ",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:06"
+    },
+    {
+      "word": "падать",
+      "base": "падать",
+      "pos": "慣用表現",
+      "meaning": "雪が降る",
+      "notes": "主語 снег ＋ 述語 падает",
+      "example_ru": "Вечером снег в Москве падает особенно тихо и медленно.",
+      "example_ja": "夕暮れ時、モスクワの雪はひときわ静かに、そしてゆっくりと降り注ぎます。",
+      "saved_at": "2026-09-14 21:34",
+      "collocation_ru": "свет падает",
+      "collocation_ja": "光が（鍵盤に）射し込む・落ちる",
+      "collocation_cloze": "свет [ ❓ ]",
+      "alena_scene": "白い鍵盤の上に、柔らかな金色の陽光が斜めに落ちる",
+      "mastery_level": 2,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:02"
+    },
+    {
+      "word": "переулок",
+      "base": "переулок",
+      "pos": "男性名詞",
+      "meaning": "路地、小径、横丁",
+      "notes": "前置詞 по に支配される複数与格（переулкам）",
+      "example_ru": "Я люблю медленно ходить по старым переулкам около Арбата.",
+      "example_ja": "私はアルバート通りの近くの古い小径を、ゆっくりと散策するのが大好きです。",
+      "saved_at": "2026-09-14 21:36",
+      "collocation_ru": "тихий переулок",
+      "collocation_ja": "静かな小路",
+      "collocation_cloze": "тихий [ ❓ ]",
+      "alena_scene": "練習のあと、音楽院の裏手にある石畳の静かな小路を二人で歩く",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:01"
+    },
+    {
+      "word": "зажигаться",
+      "base": "зажигаться",
+      "pos": "再帰動詞 (НСВ)",
+      "meaning": "（明かりが）灯る、点灯する",
+      "notes": "第1節の述語動詞",
+      "example_ru": "В окнах домов зажигаются тёплые жёлтые огни, а из открытой форточки слышны звуки ноктюрна Шопена.",
+      "example_ja": "家々の窓には温かな黄色い明かりが灯り、開け放たれた小窓からはショパンの夜想曲の調べが聞こえてきます。",
+      "saved_at": "2026-09-14 21:37",
+      "collocation_ru": "огни зажигаются",
+      "collocation_ja": "灯火が灯る",
+      "collocation_cloze": "огни [ ❓ ]",
+      "alena_scene": "モスクワの夕暮れ、街灯がポツポツとオレンジ色に灯り始める",
+      "mastery_level": 2,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:01"
+    },
+    {
+      "word": "огонь",
+      "base": "огонь",
+      "pos": "男性名詞",
+      "meaning": "明かり、灯火",
+      "notes": "出没母音 о が脱落した複数主格 огни",
+      "example_ru": "В окнах домов зажигаются тёплые жёлтые огни, а из открытой форточки слышны звуки ноктюрна Шопена.",
+      "example_ja": "家々の窓には温かな黄色い明かりが灯り、開け放たれた小窓からはショパンの夜想曲の調べが聞こえてきます。",
+      "saved_at": "2026-09-14 21:39",
+      "collocation_ru": "тёплый огонь",
+      "collocation_ja": "温かい灯り",
+      "collocation_cloze": "тёплый [ ❓ ]",
+      "alena_scene": "サロンの暖炉に揺れる、温かく優しい炎",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:08"
+    },
+    {
+      "word": "звучать/про-",
+      "base": "звучать",
+      "pos": "不完了 / 完了",
+      "meaning": "響く, 音を立てる, 言及される",
+      "notes": "",
+      "example_ru": "В тишине зала начинает звучать прекрасная мелодия.",
+      "example_ja": "ホールの静けさの中に、美しいメロディが響き始めます。",
+      "saved_at": "2026-09-15 21:44",
+      "collocation_ru": "мелодия звучит",
+      "collocation_ja": "メロディが響く",
+      "collocation_cloze": "мелодия [ ❓ ]",
+      "alena_scene": "ピアノの蓋を開け、最初のコードが空間いっぱいに響き渡る",
+      "mastery_level": 1,
+      "review_count": 5,
+      "last_reviewed_at": "2026-10-07 00:43"
+    },
+    {
+      "word": "оба (f обе)",
+      "base": "оба",
+      "pos": "数詞的代名詞",
+      "meaning": "両方の, 両者",
+      "notes": "",
+      "example_ru": "Мы оба почувствовали, как музыка объединяет наши сердца.",
+      "example_ja": "私たちは二人とも、音楽が私たちの心を結びつけているのを感じました。",
+      "saved_at": "2026-09-15 21:49",
+      "collocation_ru": "мы оба",
+      "collocation_ja": "私たち二人とも",
+      "collocation_cloze": "мы [ ❓ ]",
+      "alena_scene": "連弾で息がぴったりと合って、思わず顔を見合わせて微笑み合う",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:11"
+    },
+    {
+      "word": "проходить",
+      "base": "проходить",
+      "pos": "動詞 (НСВ)",
+      "meaning": "行われる、開催される",
+      "notes": "концерт проходит (演奏会が開かれる)",
+      "example_ru": "Сегодня вечером в Большом зале консерватории проходит важный концерт.",
+      "example_ja": "今夜、音楽院の大ホールでは重要な演奏会が開かれています。",
+      "saved_at": "2026-09-15 21:52",
+      "collocation_ru": "репетиция проходит",
+      "collocation_ja": "リハーサルが行われる・進む",
+      "collocation_cloze": "репетиция [ ❓ ]",
+      "alena_scene": "充実した濃密なリハーサルが順調に進んでいく",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:08"
+    },
+    {
+      "word": "знаменитый",
+      "base": "знаменитый",
+      "pos": "形容詞",
+      "meaning": "有名な、高名な",
+      "notes": "знаменитый концерт (有名な協奏曲)",
+      "example_ru": "Оркестр играет знаменитый второй концерт Рахманинова с огромным вдохновением.",
+      "example_ja": "オーケストラはラフマニノフの有名なピアノ協奏曲第2番を、途方もないインスピレーションを込めて演奏しています。",
+      "saved_at": "2026-09-15 21:53",
+      "collocation_ru": "знаменитый зал",
+      "collocation_ja": "名高いホール",
+      "collocation_cloze": "[ ❓ ] зал",
+      "alena_scene": "世界の巨匠たちが名演を残してきた歴史あるステージ",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:02"
+    },
+    {
+      "word": "вдохновение",
+      "base": "вдохновение",
+      "pos": "名詞 (中性名詞)",
+      "meaning": "インスピレーション、霊感",
+      "notes": "с огромным вдохновением (豊かな情感を込めて)",
+      "example_ru": "Оркестр играет знаменитый второй концерт Рахманинова с огромным вдохновением.",
+      "example_ja": "オーケストラはラフマニノフの有名なピアノ協奏曲第2番を、途方もないインスピレーションを込めて演奏しています。",
+      "saved_at": "2026-09-15 21:53",
+      "collocation_ru": "с вдохновением",
+      "collocation_ja": "インスピレーション（霊感）を込めて",
+      "collocation_cloze": "с [ ❓ ]",
+      "alena_scene": "目を輝かせながら、心から音楽に没頭するアリョーナの横顔",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:02"
+    },
+    {
+      "word": "последний",
+      "base": "последний",
+      "pos": "形容詞 (軟変化)",
+      "meaning": "最後の（男性生格）",
+      "notes": "последний -> последнего",
+      "example_ru": "После последнего аккорда в зале наступает долгая благоговейная тишина.",
+      "example_ja": "最後の和音のあと、ホールには長き敬虔な静寂が訪れます。",
+      "saved_at": "2026-09-15 21:54",
+      "collocation_ru": "последний аккорд",
+      "collocation_ja": "最後の和音",
+      "collocation_cloze": "[ ❓ ] аккорд",
+      "alena_scene": "曲のクライマックス、静かに消えゆく最後の響き",
+      "mastery_level": 2,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:08"
+    },
+    {
+      "word": "благоговейный",
+      "base": "благоговейный",
+      "pos": "形容詞",
+      "meaning": "敬虔な、畏敬の",
+      "notes": "【形容詞の性・数・格変化】«благоговейный» は修飾する名詞の性（男性・女性・中性）および数・格に応じて語尾が変化します。対格は活動体で生格、不活動体で主格と同形になります。",
+      "example_ru": "После последнего аккорда в зале наступает долгая благоговейная тишина.",
+      "example_ja": "最後の和音のあと、ホールには長き敬虔な静寂が訪れます。",
+      "saved_at": "2026-09-15 21:54",
+      "collocation_ru": "благоговейная тишина",
+      "collocation_ja": "敬虔な静けさ",
+      "collocation_cloze": "[ ❓ ] тишина",
+      "alena_scene": "神聖な空気が立ち込める、歴史ある音楽院のホール",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:11"
+    },
+    {
+      "word": "внимательно",
+      "base": "внимательно",
+      "pos": "副詞",
+      "meaning": "注意深く, 熱心に",
+      "notes": "",
+      "example_ru": "Алёна внимательно слушала каждый звук и давала мне советы.",
+      "example_ja": "アリョーナは一つ一つの音を注意深く聴いて、私にアドバイスをくれました。",
+      "saved_at": "2026-09-16 23:08",
+      "collocation_ru": "внимательно слушать",
+      "collocation_ja": "注意深く（耳を澄ませて）聴く",
+      "collocation_cloze": "[ ❓ ] слушать",
+      "alena_scene": "少し首をかしげながら、私の打鍵の音色を真剣に聴いてくれる",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:12"
+    },
+    {
+      "word": "пахнуть",
+      "base": "пахнуть",
+      "pos": "動詞 (造格支配)",
+      "meaning": "〜の匂いが漂う",
+      "notes": "пахнет бумагой (紙の香りがする)",
+      "example_ru": "В старой библиотеке консерватории пахнет старинной бумагой и тишиной.",
+      "example_ja": "音楽院の古い図書室には、年代物の紙と静寂の香りが漂っています。",
+      "saved_at": "2026-09-16 23:11",
+      "collocation_ru": "пахнет кофе",
+      "collocation_ja": "コーヒーの香りが漂う",
+      "collocation_cloze": "[ ❓ ] кофе",
+      "alena_scene": "サロンの休憩時間、淹れたての紅茶と焼き菓子の甘い香り",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:12"
+    },
+    {
+      "word": "осторожно",
+      "base": "осторожно",
+      "pos": "副詞",
+      "meaning": "慎重に、そっと",
+      "notes": "осторожно открывает",
+      "example_ru": "Таня осторожно открывает пожелтевшую партитуру Чайковского.",
+      "example_ja": "ターニャは黄色く変色したチャイコフスキーの総譜をそっと開きます。",
+      "saved_at": "2026-09-16 23:12",
+      "collocation_ru": "осторожно коснуться",
+      "collocation_ja": "そっと触れる",
+      "collocation_cloze": "[ ❓ ] коснуться",
+      "alena_scene": "繊細なピアニッシモで、鍵盤に指をそっと沈める",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:12"
+    },
+    {
+      "word": "партитура",
+      "base": "партитура",
+      "pos": "名詞 (女性名詞)",
+      "meaning": "オーケストラ総譜",
+      "notes": "открывает партитуру",
+      "example_ru": "Таня осторожно открывает пожелтевшую партитуру Чайковского.",
+      "example_ja": "ターニャは黄色く変色したチャイコフスキーの総譜をそっと開きます。",
+      "saved_at": "2026-09-16 23:12",
+      "collocation_ru": "читать партитуру",
+      "collocation_ja": "総譜（楽譜）を読む",
+      "collocation_cloze": "читать [ ❓ ]",
+      "alena_scene": "黄ばんだスコアに書き込まれた、歴代の巨匠たちの指番号を見つめる",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:05"
+    },
+    {
+      "word": "безупречно",
+      "base": "безупречно",
+      "pos": "様態の副詞 (Неизменяемое слово)",
+      "meaning": "申し分なく、完璧に",
+      "notes": "",
+      "example_ru": "Этот пассаж прозвучал абсолютно безупречно!",
+      "example_ja": "このパッセージは完全に申し分なく（完璧に）響きました！",
+      "saved_at": "2026-09-17 23:27",
+      "collocation_ru": "звучать безупречно",
+      "collocation_ja": "申し分なく（完璧に）響く",
+      "collocation_cloze": "звучать [ ❓ ]",
+      "alena_scene": "難しいアルペジオが決まった瞬間、ターニャ先生が嬉しそうに拍手する",
+      "mastery_level": 2,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:12"
+    },
+    {
+      "word": "наполнять",
+      "base": "наполнять",
+      "pos": "動詞",
+      "meaning": "満たす",
+      "notes": "наполняют пространство",
+      "example_ru": "Звуки рояля наполняют всё пространство Большого зала.",
+      "example_ja": "ピアノの響きが大ホールのすべての空間を満たしていきます。",
+      "saved_at": "2026-09-17 23:43",
+      "collocation_ru": "наполнять зал",
+      "collocation_ja": "ホールを満たす",
+      "collocation_cloze": "[ ❓ ] зал",
+      "alena_scene": "ピアノの豊かな倍音が、ホールの隅々まで満たしていく",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:08"
+    },
+    {
+      "word": "пространство",
+      "base": "пространство",
+      "pos": "名詞 (中性)",
+      "meaning": "空間、広がり",
+      "notes": "всё пространство",
+      "example_ru": "Звуки рояля наполняют всё пространство Большого зала.",
+      "example_ja": "ピアノの響きが大ホールのすべての空間を満たしていきます。",
+      "saved_at": "2026-09-17 23:43",
+      "collocation_ru": "музыкальное пространство",
+      "collocation_ja": "音楽空間",
+      "collocation_cloze": "музыкальное [ ❓ ]",
+      "alena_scene": "響きが立体的に広がる、音楽院特有の素晴らしい音響空間",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:11"
+    },
+    {
+      "word": "весело",
+      "base": "весело",
+      "pos": "副詞",
+      "meaning": "楽しく",
+      "notes": "весело идут",
+      "example_ru": "Студенты весело идут по широкой улице.",
+      "example_ja": "学生たちは広い通りを楽しそうに歩いて向かっています。",
+      "saved_at": "2026-09-19 00:14",
+      "collocation_ru": "весело смеяться",
+      "collocation_ja": "楽しそうに笑う",
+      "collocation_cloze": "[ ❓ ] смеяться",
+      "alena_scene": "練習の合間に、アリョーナが無邪気に楽しそうに笑う",
+      "mastery_level": 2,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:11"
+    },
+    {
+      "word": "широкий",
+      "base": "широкий",
+      "pos": "形容詞",
+      "meaning": "広い",
+      "notes": "по широкой улице",
+      "example_ru": "Студенты весело идут по широкой улице.",
+      "example_ja": "学生たちは広い通りを楽しそうに歩いて向かっています。",
+      "saved_at": "2026-09-19 00:14",
+      "collocation_ru": "широкий жест",
+      "collocation_ja": "大きな（伸びやかな）身振り",
+      "collocation_cloze": "[ ❓ ] жест",
+      "alena_scene": "フォルテッシモで腕を大きく広げて打鍵する力強い瞬間",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:11"
+    },
+    {
+      "word": "звучать",
+      "base": "звучать",
+      "pos": "動詞",
+      "meaning": "響く、鳴る",
+      "notes": "",
+      "example_ru": "В Большом зале музыка звучит особенно глубоко.",
+      "example_ja": "大ホールでは、音楽がひときわ深く響きます。",
+      "saved_at": "2026-09-19 23:32",
+      "collocation_ru": "звучать красиво",
+      "collocation_ja": "美しく響く",
+      "collocation_cloze": "[ ❓ ] красиво",
+      "alena_scene": "ホールの高いアーチ天井に反響する美しいピアノの残響",
+      "mastery_level": 1,
+      "review_count": 0,
+      "last_reviewed_at": null
+    },
+    {
+      "word": "глубже",
+      "base": "глубже",
+      "pos": "中性名詞",
+      "meaning": "«глубже»（文脈重要語彙）",
+      "notes": "",
+      "example_ru": "Попробуйте почувствовать мелодию глубже, сердцем.",
+      "example_ja": "メロディをもっと深く、心で感じ取ってみてください。",
+      "saved_at": "2026-09-19 23:33",
+      "collocation_ru": "понять глубже",
+      "collocation_ja": "より深く理解する・感じる",
+      "collocation_cloze": "понять [ ❓ ]",
+      "alena_scene": "ターニャ先生が胸に手を当てながら、静かに語りかけてくれる",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:12"
+    },
+    {
+      "word": "глубокий",
+      "base": "глубокий",
+      "pos": "形容詞",
+      "meaning": "深い, 深遠な",
+      "notes": "",
+      "example_ru": "У этого старого рояля очень глубокий и тёплый бас.",
+      "example_ja": "この古いピアノは、とても深みのある温かい低音を持っています。",
+      "saved_at": "2026-09-19 23:34",
+      "collocation_ru": "глубокий звук",
+      "collocation_ja": "深みのある音色",
+      "collocation_cloze": "[ ❓ ] звук",
+      "alena_scene": "低音弦が震えるたびに、床を通して心地よい振動が伝わってくる",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:11"
+    },
+    {
+      "word": "становиться",
+      "base": "становиться",
+      "pos": "動詞",
+      "meaning": "〜になる",
+      "notes": "становится мягче",
+      "example_ru": "Звук рояля становится мягче и теплее.",
+      "example_ja": "ピアノの音色はより柔らかく、そして温かくなっていきます。",
+      "saved_at": "2026-09-19 23:36",
+      "collocation_ru": "становиться лучше",
+      "collocation_ja": "（演奏が）より良くなっていく",
+      "collocation_cloze": "[ ❓ ] лучше",
+      "alena_scene": "繰り返すうちに、二人の呼吸が自然とひとつになっていく",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:39"
+    },
+    {
+      "word": "антракт",
+      "base": "антракт",
+      "pos": "名詞 (男性)",
+      "meaning": "休憩、幕間",
+      "notes": "в антракте",
+      "example_ru": "В антракте зрители купили четыре программы.",
+      "example_ja": "休憩時間に観客たちはプログラムを4部買いました。",
+      "saved_at": "2026-09-20 23:22",
+      "collocation_ru": "во время антракта",
+      "collocation_ja": "幕間（休憩時間）に",
+      "collocation_cloze": "во время [ ❓ ]",
+      "alena_scene": "華やかなホワイエで、観客たちが紅茶を手に語り合う幕間",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:22"
+    },
+    {
+      "word": "зритель",
+      "base": "зритель",
+      "pos": "名詞 (男性)",
+      "meaning": "観客、聴衆",
+      "notes": "зрители купили",
+      "example_ru": "В антракте зрители купили четыре программы.",
+      "example_ja": "休憩時間に観客たちはプログラムを4部買いました。",
+      "saved_at": "2026-09-20 23:22",
+      "collocation_ru": "благодарный зритель",
+      "collocation_ja": "心から感謝する観客",
+      "collocation_cloze": "благодарный [ ❓ ]",
+      "alena_scene": "客席から熱い視線と拍手を送ってくれる親切な聴衆たち",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-27 20:22"
+    },
+    {
+      "word": "прозвучать",
+      "base": "прозвучать",
+      "pos": "動詞 (完了体)",
+      "meaning": "鳴り響く",
+      "notes": "прозвучали аплодисменты",
+      "example_ru": "В конце вечера прозвучали десять громких аплодисментов.",
+      "example_ja": "演奏会の終わりに、鳴り止まぬ大きな拍手が響き渡りました。",
+      "saved_at": "2026-09-20 23:23",
+      "collocation_ru": "звучать красиво",
+      "collocation_ja": "美しく響く",
+      "collocation_cloze": "[ ❓ ] красиво",
+      "alena_scene": "ホールの高いアーチ天井に反響する美しいピアノの残響",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:39"
+    },
+    {
+      "word": "аплодисменты",
+      "base": "аплодисменты",
+      "pos": "名詞 (常に複数)",
+      "meaning": "拍手、喝采",
+      "notes": "громких аплодисментов",
+      "example_ru": "В конце вечера прозвучали десять громких аплодисментов.",
+      "example_ja": "演奏会の終わりに、鳴り止まぬ大きな拍手が響き渡りました。",
+      "saved_at": "2026-09-20 23:23",
+      "collocation_ru": "бурные аплодисменты",
+      "collocation_ja": "割れんばかりの拍手喝采",
+      "collocation_cloze": "бурные [ ❓ ]",
+      "alena_scene": "演奏を終えて立ち上がると、客席全体から温かい拍手が降り注ぐ",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-03 09:29"
+    },
+    {
+      "word": "создать",
+      "base": "создать",
+      "pos": "動詞 (完了体)",
+      "meaning": "創り出す、生み出す",
+      "notes": "создали мастера",
+      "example_ru": "Музыка, которую создали великие мастера, живёт вечно.",
+      "example_ja": "偉大なる巨匠たちが生み出した音楽は、永遠に生き続けます。",
+      "saved_at": "2026-09-21 11:32",
+      "collocation_ru": "создать настроение",
+      "collocation_ja": "（音楽の）雰囲気をつくり出す",
+      "collocation_cloze": "[ ❓ ] настроение",
+      "alena_scene": "冒頭のアルペジオで、冬のモスクワの叙情詩のような情景を描き出す",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-03 09:30"
+    },
+    {
+      "word": "вечно",
+      "base": "вечно",
+      "pos": "副詞",
+      "meaning": "永遠に",
+      "notes": "живёт вечно",
+      "example_ru": "Музыка, которую создали великие мастера, живёт вечно.",
+      "example_ja": "偉大なる巨匠たちが生み出した音楽は、永遠に生き続けます。",
+      "saved_at": "2026-09-21 11:32",
+      "collocation_ru": "жить вечно",
+      "collocation_ja": "永遠に生き続ける",
+      "collocation_cloze": "жить [ ❓ ]",
+      "alena_scene": "偉大なチャイコフスキーの魂が、今もこの学び舎に息づいている",
+      "mastery_level": 1,
+      "review_count": 0,
+      "last_reviewed_at": null
+    },
+    {
+      "word": "смолкать",
+      "base": "смолкать",
+      "pos": "動詞",
+      "meaning": "静まる、鳴り止む",
+      "notes": "не смолкают",
+      "example_ru": "В зале звучат аплодисменты, которые не смолкают долго.",
+      "example_ja": "ホールには、長く鳴り止まない拍手が響き渡っています。",
+      "saved_at": "2026-09-21 11:33",
+      "collocation_ru": "звуки смолкают",
+      "collocation_ja": "音が静まる（消え入る）",
+      "collocation_cloze": "звуки [ ❓ ]",
+      "alena_scene": "最後の音の余韻がすっと消え入り、完璧な沈黙が広がる",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:17"
+    },
+    {
+      "word": "усердно",
+      "base": "усердно",
+      "pos": "中性名詞",
+      "meaning": "«усердно»（文脈重要語彙）",
+      "notes": "",
+      "example_ru": "Мы усердно репетируем наш фортепианный дуэт каждый день.",
+      "example_ja": "私たちは毎日、ピアノ連弾を熱心に練習しています。",
+      "saved_at": "2026-09-22 09:52",
+      "collocation_ru": "усердно заниматься",
+      "collocation_ja": "熱心に練習する（励む）",
+      "collocation_cloze": "[ ❓ ] заниматься",
+      "alena_scene": "楽譜に向かって真剣に指を動かす、熱気あふれる練習室のひととき",
+      "mastery_level": 2,
+      "review_count": 1,
+      "last_reviewed_at": "2026-09-22 11:00"
+    },
+    {
+      "word": "просторный",
+      "base": "просторный",
+      "pos": "形容詞",
+      "meaning": "«просторный»（文脈重要語彙）",
+      "notes": "",
+      "example_ru": "Этот просторный класс наполнен чистым светом и музыкой.",
+      "example_ja": "この広々とした教室は、清らかな光と音楽で満たされています。",
+      "saved_at": "2026-09-22 09:54",
+      "collocation_ru": "просторный класс",
+      "collocation_ja": "広々とした（天井の高い）教室",
+      "collocation_cloze": "[ ❓ ] класс",
+      "alena_scene": "天井が高く白いグランドピアノが2台並ぶ、明るく開放的なレッスン室",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-03 09:30"
+    },
+    {
+      "word": "встречаться",
+      "base": "встречаться",
+      "pos": "再帰動詞",
+      "meaning": "会う、待ち合わせる",
+      "notes": "друзья встречаются",
+      "example_ru": "После репетиции друзья встречаются около входа в Большой зал.",
+      "example_ja": "リハーサルの後、友人たちは大ホールの入口の近くで待ち合わせをします。",
+      "saved_at": "2026-09-22 09:56",
+      "collocation_ru": "встречаться у входа",
+      "collocation_ja": "玄関で待ち合わせる",
+      "collocation_cloze": "[ ❓ ] у входа",
+      "alena_scene": "音楽院の正面玄関で、マフラーを巻いたアリョーナが手を振って迎えてくれる",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:39"
+    },
+    {
+      "word": "улыбаться",
+      "base": "улыбаться",
+      "pos": "再帰動詞",
+      "meaning": "微笑む",
+      "notes": "пианист улыбается",
+      "example_ru": "Пианист улыбается и благодарит публику за аплодисменты.",
+      "example_ja": "ピアニストは微笑み、拍手に対して聴衆に感謝の礼をします。",
+      "saved_at": "2026-09-22 09:57",
+      "collocation_ru": "мягко улыбаться",
+      "collocation_ja": "優しく微笑む",
+      "collocation_cloze": "мягко [ ❓ ]",
+      "alena_scene": "演奏がうまくいったとき、アリョーナが嬉しそうにはにかんで見せる笑顔",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-03 09:30"
+    },
+    {
+      "word": "управлять",
+      "base": "управлять",
+      "pos": "動詞",
+      "meaning": "操る（+ 造格）",
+      "notes": "управляет звуком",
+      "example_ru": "Пианист управляет звуком с огромным мастерством и вдохновением.",
+      "example_ja": "ピアニストは卓越した技量とインスピレーションを持って響きを操ります。",
+      "saved_at": "2026-09-23 22:29",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-03 09:30"
+    },
+    {
+      "word": "торопиться",
+      "base": "торопиться",
+      "pos": "動詞",
+      "meaning": "焦るな",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-09-24 23:10",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-03 09:29"
+    },
+    {
+      "word": "замирать",
+      "base": "замирать",
+      "pos": "動詞",
+      "meaning": "消え入る、静まり返る",
+      "notes": "замирает аккорд",
+      "example_ru": "Послушайте, как тихо замирает последний аккорд в большом зале.",
+      "example_ja": "大ホールで最後の和音がいかに静かに消えゆくかをお聴きください。",
+      "saved_at": "2026-09-24 23:12"
+    },
+    {
+      "word": "дышать",
+      "base": "дышать",
+      "pos": "動詞",
+      "meaning": "呼吸する",
+      "notes": "дышите спокойно",
+      "example_ru": "Дышите спокойно и свободно перед выходом на сцену.",
+      "example_ja": "舞台へ出る前は、落ち着いて自由に呼吸をしなさい。",
+      "saved_at": "2026-09-24 23:12",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:39"
+    },
+    {
+      "word": "поддержка",
+      "base": "поддержка",
+      "pos": "名詞",
+      "meaning": "支え、支援",
+      "notes": "без поддержки",
+      "example_ru": "Без вашей поддержки я не закончил бы эту сложную работу вовремя.",
+      "example_ja": "あなたの支えがなかったら、私はこの困難な仕事を時間通りに終えられなかったでしょう。",
+      "saved_at": "2026-09-25 22:46",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:43"
+    },
+    {
+      "word": "удивительный",
+      "base": "удивительный",
+      "pos": "形容詞",
+      "meaning": "驚くべき、不思議な",
+      "notes": "удивительных историй",
+      "example_ru": "Если бы рояль мог говорить, он рассказал бы нам много удивительных историй.",
+      "example_ja": "もしピアノが話すことができたなら、私たちに多くの驚くべき物語を語ったことでしょう。",
+      "saved_at": "2026-09-25 22:46"
+    },
+    {
+      "word": "вдохновлять",
+      "base": "вдохновлять",
+      "pos": "動詞",
+      "meaning": "奮い立たせる",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-09-26 10:55",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:22"
+    },
+    {
+      "word": "парить",
+      "base": "парить",
+      "pos": "動詞",
+      "meaning": "舞う、漂う",
+      "notes": "парящая мелодия",
+      "example_ru": "Мелодия, парящая под высокими сводами консерватории, навсегда остаётся в памяти.",
+      "example_ja": "音楽院の高いヴォールト天井の下を舞う旋律は、永遠に記憶の中に留まります。",
+      "saved_at": "2026-09-26 11:14",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:43"
+    },
+    {
+      "word": "навсегда",
+      "base": "навсегда",
+      "pos": "副詞",
+      "meaning": "永遠に, いつまでも",
+      "notes": "二度と変わることのない未来永劫の状態（永遠に・いつまでも： навсегда сохранить в памяти: 永遠に記憶に留める ）。 ・ навеки / навсегда と同義 。 ・ проститься навсегда : 「永遠に別れを告げる」 発展表現: век （世紀・一生/男性名詞）",
+      "example_ru": "Мелодия, парящая под высокими сводами консерватории, навсегда остаётся в памяти.",
+      "example_ja": "音楽院の高いヴォールト天井の下を舞う旋律は、永遠に記憶の中に留まります。",
+      "saved_at": "2026-09-26 11:15",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:41"
+    },
+    {
+      "word": "растрогать",
+      "base": "растрогать",
+      "pos": "動詞",
+      "meaning": "感動させる",
+      "notes": "растрогали пианиста",
+      "example_ru": "Аплодисменты, не смолкающие несколько минут, растрогали уставшего пианиста.",
+      "example_ja": "数分間鳴り止まない拍手喝采が、演奏を終えて疲れたピアニストを深く感動させました。",
+      "saved_at": "2026-09-26 11:15",
+      "mastery_level": 2,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:39"
+    },
+    {
+      "word": "восторг",
+      "base": "восторг",
+      "pos": "名詞",
+      "meaning": "感嘆・熱狂をもって",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-09-29 21:00",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:41"
+    },
+    {
+      "word": "замереть",
+      "base": "замереть",
+      "pos": "完了体動詞過去形",
+      "meaning": "息をひそめた",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-09-29 21:03",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:41"
+    },
+    {
+      "word": "вдыхать",
+      "base": "вдыхать",
+      "pos": "動詞 (НСВ)",
+      "meaning": "吸い込む、深く吸う",
+      "notes": "付帯状況を表す不完了体副動詞（Вдыхая）",
+      "example_ru": "Вдыхая прохладный вечерний воздух, музыкант настраивает свои мысли.",
+      "example_ja": "冷涼な夜の空気を吸い込みながら、音楽家は自らの思索を調律します。",
+      "saved_at": "2026-09-29 21:06"
+    },
+    {
+      "word": "настраивать",
+      "base": "настраивать",
+      "pos": "動詞 (НСВ)",
+      "meaning": "調律する、チューニングする、気持ちを整える",
+      "notes": "主節の述語動詞（3人称単数 настраивает）",
+      "example_ru": "Вдыхая прохладный вечерний воздух, музыкант настраивает свои мысли.",
+      "example_ja": "冷涼な夜の空気を吸い込みながら、音楽家は自らの思索を調律します。",
+      "saved_at": "2026-09-29 21:07"
+    },
+    {
+      "word": "внутренний",
+      "base": "внутренний",
+      "pos": "形容詞 (軟変化)",
+      "meaning": "内なる、内面の",
+      "notes": "女性対格 гармонию を修飾（внутреннюю）",
+      "example_ru": "Закрыв партитуру, он слышит внутреннюю гармонию будущего произведения.",
+      "example_ja": "総譜を閉じると、彼はこれから生まれる作品の内なるハーモニーを聴きます。",
+      "saved_at": "2026-09-29 21:47",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:41"
+    },
+    {
+      "word": "произведение",
+      "base": "произведение",
+      "pos": "中性名詞",
+      "meaning": "作品、楽曲",
+      "notes": "名詞を修飾する生格補語（будущего произведения）",
+      "example_ru": "Закрыв партитуру, он слышит внутреннюю гармонию будущего произведения.",
+      "example_ja": "総譜を閉じると、彼はこれから生まれる作品の内なるハーモニーを聴きます。",
+      "saved_at": "2026-09-29 21:47"
+    },
+    {
+      "word": "движение",
+      "base": "движение",
+      "pos": "中性名詞",
+      "meaning": "動き, 運動, 楽章, 交通",
+      "notes": "物理的身体動作、政治・社会的運動、および楽曲の「楽章」を表す中性名詞。 ・ дорожное движение : 「道路交通」 ・ плавное движение : 「滑らかな動き」 発展表現: вступить в движение （動き出す）",
+      "example_ru": "Каждое движение смычка становится продолжением его души.",
+      "example_ja": "弓のひとつひとつの動きが、彼の魂の延長となってゆくのです。",
+      "saved_at": "2026-09-29 21:47",
+      "mastery_level": 3,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:43"
+    },
+    {
+      "word": "смычок",
+      "base": "смычок",
+      "pos": "男性名詞",
+      "meaning": "（弦楽器の）弓",
+      "notes": "движение を限定する生格（смычка）",
+      "example_ru": "Каждое движение смычка становится продолжением его души.",
+      "example_ja": "弓のひとつひとつの動きが、彼の魂の延長となってゆくのです。",
+      "saved_at": "2026-09-29 21:47",
+      "mastery_level": 2,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-07 00:43"
+    },
+    {
+      "word": "продолжение",
+      "base": "продолжение",
+      "pos": "中性名詞",
+      "meaning": "延長、続き、展開",
+      "notes": "становиться の造格補語（продолжением）",
+      "example_ru": "Каждое движение смычка становится продолжением его души.",
+      "example_ja": "弓のひとつひとつの動きが、彼の魂の延長となってゆくのです。",
+      "saved_at": "2026-09-29 21:47"
+    },
+    {
+      "word": "перед (+inst)",
+      "base": "перед",
+      "pos": "前置詞 (Предлог・不変化詞)",
+      "meaning": "① 〜の正面で ② 〜の直前に",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-09-30 22:25"
+    },
+    {
+      "word": "выход",
+      "base": "выход",
+      "pos": "男性名詞",
+      "meaning": "出口, 解決策, 登場",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-09-30 22:26"
+    },
+    {
+      "word": "сохранять",
+      "base": "сохранять",
+      "pos": "動詞",
+      "meaning": "保つ",
+      "notes": "【動詞の活用】現在（または未来）における主語の人称変化。",
+      "example_ru": "Музыканту важно уметь сохранять внутренний покой перед выходом на сцену.",
+      "example_ja": "舞台に出る前に、内なる静けさを保つことは音楽家にとって極めて重要です。",
+      "saved_at": "2026-09-30 22:30"
+    },
+    {
+      "word": "покой",
+      "base": "покой",
+      "pos": "男性名詞",
+      "meaning": "平安、静寂、心の安らぎ",
+      "notes": "сохранять の対格目的語（покой）",
+      "example_ru": "Музыканту важно уметь сохранять внутренний покой перед выходом на сцену.",
+      "example_ja": "舞台に出る前に、内なる静けさを保つことは音楽家にとって極めて重要です。",
+      "saved_at": "2026-09-30 22:30"
+    },
+    {
+      "word": "рождаться",
+      "base": "рождаться",
+      "pos": "再帰動詞 (НСВ)",
+      "meaning": "生まれる、誕生する",
+      "notes": "述語動詞（3人称単数 рождается）",
+      "example_ru": "В этой тишине рождается истинное вдохновение.",
+      "example_ja": "この静寂の中にこそ、真のインスピレーションが生まれます。",
+      "saved_at": "2026-09-30 22:58"
+    },
+    {
+      "word": "истинный",
+      "base": "истинный",
+      "pos": "形容詞",
+      "meaning": "真の、本物の",
+      "notes": "вдохновение を修飾（中性主格）",
+      "example_ru": "В этой тишине рождается истинное вдохновение.",
+      "example_ja": "この静寂の中にこそ、真のインスピレーションが生まれます。",
+      "saved_at": "2026-09-30 22:58"
+    },
+    {
+      "word": "довериться",
+      "base": "довериться",
+      "pos": "動詞 (СВ)",
+      "meaning": "信頼する、委ねる（与格支配）",
+      "notes": "不定形補語（довериться музыке）",
+      "example_ru": "Нам остаётся лишь довериться музыке и своему сердцу.",
+      "example_ja": "私たちに残されているのは、音楽と自らの心を信じることだけです。",
+      "saved_at": "2026-09-30 22:59"
+    },
+    {
+      "word": "выступать/выступить",
+      "base": "выступить",
+      "pos": "不完了 / 完了",
+      "meaning": "出演する, 発言する, 踏み出す",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-02 00:13"
+    },
+    {
+      "word": "выдающимися",
+      "base": "выдающийся",
+      "pos": "形容詞",
+      "meaning": "傑出した",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-02 00:14"
+    },
+    {
+      "word": "обращаться/обратиться (к +d)",
+      "base": "обратиться",
+      "pos": "不完了 / 完了",
+      "meaning": "話しかける, 尋ねる, 訴える",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-02 00:15"
+    },
+    {
+      "word": "волноваться/вз-",
+      "base": "волноваться",
+      "pos": "不完了 / 完了",
+      "meaning": "緊張する, 波立つ, 動揺する",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-02 22:39"
+    },
+    {
+      "word": "пустом",
+      "base": "пустом",
+      "pos": "形容詞",
+      "meaning": "空の・前置格",
+      "notes": "【形容詞の性・数・格変化】«пустый» は修飾する名詞の性（男性・女性・中性）および数・格に応じて語尾が変化します。対格は活動体で生格、不活動体で主格と同形になります。",
+      "example_ru": "Но за окном шёл осенний дождь, и в пустом коридоре звучали только тихие шаги.",
+      "example_ja": "しかし窓の外では秋の雨が降り、誰もいない廊下にはただ静かな足音だけが響いていました。",
+      "saved_at": "2026-10-02 22:42"
+    },
+    {
+      "word": "шаг",
+      "base": "шаг",
+      "pos": "男性名詞",
+      "meaning": "歩み, 一歩, 段階",
+      "notes": "足の一歩の踏み出し、およびプロセスの段階を表す男性名詞。 ・ шаг за шагом : 「一歩一歩、着実に」 ・ сделать шаг : 「一歩を踏み出す」 発展表現: шагать （大股で歩く/動詞）",
+      "example_ru": "Но за окном шёл осенний дождь, и в пустом коридоре звучали только тихие шаги.",
+      "example_ja": "しかし窓の外では秋の雨が降り、誰もいない廊下にはただ静かな足音だけが響いていました。",
+      "saved_at": "2026-10-02 22:42"
+    },
+    {
+      "word": "пустой",
+      "base": "пустой",
+      "pos": "形容詞",
+      "meaning": "空の, 空虚な, 無意味な",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-03 09:35"
+    },
+    {
+      "word": "успешно",
+      "base": "успешно",
+      "pos": "副詞 (Наречие・不変化詞)",
+      "meaning": "成功裏に, 首尾よく",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-03 09:54"
+    },
+    {
+      "word": "строгий",
+      "base": "строгий",
+      "pos": "形容詞",
+      "meaning": "厳しい, 厳格な",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-03 10:08"
+    },
+    {
+      "word": "подробно",
+      "base": "подробно",
+      "pos": "副詞 (Наречие・不変化詞)",
+      "meaning": "詳しく",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-04 20:29"
+    },
+    {
+      "word": "объяснять/объяснить (+a)",
+      "base": "объяснять",
+      "pos": "不完了 / 完了",
+      "meaning": "説明する, 明らかにする",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-04 20:29"
+    },
+    {
+      "word": "замысел",
+      "base": "замысел",
+      "pos": "名詞",
+      "meaning": "意図・対格",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-04 20:32"
+    },
+    {
+      "word": "упорно",
+      "base": "упорно",
+      "pos": "副詞 (Наречие・不変化詞)",
+      "meaning": "根気強く、頑固に、粘り強く",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-04 20:36"
+    },
+    {
+      "word": "побеждать/победить (+a)",
+      "base": "победить",
+      "pos": "不完了 / 完了",
+      "meaning": "打ち勝つ, 勝利する",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-04 20:37"
+    },
+    {
+      "word": "пораньше",
+      "base": "пораньше",
+      "pos": "副詞",
+      "meaning": "少し早めに",
+      "notes": "【不変化詞】«пораньше» は不変化の語（副詞）です。格変化や人称変化は行わず、常に一定の形で用いられます。",
+      "example_ru": "Мы вышли из консерватории пораньше, чтобы успеть на вечерний концерт в филармонию.",
+      "example_ja": "私たちはフィルハーモニーでの夜の演奏会に間に合うよう、いつもより少し早く音楽院を出ました。",
+      "saved_at": "2026-10-04 20:41"
+    },
+    {
+      "word": "успеть",
+      "base": "успеть",
+      "pos": "完了体動詞",
+      "meaning": "間に合う、成し遂げる",
+      "notes": "目的節の動詞不定形（успеть на концерт）",
+      "example_ru": "Мы вышли из консерватории пораньше, чтобы успеть на вечерний концерт в филармонию.",
+      "example_ja": "私たちはフィルハーモニーでの夜の演奏会に間に合うよう、いつもより少し早く音楽院を出ました。",
+      "saved_at": "2026-10-04 20:41"
+    },
+    {
+      "word": "гореть",
+      "base": "гореть",
+      "pos": "不完了体動詞",
+      "meaning": "燃える、輝く",
+      "notes": "主節の述語動詞（過去男性 горел）",
+      "example_ru": "Хотя на улице кружила метель, в сердцах музыкантов горел яркий огонь любви к искусству.",
+      "example_ja": "通りでは地吹雪が舞っていましたが、音楽家たちの心には芸術への愛という明るい炎が燃えていました。",
+      "saved_at": "2026-10-04 20:42"
+    },
+    {
+      "word": "яркий",
+      "base": "яркий",
+      "pos": "形容詞",
+      "meaning": "鮮やかな, 明るい, 華々しい",
+      "notes": "光・色彩が強烈で美しいこと（鮮やかな）、才能・印象が顕著なこと。 ・ тусклый (薄暗い) の対比語 。 ・ яркий свет : 「眩しい光」 ・ яркий талант : 「華々しい才能」 発展表現: ярко （鮮やかに/副詞）",
+      "example_ru": "Хотя на улице кружила метель, в сердцах музыкантов горел яркий огонь любви к искусству.",
+      "example_ja": "通りでは地吹雪が舞っていましたが、音楽家たちの心には芸術への愛という明るい炎が燃えていました。",
+      "saved_at": "2026-10-04 20:42"
+    },
+    {
+      "word": "задать",
+      "base": "задать",
+      "pos": "動詞不定形",
+      "meaning": "する・完了体",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-05 22:12"
+    },
+    {
+      "word": "нести",
+      "base": "нести",
+      "pos": "不完了体定動詞",
+      "meaning": "（手に持って）運ぶ",
+      "notes": "副動詞（неся с собой）",
+      "example_ru": "Студенты входили в Большой зал, неся с собой тяжёлые футляры со скрипками.",
+      "example_ja": "学生たちはヴァイオリンの入った重いケースを抱えて、大ホールへと入っていきました。",
+      "saved_at": "2026-10-05 22:15"
+    },
+    {
+      "word": "футляр",
+      "base": "футляр",
+      "pos": "男性名詞",
+      "meaning": "ケース、楽器ケース",
+      "notes": "副動詞の直接目的語（複数対格 футляры）",
+      "example_ru": "Студенты входили в Большой зал, неся с собой тяжёлые футляры со скрипками.",
+      "example_ja": "学生たちはヴァイオリンの入った重いケースを抱えて、大ホールへと入っていきました。",
+      "saved_at": "2026-10-05 22:15"
+    },
+    {
+      "word": "осветить",
+      "base": "осветить",
+      "pos": "完了体動詞",
+      "meaning": "照らす、光を当てる",
+      "notes": "受動過去形動詞（освещённую）",
+      "example_ru": "Профессор подошёл к окну и посмотрел на вечернюю Москву, освещённую огнями фонарей.",
+      "example_ja": "教授は窓辺に歩み寄り、街灯の光に照らし出された夜のモスクワを見つめました。",
+      "saved_at": "2026-10-05 22:15"
+    },
+    {
+      "word": "двое",
+      "base": "двое",
+      "pos": "集合数詞",
+      "meaning": "2人, 2組・対",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-06 21:01"
+    },
+    {
+      "word": "увлечённо",
+      "base": "увлечённо",
+      "pos": "副詞 (Наречие・不変化詞)",
+      "meaning": "熱心に",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-06 21:01"
+    },
+    {
+      "word": "разучивать",
+      "base": "разучивать",
+      "pos": "動詞",
+      "meaning": "練習していた・過去複数",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-06 21:04"
+    },
+    {
+      "word": "уютный",
+      "base": "уютный",
+      "pos": "形容詞",
+      "meaning": "居心地のよい",
+      "notes": "【形容詞の性・数・格変化】«уютный» は修飾する名詞の性（男性・女性・中性）および数・格に応じて語尾が変化します。対格は活動体で生格、不活動体で主格と同形になります。",
+      "example_ru": "В уютном классе двое музыкантов тихо обсуждали сложный финал квартета.",
+      "example_ja": "居心地の良いレッスン室で、2人の音楽家が四重奏の難解なフィナーレについて静かに語り合っていました。",
+      "saved_at": "2026-10-06 22:40"
+    },
+    {
+      "word": "обсуждать",
+      "base": "обсуждать",
+      "pos": "不完了体動詞",
+      "meaning": "議論する、話し合う",
+      "notes": "述語動詞（過去複数 обсуждали）",
+      "example_ru": "В уютном классе двое музыкантов тихо обсуждали сложный финал квартета.",
+      "example_ja": "居心地の良いレッスン室で、2人の音楽家が四重奏の難解なフィナーレについて静かに語り合っていました。",
+      "saved_at": "2026-10-06 22:40"
+    },
+    {
+      "word": "довольный",
+      "base": "довольный",
+      "pos": "形容詞",
+      "meaning": "満足した (+ inst に)",
+      "notes": "短語尾複数（довольны звуком）",
+      "example_ru": "Оба исполнителя были довольны звуком, и в зале воцарилась тёплая гармония.",
+      "example_ja": "2人の演奏者はいずれもその響きに満足し、室内には温かな調和が広がりました。",
+      "saved_at": "2026-10-06 22:48"
+    },
+    {
+      "word": "воцариться",
+      "base": "воцариться",
+      "pos": "完了体動詞",
+      "meaning": "（静寂・調和などが）訪れる、広がる",
+      "notes": "述語動詞（過去女性 воцарилась）",
+      "example_ru": "Оба исполнителя были довольны звуком, и в зале воцарилась тёплая гармония.",
+      "example_ja": "2人の演奏者はいずれもその響きに満足し、室内には温かな調和が広がりました。",
+      "saved_at": "2026-10-06 22:48"
+    }
+  ],
+  "milestone_progress": {
+    "last_audit_date": "2026-10-05",
+    "target_exam": {
+      "name": "ロシア語能力検定2級",
+      "target_date": "2027-10-15",
+      "target_level_description": "露検2級 合格水準（文法・読解・聴取）",
+      "scope_app": {
+        "title": "本アプリの担当領域",
+        "description": "文法・語彙・聴取の反射的定着（タイピングなし・条件反射レベルの自動化、瞬時判断）",
+        "icon": "⚡"
+      },
+      "scope_italki": {
+        "title": "italkiの担当領域",
+        "description": "和文露訳・口頭作文（文の組み立て、実践的会話・産出トレーニング）",
+        "icon": "🗣️"
+      }
+    },
+    "active_phase": {
+      "phase_id": "phase1",
+      "phase_num": 1,
+      "name": "判定なし中心期（基礎接触）",
+      "subtitle": "プレッシャーフリーで全基本文法に触れる",
+      "start_date": "2026-09-01",
+      "end_date": "2026-11-30",
+      "is_active": true,
+      "progress_pct": 81,
+      "passed_count": 9,
+      "total_focus_count": 11,
+      "passed_tags": [
+        "case.gen",
+        "case.dat",
+        "case.acc",
+        "case.ins",
+        "case.prp",
+        "verb.aspect_nsv",
+        "verb.aspect_sv",
+        "verb.irregular",
+        "adj.declension"
+      ],
+      "unreached_tags": [
+        "case.nom",
+        "syntax.conjunction"
+      ],
+      "criteria_desc": "初期タグセット全体に最低1回触れている状態"
+    },
+    "pace_status": "ahead",
+    "pace_label": "順調・先行中 (Ahead)",
+    "expected_pct": 37,
+    "actual_pct": 81,
+    "coaching_message": "Юсукэ、素晴らしいペースです！2027年10月の2級合格に向けて、今のフェーズの定着が前倒しで進んでいます。この調子で、少し先の応用的な表現もリラックスして覗いてみましょうか♪",
+    "recommended_tags": [
+      {
+        "tag": "case.nom",
+        "name": "主格 (Именительный)"
+      },
+      {
+        "tag": "syntax.conjunction",
+        "name": "等位・従属接続詞"
+      }
+    ],
+    "phases": [
+      {
+        "phase_id": "phase1",
+        "phase_num": 1,
+        "name": "判定なし中心期（基礎接触）",
+        "subtitle": "プレッシャーフリーで全基本文法に触れる",
+        "start_date": "2026-09-01",
+        "end_date": "2026-11-30",
+        "is_active": true,
+        "progress_pct": 81,
+        "passed_count": 9,
+        "total_focus_count": 11,
+        "passed_tags": [
+          "case.gen",
+          "case.dat",
+          "case.acc",
+          "case.ins",
+          "case.prp",
+          "verb.aspect_nsv",
+          "verb.aspect_sv",
+          "verb.irregular",
+          "adj.declension"
+        ],
+        "unreached_tags": [
+          "case.nom",
+          "syntax.conjunction"
+        ],
+        "criteria_desc": "初期タグセット全体に最低1回触れている状態"
+      },
+      {
+        "phase_id": "phase2",
+        "phase_num": 2,
+        "name": "3級タグの反射化",
+        "subtitle": "移動動詞・比較級・数詞主格の安定化",
+        "start_date": "2026-12-01",
+        "end_date": "2027-03-31",
+        "is_active": false,
+        "progress_pct": 87,
+        "passed_count": 7,
+        "total_focus_count": 8,
+        "passed_tags": [
+          "verb.motion_uni",
+          "verb.motion_multi",
+          "adj.comparative",
+          "numeral.agreement",
+          "syntax.relative",
+          "verb.reflexive",
+          "verb.imperative"
+        ],
+        "unreached_tags": [
+          "adj.short"
+        ],
+        "criteria_desc": "3級相当タグの正答率と判断が安定（正答率75%以上、着実な解答（平均35秒以内））"
+      },
+      {
+        "phase_id": "phase3",
+        "phase_num": 3,
+        "name": "2級固有タグの強化",
+        "subtitle": "数詞斜格変化・体用法・形動詞/副動詞",
+        "start_date": "2027-04-01",
+        "end_date": "2027-07-31",
+        "is_active": false,
+        "progress_pct": 57,
+        "passed_count": 4,
+        "total_focus_count": 7,
+        "passed_tags": [
+          "numeral.declension_all",
+          "verb.aspect_sv",
+          "syntax.adverbial",
+          "participle.active"
+        ],
+        "unreached_tags": [
+          "syntax.conditional",
+          "participle.passive",
+          "gerund.verbal_adverb"
+        ],
+        "criteria_desc": "2級相当固有タグの理解が安定（正答率80%以上、着実な解答（平均30秒以内））"
+      },
+      {
+        "phase_id": "phase4",
+        "phase_num": 4,
+        "name": "直前総復習・聴取耐性期",
+        "subtitle": "全タグ横断・通常〜高速リスニング",
+        "start_date": "2027-08-01",
+        "end_date": "2027-09-30",
+        "is_active": false,
+        "progress_pct": 60,
+        "passed_count": 6,
+        "total_focus_count": 10,
+        "passed_tags": [
+          "case.prp",
+          "case.acc",
+          "case.gen",
+          "case.ins",
+          "verb.aspect_sv",
+          "verb.motion_uni"
+        ],
+        "unreached_tags": [
+          "case.dat",
+          "verb.motion_multi",
+          "syntax.relative",
+          "numeral.declension_all"
+        ],
+        "criteria_desc": "全タグ横断演習で高精度な判断（正答率85%以上、安定した解答（平均25秒以内））"
+      },
+      {
+        "phase_id": "phase5",
+        "phase_num": 5,
+        "name": "受験本番（成果発揮）",
+        "subtitle": "ロシア語能力検定2級 合格",
+        "start_date": "2027-10-01",
+        "end_date": "2027-10-31",
+        "is_active": false,
+        "progress_pct": 0,
+        "passed_count": 0,
+        "total_focus_count": 0,
+        "passed_tags": [],
+        "unreached_tags": [],
+        "criteria_desc": "ロシア語能力検定2級 受験（本アプリで鍛えた反射力とitalkiの作文・口頭力を統合）"
+      }
+    ],
+    "tag_readiness": [
+      {
+        "tag": "case.nom",
+        "name": "主格 (Именительный)",
+        "level": "A1",
+        "color": "#3b82f6",
+        "seen": 0,
+        "accuracy_pct": 0,
+        "avg_rt_ms": 18000,
+        "status": "developing",
+        "is_passed": false
+      },
+      {
+        "tag": "case.gen",
+        "name": "生格 (Родительный)",
+        "level": "A1-A2",
+        "color": "#8b5cf6",
+        "seen": 11,
+        "accuracy_pct": 90,
+        "avg_rt_ms": 3500,
+        "status": "stable",
+        "is_passed": true
+      },
+      {
+        "tag": "case.dat",
+        "name": "与格 (Дательный)",
+        "level": "A2",
+        "color": "#f97316",
+        "seen": 1,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 3500,
+        "status": "developing",
+        "is_passed": true
+      },
+      {
+        "tag": "case.acc",
+        "name": "対格 (Винительный)",
+        "level": "A1-A2",
+        "color": "#10b981",
+        "seen": 10,
+        "accuracy_pct": 90,
+        "avg_rt_ms": 3500,
+        "status": "stable",
+        "is_passed": true
+      },
+      {
+        "tag": "case.ins",
+        "name": "造格 (Творительный)",
+        "level": "A2",
+        "color": "#d97706",
+        "seen": 4,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 2100,
+        "status": "reflex",
+        "is_passed": true
+      },
+      {
+        "tag": "case.prp",
+        "name": "前置格 (Предложный)",
+        "level": "A1",
+        "color": "#06b6d4",
+        "seen": 18,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 2100,
+        "status": "reflex",
+        "is_passed": true
+      },
+      {
+        "tag": "verb.aspect_nsv",
+        "name": "不完了体 (НСВ)",
+        "level": "A1-A2",
+        "color": "#0284c7",
+        "seen": 6,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 2100,
+        "status": "reflex",
+        "is_passed": true
+      },
+      {
+        "tag": "verb.aspect_sv",
+        "name": "完了体 (СВ)",
+        "level": "A2",
+        "color": "#e11d48",
+        "seen": 9,
+        "accuracy_pct": 88,
+        "avg_rt_ms": 3500,
+        "status": "stable",
+        "is_passed": true
+      },
+      {
+        "tag": "verb.irregular",
+        "name": "不規則・特殊活用動詞",
+        "level": "A1-A2",
+        "color": "#ec4899",
+        "seen": 6,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 2100,
+        "status": "reflex",
+        "is_passed": true
+      },
+      {
+        "tag": "adj.declension",
+        "name": "形容詞の性・数・格変化",
+        "level": "A1-A2",
+        "color": "#84cc16",
+        "seen": 7,
+        "accuracy_pct": 100,
+        "avg_rt_ms": 2100,
+        "status": "reflex",
+        "is_passed": true
+      },
+      {
+        "tag": "syntax.conjunction",
+        "name": "等位・従属接続詞",
+        "level": "A1-A2",
+        "color": "#64748b",
+        "seen": 0,
+        "accuracy_pct": 0,
+        "avg_rt_ms": 18000,
+        "status": "developing",
+        "is_passed": false
+      }
+    ]
+  }
+}
