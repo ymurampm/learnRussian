@@ -4,13 +4,13 @@
     "name_ru": "Юсукэ",
     "target_level": "A2後半 (A1後半スタート)",
     "started_date": "2026-09-12",
-    "last_active_date": "2026-10-08",
-    "consecutive_days": 25,
-    "total_sessions_completed": 118,
-    "current_streak": 25,
+    "last_active_date": "2026-10-10",
+    "consecutive_days": 27,
+    "total_sessions_completed": 128,
+    "current_streak": 27,
     "intimacy": {
       "level": 6,
-      "exp": 161,
+      "exp": 308,
       "max_exp": 378,
       "title": "至高のアンサンブル",
       "description": "言葉を超えて心を通わせる、生涯の音楽の友として互いを深くリスペクトしています。"
@@ -19,13 +19,13 @@
     "tts_voice": "default_ru_female",
     "tts_speed": 0.75,
     "daily_greeting": {
-      "date": "2026-10-08",
+      "date": "2026-10-10",
       "text": "Доброе утро, Юсукэ! 昨日は目的・譲歩の従属節 (чтобы, хотя)の練習、お疲れさまでした。難しい変化も、ピアノのスケールのように毎日少しずつ馴染ませていけば大丈夫です。今日も音楽院でお待ちしています♪",
       "days_gap": 1,
       "top_rusty_tag": "syntax.subordinate"
     },
-    "current_study_day": 27,
-    "last_advanced_date": "2026-10-08",
+    "current_study_day": 29,
+    "last_advanced_date": "2026-10-10",
     "completed_study_days": [
       1,
       2,
@@ -52,7 +52,9 @@
       23,
       24,
       25,
-      26
+      26,
+      27,
+      28
     ],
     "encore_completed_today": true
   },
@@ -212,11 +214,11 @@
       "status": "reflex"
     },
     "numeral.declension_all": {
-      "seen": 6,
-      "correct": 5,
-      "avg_rt_ms": 3500,
-      "consecutive_correct": 2,
-      "status": "stable"
+      "seen": 12,
+      "correct": 7,
+      "avg_rt_ms": 16862,
+      "consecutive_correct": 1,
+      "status": "rusty"
     },
     "participle.active": {
       "seen": 6,
@@ -252,11 +254,18 @@
       "avg_rt_ms": 14592,
       "consecutive_correct": 6,
       "status": "reflex"
+    },
+    "gerund.verbal_adverb": {
+      "seen": 6,
+      "correct": 5,
+      "avg_rt_ms": 21952,
+      "consecutive_correct": 5,
+      "status": "stable"
     }
   },
   "behavior_logs": {
     "total_dwell_seconds": 120,
-    "branches_opened_count": 1085,
+    "branches_opened_count": 1125,
     "audio_replays_count": 8,
     "grammar_mutations_count": 128
   },
@@ -282,7 +291,10 @@
     "badge_day23_subordinate_resolve",
     "badge_day24_prefixed_journey",
     "badge_day25_collective_harmony",
-    "badge_day26_gerund_harmonics"
+    "badge_day26_gerund_harmonics",
+    "badge_day27_gerund_mastery",
+    "badge_day28_syntax_harmony",
+    "badge_day29_numeral_polyphony"
   ],
   "session_history": [
     {
@@ -1106,6 +1118,76 @@
       "type": "listening_bath",
       "quiz_count": 0,
       "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-10-08T21:21:07.822418",
+      "session_id": "day27_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-10T00:23:06.660430",
+      "session_id": "day28_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-10T00:25:16.954600",
+      "session_id": "day28_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-10T00:26:37.623537",
+      "session_id": "day28_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-10-10T00:26:42.875244",
+      "session_id": "day28_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-10T15:31:38.847846",
+      "session_id": "day29_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-10T16:05:46.679802",
+      "session_id": "day29_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-10T16:08:12.347246",
+      "session_id": "day29_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
+    },
+    {
+      "timestamp": "2026-10-10T16:08:20.431435",
+      "session_id": "day29_story",
+      "type": "memoir",
+      "quiz_count": 0,
+      "intimacy_gain": 10
+    },
+    {
+      "timestamp": "2026-10-10T16:12:11.799588",
+      "session_id": "flashcard_salon_1791616331793",
+      "type": "salon",
+      "quiz_count": 0,
+      "intimacy_gain": 5
     }
   ],
   "bookmarked_words": [
@@ -1306,8 +1388,8 @@
       "collocation_cloze": "[ ❓ ] звука",
       "alena_scene": "アリョーナが奏でる一音一音の、透明感あふれる響きの美しさ",
       "mastery_level": 1,
-      "review_count": 1,
-      "last_reviewed_at": "2026-09-22 11:00"
+      "review_count": 17,
+      "last_reviewed_at": "2026-10-10 16:22"
     },
     {
       "word": "обладать",
@@ -1391,8 +1473,8 @@
       "collocation_cloze": "тихий [ ❓ ]",
       "alena_scene": "練習のあと、音楽院の裏手にある石畳の静かな小路を二人で歩く",
       "mastery_level": 1,
-      "review_count": 1,
-      "last_reviewed_at": "2026-09-22 11:01"
+      "review_count": 17,
+      "last_reviewed_at": "2026-10-10 16:22"
     },
     {
       "word": "зажигаться",
@@ -1442,8 +1524,8 @@
       "collocation_cloze": "мелодия [ ❓ ]",
       "alena_scene": "ピアノの蓋を開け、最初のコードが空間いっぱいに響き渡る",
       "mastery_level": 1,
-      "review_count": 6,
-      "last_reviewed_at": "2026-10-07 23:26"
+      "review_count": 7,
+      "last_reviewed_at": "2026-10-10 16:11"
     },
     {
       "word": "оба (f обе)",
@@ -2132,7 +2214,10 @@
       "notes": "主節の述語動詞（3人称単数 настраивает）",
       "example_ru": "Вдыхая прохладный вечерний воздух, музыкант настраивает свои мысли.",
       "example_ja": "冷涼な夜の空気を吸い込みながら、音楽家は自らの思索を調律します。",
-      "saved_at": "2026-09-29 21:07"
+      "saved_at": "2026-09-29 21:07",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-10 16:11"
     },
     {
       "word": "внутренний",
@@ -2155,7 +2240,10 @@
       "notes": "名詞を修飾する生格補語（будущего произведения）",
       "example_ru": "Закрыв партитуру, он слышит внутреннюю гармонию будущего произведения.",
       "example_ja": "総譜を閉じると、彼はこれから生まれる作品の内なるハーモニーを聴きます。",
-      "saved_at": "2026-09-29 21:47"
+      "saved_at": "2026-09-29 21:47",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-10 16:11"
     },
     {
       "word": "движение",
@@ -2191,7 +2279,10 @@
       "notes": "становиться の造格補語（продолжением）",
       "example_ru": "Каждое движение смычка становится продолжением его души.",
       "example_ja": "弓のひとつひとつの動きが、彼の魂の延長となってゆくのです。",
-      "saved_at": "2026-09-29 21:47"
+      "saved_at": "2026-09-29 21:47",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-10 16:11"
     },
     {
       "word": "перед (+inst)",
@@ -2261,7 +2352,10 @@
       "notes": "不定形補語（довериться музыке）",
       "example_ru": "Нам остаётся лишь довериться музыке и своему сердцу.",
       "example_ja": "私たちに残されているのは、音楽と自らの心を信じることだけです。",
-      "saved_at": "2026-09-30 22:59"
+      "saved_at": "2026-09-30 22:59",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-10 00:27"
     },
     {
       "word": "выступать/выступить",
@@ -2271,7 +2365,10 @@
       "notes": "",
       "example_ru": "",
       "example_ja": "",
-      "saved_at": "2026-10-02 00:13"
+      "saved_at": "2026-10-02 00:13",
+      "mastery_level": 1,
+      "review_count": 1,
+      "last_reviewed_at": "2026-10-10 16:10"
     },
     {
       "word": "выдающимися",
@@ -2632,10 +2729,90 @@
       "example_ru": "Попрощавшись с коллегами, Таня не спеша направилась в сторону дома, слушая хруст снега под ногами.",
       "example_ja": "同僚たちに別れを告げ、ターニャは足元の雪を踏みしめる音を聴きながら、ゆっくりと家路につきました。",
       "saved_at": "2026-10-08 21:20"
+    },
+    {
+      "word": "восхищаться",
+      "base": "восхищаться",
+      "pos": "動詞",
+      "meaning": "感嘆した・過去複数",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-10 00:23"
+    },
+    {
+      "word": "вдохновенный",
+      "base": "вдохновенный",
+      "pos": "形容詞",
+      "meaning": "霊感に満ちた、情熱的な",
+      "notes": "女性対格（вдохновенную игру）",
+      "example_ru": "Возвращаясь домой после вечернего концерта, мы долго обсуждали вдохновенную игру пианиста.",
+      "example_ja": "夜のコンサートの後、家路につきながら、私たちはピアニストの情熱的な演奏について長く語り合いました。",
+      "saved_at": "2026-10-10 00:25"
+    },
+    {
+      "word": "вспоминать",
+      "base": "вспоминать",
+      "pos": "不完了体動詞",
+      "meaning": "思い出す、回想する",
+      "notes": "副動詞（Вспоминая звучание）",
+      "example_ru": "Вспоминая звучание каждой фразы, мы заново переживали радость сегодняшнего вечера.",
+      "example_ja": "一つひとつのフレーズの響きを思い返しながら、私たちは今夜の喜びを改めて心の中で味わい直していました。",
+      "saved_at": "2026-10-10 00:26"
+    },
+    {
+      "word": "звучание",
+      "base": "звучание",
+      "pos": "中性名詞",
+      "meaning": "響き、音色",
+      "notes": "直接目的語（中性対格 звучание）",
+      "example_ru": "Вспоминая звучание каждой фразы, мы заново переживали радость сегодняшнего вечера.",
+      "example_ja": "一つひとつのフレーズの響きを思い返しながら、私たちは今夜の喜びを改めて心の中で味わい直していました。",
+      "saved_at": "2026-10-10 00:26"
+    },
+    {
+      "word": "переживать",
+      "base": "переживать",
+      "pos": "不完了体動詞",
+      "meaning": "深く体験する、味わう",
+      "notes": "主節の述語動詞（переживали）",
+      "example_ru": "Вспоминая звучание каждой фразы, мы заново переживали радость сегодняшнего вечера.",
+      "example_ja": "一つひとつのフレーズの響きを思い返しながら、私たちは今夜の喜びを改めて心の中で味わい直していました。",
+      "saved_at": "2026-10-10 00:26"
+    },
+    {
+      "word": "состоять (i) (из +g)",
+      "base": "состоять",
+      "pos": "不完了",
+      "meaning": "〜から成る, 構成される, 属している",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-10 16:02"
+    },
+    {
+      "word": "храниться",
+      "base": "храниться",
+      "pos": "不完了体動詞",
+      "meaning": "保管されている、保存されている",
+      "notes": "述語動詞（現在複数 хранятся）",
+      "example_ru": "В библиотеке консерватории хранятся тысячи редких партитур. Сегодня мы занимались с десятью старинными изданиями нот.",
+      "example_ja": "音楽院の図書館には何千もの貴重な総譜が保管されています。今日、私たちは10冊の年代物の楽譜の出版譜を用いて研究しました。",
+      "saved_at": "2026-10-10 16:06"
+    },
+    {
+      "word": "пометка",
+      "base": "пометка",
+      "pos": "女性名詞",
+      "meaning": "書き込み、注記、メモ",
+      "notes": "直接目的語（複数対格 пометки）",
+      "example_ru": "Вместе с пятью исследователями мы изучали авторские пометки великих композиторов на полях страниц.",
+      "example_ja": "5人の研究者と共に、私たちはページの余白に残された大作曲家たちの直筆注記を丹念に調べました。",
+      "saved_at": "2026-10-10 16:07"
     }
   ],
   "milestone_progress": {
-    "last_audit_date": "2026-10-08",
+    "last_audit_date": "2026-10-10",
     "target_exam": {
       "name": "ロシア語能力検定2級",
       "target_date": "2027-10-15",
@@ -2681,7 +2858,7 @@
     },
     "pace_status": "ahead",
     "pace_label": "順調・先行中 (Ahead)",
-    "expected_pct": 41,
+    "expected_pct": 43,
     "actual_pct": 81,
     "coaching_message": "Юсукэ、素晴らしいペースです！2027年10月の2級合格に向けて、今のフェーズの定着が前倒しで進んでいます。この調子で、少し先の応用的な表現もリラックスして覗いてみましょうか♪",
     "recommended_tags": [
@@ -2756,19 +2933,19 @@
         "start_date": "2027-04-01",
         "end_date": "2027-07-31",
         "is_active": false,
-        "progress_pct": 57,
-        "passed_count": 4,
+        "progress_pct": 71,
+        "passed_count": 5,
         "total_focus_count": 7,
         "passed_tags": [
           "numeral.declension_all",
           "verb.aspect_sv",
           "syntax.adverbial",
-          "participle.active"
+          "participle.active",
+          "gerund.verbal_adverb"
         ],
         "unreached_tags": [
           "syntax.conditional",
-          "participle.passive",
-          "gerund.verbal_adverb"
+          "participle.passive"
         ],
         "criteria_desc": "2級相当固有タグの理解が安定（正答率80%以上、着実な解答（平均30秒以内））"
       },

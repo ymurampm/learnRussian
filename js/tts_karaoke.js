@@ -145,16 +145,19 @@ class TTSKaraokePlayer {
     this.onWordHighlightCallback = onWordHighlight;
     this.onEndCallback = onEnd;
 
+    // Sanitize any slashes in sentence text to prevent TTS voicing "slash / drob"
+    const cleanSentenceText = text.replace(/\s*\/\s*/g, ', ').trim();
+
     // Try Neural TTS via /api/tts
     if (this.useNeural) {
       try {
-        const res = await fetch(`/api/tts?text=${encodeURIComponent(text)}&rate=${this.currentRate}`);
+        const res = await fetch(`/api/tts?text=${encodeURIComponent(cleanSentenceText)}&rate=${this.currentRate}`);
         if (this.playToken !== myPlayToken) return;
         if (res.ok) {
           const data = await res.json();
           if (this.playToken !== myPlayToken) return;
           if (data.audio_url) {
-            this.playNeuralAudio(data.audio_url, text, tokens, data.word_boundaries || []);
+            this.playNeuralAudio(data.audio_url, cleanSentenceText, tokens, data.word_boundaries || []);
             return;
           }
         }
@@ -166,7 +169,7 @@ class TTSKaraokePlayer {
     if (this.playToken !== myPlayToken) return;
 
     // Fallback: Web Speech API
-    this.speakFallback(text, tokens);
+    this.speakFallback(cleanSentenceText, tokens);
   }
 
   /**
@@ -461,16 +464,107 @@ class TTSKaraokePlayer {
   }
 
   /**
-   * Speak a single word (e.g., when token clicked)
+   * Parse Russian word string into pronounceable units.
+   * Handles slash-separated pairs (e.g., aspectual pairs: выступать/выступить),
+   * reconstructs prefix shorthands (e.g., писать/на- -> писать, написать),
+   * and strips grammatical government notations (e.g., (+a), (i/p), (к +d)).
    */
-  async speakWord(word) {
+  parseWordUnits(rawWord) {
+    if (!rawWord) return [];
+    // 1. Remove parenthesized grammatical/government notes e.g. (+a), (i/p), (к +d)
+    let cleaned = String(rawWord).replace(/\s*\([^)]*\)/g, '').replace(/[«»]/g, '').trim();
+    if (!cleaned) return [];
+
+    // Remove stray punctuation except slash and hyphen
+    cleaned = cleaned.replace(/[.,!?;:""'']/g, '').trim();
+    if (!cleaned) return [];
+
+    if (!cleaned.includes('/')) {
+      const single = cleaned.replace(/-+$/, '').trim();
+      return single ? [single] : [];
+    }
+
+    const rawParts = cleaned.split('/').map(p => p.trim()).filter(Boolean);
+    if (rawParts.length <= 1) return rawParts;
+
+    const units = [];
+    const baseWord = rawParts[0].replace(/-+$/, '').trim();
+    for (let i = 0; i < rawParts.length; i++) {
+      const part = rawParts[i].trim();
+      if (i > 0 && part.endsWith('-')) {
+        // Expand prefix shorthand e.g. "на-" + "писать" -> "написать"
+        const prefix = part.slice(0, -1);
+        units.push(prefix + baseWord);
+      } else {
+        units.push(part.replace(/-+$/, '').trim());
+      }
+    }
+    return units.filter(Boolean);
+  }
+
+  /**
+   * Speak Russian word(s) with clean pronunciation.
+   * If the word is a slash-separated pair (aspect pair or alternative),
+   * each word is spoken cleanly with a 1.0-second silence gap between them.
+   */
+  async speakWord(word, onEnd = null) {
     this.stop();
-    if (!word) return;
+    if (!word) {
+      if (onEnd) onEnd();
+      return;
+    }
 
-    const cleanWord = String(word).replace(/[.,!?;:«»""'']/g, '').trim();
-    if (!cleanWord) return;
+    const units = this.parseWordUnits(word);
+    if (units.length === 0) {
+      if (onEnd) onEnd();
+      return;
+    }
 
-    const myPlayToken = ++this.playToken;
+    const myPlayToken = this.playToken;
+
+    if (units.length === 1) {
+      return this.speakSingleWord(units[0], myPlayToken, onEnd);
+    }
+
+    // Multi-part word pair (e.g. выступать/выступить):
+    // Speak part 1 -> 1.0s clean pause -> Speak part 2 -> ...
+    let idx = 0;
+    const playNext = () => {
+      if (this.playToken !== myPlayToken) return;
+      if (idx >= units.length) {
+        if (onEnd) onEnd();
+        return;
+      }
+
+      const unitText = units[idx++];
+      this.speakSingleWord(unitText, myPlayToken, () => {
+        if (this.playToken !== myPlayToken) return;
+        if (idx < units.length) {
+          // Exactly 1.0 second pause between words
+          const t = setTimeout(() => {
+            if (this.playToken === myPlayToken) {
+              playNext();
+            }
+          }, 1000);
+          this.activeTimeouts.push(t);
+        } else {
+          if (onEnd) onEnd();
+        }
+      });
+    };
+
+    playNext();
+  }
+
+  async speakSingleWord(cleanWord, myPlayToken, onDone = null) {
+    if (!cleanWord || this.playToken !== myPlayToken) {
+      if (onDone) onDone();
+      return;
+    }
+
+    const finish = () => {
+      if (onDone) onDone();
+    };
 
     if (this.useNeural) {
       try {
@@ -480,10 +574,15 @@ class TTSKaraokePlayer {
           const data = await res.json();
           if (this.playToken !== myPlayToken) return;
           if (data.audio_url) {
+            this.clearSync();
             this.audioElement.src = data.audio_url;
             this.audioElement.playbackRate = 0.95; // clear pronunciation
             this.isPlaying = true;
-            this.audioElement.play().catch(e => console.warn('Audio play failed:', e));
+            this.onEndCallback = finish;
+            this.audioElement.play().catch(e => {
+              console.warn('Audio play failed:', e);
+              finish();
+            });
             return;
           }
         }
@@ -493,11 +592,17 @@ class TTSKaraokePlayer {
     }
 
     if (this.playToken !== myPlayToken) return;
-    if (!this.synth) return;
+    if (!this.synth) {
+      finish();
+      return;
+    }
+
     const utterance = new SpeechSynthesisUtterance(cleanWord);
     utterance.lang = 'ru-RU';
     if (this.currentVoice) utterance.voice = this.currentVoice;
     utterance.rate = 0.9;
+    utterance.onend = finish;
+    utterance.onerror = finish;
     this.synth.speak(utterance);
   }
 

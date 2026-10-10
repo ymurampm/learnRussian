@@ -1,15 +1,15 @@
 {
-  "last_run": "2026-10-08 01:00:02",
-  "status": "warning",
+  "last_run": "2026-10-10 01:00:02",
+  "status": "success",
   "purity_validation": "pass",
   "historical_facts_validation": "pass",
-  "token_grammar_validation": "fail",
+  "token_grammar_validation": "pass",
   "buffer": {
     "status": "ok",
     "total_days": 35,
     "max_buffer_day": 35,
-    "furthest_reached": 26,
-    "unconsumed_days": 9,
+    "furthest_reached": 28,
+    "unconsumed_days": 7,
     "day_indices": [
       1,
       2,
@@ -304,7 +304,7 @@
   "buffer_stock_alert": null,
   "user_summary": {
     "user_name": "Yusuke",
-    "streak": 24,
+    "streak": 26,
     "intimacy_level": 6,
     "intimacy_title": "至高のアンサンブル",
     "days_gap": 1,
@@ -323,7 +323,8 @@
       "numeral.declension_all",
       "participle.active",
       "verb.motion_prefixed",
-      "gerund.imperfective"
+      "gerund.imperfective",
+      "gerund.verbal_adverb"
     ],
     "reflex_tags": [
       "case.prp",
@@ -337,12 +338,13 @@
       "verb.imperative",
       "participle.passive_past",
       "pronoun.indefinite",
-      "syntax.impersonal"
+      "syntax.impersonal",
+      "gerund.perfective"
     ],
     "daily_greeting": "Доброе утро, Юсукэ! 昨日は目的・譲歩の従属節 (чтобы, хотя)の練習、お疲れさまでした。難しい変化も、ピアノのスケールのように毎日少しずつ馴染ませていけば大丈夫です。今日も音楽院でお待ちしています♪"
   },
   "milestone_audit": {
-    "last_audit_date": "2026-10-08",
+    "last_audit_date": "2026-10-10",
     "target_exam": {
       "name": "ロシア語能力検定2級",
       "target_date": "2027-10-15",
@@ -388,7 +390,7 @@
     },
     "pace_status": "ahead",
     "pace_label": "順調・先行中 (Ahead)",
-    "expected_pct": 41,
+    "expected_pct": 43,
     "actual_pct": 81,
     "coaching_message": "Юсукэ、素晴らしいペースです！2027年10月の2級合格に向けて、今のフェーズの定着が前倒しで進んでいます。この調子で、少し先の応用的な表現もリラックスして覗いてみましょうか♪",
     "recommended_tags": [
@@ -463,19 +465,19 @@
         "start_date": "2027-04-01",
         "end_date": "2027-07-31",
         "is_active": false,
-        "progress_pct": 57,
-        "passed_count": 4,
+        "progress_pct": 71,
+        "passed_count": 5,
         "total_focus_count": 7,
         "passed_tags": [
           "numeral.declension_all",
           "verb.aspect_sv",
           "syntax.adverbial",
-          "participle.active"
+          "participle.active",
+          "gerund.verbal_adverb"
         ],
         "unreached_tags": [
           "syntax.conditional",
-          "participle.passive",
-          "gerund.verbal_adverb"
+          "participle.passive"
         ],
         "criteria_desc": "2級相当固有タグの理解が安定（正答率80%以上、着実な解答（平均30秒以内））"
       },
@@ -646,5 +648,5 @@
       }
     ]
   },
-  "backup_path": "c:\\Antigravity\\Projects\\learnRussian\\data\\backups\\20261008_010002"
+  "backup_path": "c:\\Antigravity\\Projects\\learnRussian\\data\\backups\\20261010_010002"
 }

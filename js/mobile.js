@@ -13,6 +13,8 @@
     constructor() {
       this.synth = window.speechSynthesis;
       this.russianVoice = null;
+      this.playId = 0;
+      this.pauseTimer = null;
       this.initVoice();
       if (this.synth && this.synth.onvoiceschanged !== undefined) {
         this.synth.onvoiceschanged = () => this.initVoice();
@@ -26,13 +28,94 @@
       this.russianVoice = voices.find(v => v.lang.startsWith('ru') || v.lang.includes('RU')) || null;
     }
 
+    /**
+     * Parse Russian word/text into pronounceable units.
+     * Handles slash-separated pairs (e.g. aspectual pairs: выступать/выступить),
+     * reconstructs prefix shorthands (e.g. писать/на- -> писать, написать),
+     * and strips grammatical annotations (e.g. (+a), (i/p), (к +d)).
+     */
+    parseSpeechUnits(text) {
+      if (!text) return [];
+      let cleaned = String(text).replace(/\s*\([^)]*\)/g, '').replace(/[«»]/g, '').trim();
+      if (!cleaned) return [];
+
+      cleaned = cleaned.replace(/[.,!?;:""'']/g, '').trim();
+      if (!cleaned) return [];
+
+      if (!cleaned.includes('/')) {
+        const single = cleaned.replace(/-+$/, '').trim();
+        return single ? [single] : [];
+      }
+
+      const rawParts = cleaned.split('/').map(p => p.trim()).filter(Boolean);
+      if (rawParts.length <= 1) return rawParts;
+
+      const units = [];
+      const baseWord = rawParts[0].replace(/-+$/, '').trim();
+      for (let i = 0; i < rawParts.length; i++) {
+        const part = rawParts[i].trim();
+        if (i > 0 && part.endsWith('-')) {
+          const prefix = part.slice(0, -1);
+          units.push(prefix + baseWord);
+        } else {
+          units.push(part.replace(/-+$/, '').trim());
+        }
+      }
+      return units.filter(Boolean);
+    }
+
     speak(text, rate = 1.0, onEnd = null) {
+      this.stop();
       if (!this.synth || !text) {
         if (onEnd) onEnd();
         return;
       }
-      this.synth.cancel(); // Stop existing playback
-      const clean = text.replace(/[«»]/g, '').trim();
+
+      const units = this.parseSpeechUnits(text);
+      if (units.length === 0) {
+        if (onEnd) onEnd();
+        return;
+      }
+
+      const currentPlayId = ++this.playId;
+
+      if (units.length === 1) {
+        return this.speakSingle(units[0], rate, onEnd);
+      }
+
+      // Multi-part word pair separated by slash (e.g. выступать/выступить):
+      // Clean speech with ~1-second pause, without voicing the slash symbol
+      let idx = 0;
+      const playNext = () => {
+        if (this.playId !== currentPlayId) return;
+        if (idx >= units.length) {
+          if (onEnd) onEnd();
+          return;
+        }
+
+        const unitText = units[idx++];
+        this.speakSingle(unitText, rate, () => {
+          if (this.playId !== currentPlayId) return;
+          if (idx < units.length) {
+            this.pauseTimer = setTimeout(() => {
+              if (this.playId === currentPlayId) {
+                playNext();
+              }
+            }, 1000);
+          } else {
+            if (onEnd) onEnd();
+          }
+        });
+      };
+
+      playNext();
+    }
+
+    speakSingle(clean, rate = 1.0, onEnd = null) {
+      if (!this.synth || !clean) {
+        if (onEnd) onEnd();
+        return;
+      }
       const utterance = new SpeechSynthesisUtterance(clean);
       utterance.lang = 'ru-RU';
       if (this.russianVoice) utterance.voice = this.russianVoice;
@@ -44,6 +127,11 @@
     }
 
     stop() {
+      this.playId++;
+      if (this.pauseTimer) {
+        clearTimeout(this.pauseTimer);
+        this.pauseTimer = null;
+      }
       if (this.synth) this.synth.cancel();
     }
 
@@ -574,7 +662,7 @@
       if (this.isFlipped) {
         if (this.fermataTimer) clearInterval(this.fermataTimer);
         const card = this.getCurrentCard();
-        if (card) {
+        if (card && !this.isAutoPlay) {
           setTimeout(() => this.audio.speak(card.word, 1.0), 120);
         }
       } else {
@@ -755,20 +843,32 @@
         if (!this.isAutoPlay) return;
         this.toggleFlip();
 
-        // Step 2: Word is pronounced on flip; follow up with collocation at 1200ms!
-        setTimeout(() => {
-          if (!this.isAutoPlay || !this.isFlipped) return;
-          const card = this.getCurrentCard();
-          if (card && card.collocation_ru) {
-            this.audio.speak(card.collocation_ru, 0.95);
-          }
-        }, 1200);
+        const card = this.getCurrentCard();
+        if (!card) return;
 
-        // Step 3: Wait 4 seconds on back for absorption, then auto-rate and advance
-        this.autoPlayTimer = setTimeout(() => {
-          if (!this.isAutoPlay) return;
-          this.handleRate('mastered');
-        }, 4000);
+        // Step 2: Speak word on flip, and when finished (including 1.0s pause if slash pair),
+        // follow up with collocation after a calm 500ms breath!
+        this.audio.speak(card.word, 1.0, () => {
+          if (!this.isAutoPlay || !this.isFlipped) return;
+          if (card.collocation_ru) {
+            this.autoPlayTimer = setTimeout(() => {
+              if (!this.isAutoPlay || !this.isFlipped) return;
+              this.audio.speak(card.collocation_ru, 0.95, () => {
+                // Step 3: Wait 3.5 seconds on back for absorption, then auto-rate and advance
+                if (!this.isAutoPlay) return;
+                this.autoPlayTimer = setTimeout(() => {
+                  if (!this.isAutoPlay) return;
+                  this.handleRate('mastered');
+                }, 3500);
+              });
+            }, 500);
+          } else {
+            this.autoPlayTimer = setTimeout(() => {
+              if (!this.isAutoPlay) return;
+              this.handleRate('mastered');
+            }, 3500);
+          }
+        });
       }, 4000);
     }
 

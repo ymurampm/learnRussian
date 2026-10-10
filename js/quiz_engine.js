@@ -235,8 +235,15 @@ class QuizEngine {
   renderSentenceBuilder(item) {
     this.selectedBuilderTokens = [];
 
+    // Strip leading/trailing punctuation so periods and commas never give away token order!
+    const cleanToken = (t) => (t || '').replace(/^[,.?!;:…«»"()]+|[,.?!;:…«»"()]+$/g, '').trim();
+
     // Scramble tokens so they never start in the answer order
-    const original = (item.tokens || []).map((t, idx) => ({ token: t, origIdx: idx }));
+    const original = (item.tokens || []).map((t, idx) => ({ 
+      rawToken: t, 
+      displayToken: cleanToken(t), 
+      origIdx: idx 
+    }));
     let shuffled = [...original];
 
     if (shuffled.length > 1) {
@@ -261,9 +268,9 @@ class QuizEngine {
       </div>
       <div class="sentence-builder-bank" id="builderBank">
         ${shuffled.map((entry, bankIdx) => `
-          <button class="builder-token-badge ru-text" data-token="${entry.token}" data-bank-idx="${bankIdx}">
+          <button class="builder-token-badge ru-text" data-token="${entry.displayToken}" data-raw-token="${entry.rawToken}" data-bank-idx="${bankIdx}">
             <kbd class="kbd-badge" style="font-size:0.75rem; padding:1px 6px; margin-right:4px;">${bankIdx + 1}</kbd>
-            <span>${entry.token}</span>
+            <span>${entry.displayToken}</span>
           </button>
         `).join('')}
       </div>
@@ -447,9 +454,10 @@ class QuizEngine {
 
           // Check if complete
           if (this.selectedBuilderTokens.length === item.tokens.length) {
-            const builtRu = this.selectedBuilderTokens.map(t => t.token).join(' ');
-            const targetRu = item.tokens.join(' ');
-            this.handleAnswer(builtRu === targetRu, item);
+            const cleanNorm = (tok) => (tok || '').replace(/^[,.?!;:…«»"()]+|[,.?!;:…«»"()]+$/g, '').trim().toLowerCase();
+            const builtNorm = this.selectedBuilderTokens.map(t => cleanNorm(t.token)).join(' ');
+            const targetNorm = item.tokens.map(t => cleanNorm(t)).join(' ');
+            this.handleAnswer(builtNorm === targetNorm, item);
           }
         };
       });
@@ -461,7 +469,7 @@ class QuizEngine {
             last.btn.style.visibility = 'visible';
             tray.innerHTML = this.selectedBuilderTokens.map(t => `
               <span class="builder-token-badge ru-text" style="background:var(--bg-highlight);">${t.token}</span>
-            `).join('') || '<span style="color:var(--text-muted); font-size:0.86rem;">下の単語を順にクリックしてください</span>';
+            `).join('') || `<span style="color:var(--text-muted); font-size:0.86rem;">下の単語を順に選んでください（数字キー 1〜${item.tokens.length}）</span>`;
           }
         };
       }

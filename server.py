@@ -5719,7 +5719,13 @@ class TanyaRequestHandler(http.server.SimpleHTTPRequestHandler):
             rate_percent = int((rate_val - 1.0) * 100)
             rate_str = f"{rate_percent:+d}%" if rate_percent != 0 else "+0%"
 
-            h = hashlib.md5(f"{text}_{rate_str}_ru-RU-SvetlanaNeural".encode('utf-8')).hexdigest()
+            # Sanitize text for Edge-TTS: strip grammatical annotations and replace slashes with natural pause comma
+            tts_text = re.sub(r'\s*\([^)]*\)', '', text).strip()
+            tts_text = re.sub(r'\s*/\s*', ', ', tts_text).strip()
+            if not tts_text:
+                tts_text = text
+
+            h = hashlib.md5(f"{tts_text}_{rate_str}_ru-RU-SvetlanaNeural".encode('utf-8')).hexdigest()
             fname = f"{h}.mp3"
             fpath = os.path.join(AUDIO_DIR, fname)
             meta_fname = f"{h}.json"
@@ -5734,10 +5740,10 @@ class TanyaRequestHandler(http.server.SimpleHTTPRequestHandler):
                 except Exception:
                     word_boundaries = []
 
-            is_multi_word = len(text.split()) > 1
+            is_multi_word = len(tts_text.split()) > 1
             if not os.path.exists(fpath) or (is_multi_word and not word_boundaries):
                 try:
-                    communicate = edge_tts.Communicate(text, 'ru-RU-SvetlanaNeural', rate=rate_str, boundary='WordBoundary')
+                    communicate = edge_tts.Communicate(tts_text, 'ru-RU-SvetlanaNeural', rate=rate_str, boundary='WordBoundary')
                     audio_bytes = bytearray()
                     word_boundaries = []
                     async def _collect():

@@ -923,7 +923,11 @@ class SalonFlashcard {
   speakCurrentWord() {
     const card = this.mode === 'soft_sign' ? this.getCurrentDrillCard() : this.getCurrentCard();
     if (!card || !window.TTSPlayer) return;
-    window.TTSPlayer.speakWord(card.word);
+    const btn = document.querySelector('.flash-mini-speaker-btn') || document.querySelector('.flash-action-audio-btn');
+    if (btn) btn.classList.add('speaking');
+    window.TTSPlayer.speakWord(card.word, () => {
+      if (btn) btn.classList.remove('speaking');
+    });
   }
 
   /**
@@ -933,7 +937,11 @@ class SalonFlashcard {
     const card = this.getCurrentCard();
     if (!card || !window.TTSPlayer) return;
     const sent = card.example_ru || card.collocation_ru || card.word;
-    window.TTSPlayer.speakSentence(sent);
+    const btn = document.querySelector('.flash-sentence-speaker-btn');
+    if (btn) btn.classList.add('speaking');
+    window.TTSPlayer.speakSentence(sent, [], null, () => {
+      if (btn) btn.classList.remove('speaking');
+    });
   }
 
   /**
@@ -942,8 +950,15 @@ class SalonFlashcard {
   speakCollocation() {
     const card = this.getCurrentCard();
     if (!card || !window.TTSPlayer) return;
-    const phrase = card.collocation_ru || card.word;
-    window.TTSPlayer.speakSentence(phrase);
+    if (card.collocation_ru) {
+      const btn = document.querySelector('.flash-col-speaker-btn');
+      if (btn) btn.classList.add('speaking');
+      window.TTSPlayer.speakSentence(card.collocation_ru, [], null, () => {
+        if (btn) btn.classList.remove('speaking');
+      });
+    } else {
+      this.speakCurrentWord();
+    }
   }
 
   /**
