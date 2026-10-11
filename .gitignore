@@ -9,11 +9,16 @@ __pycache__/
 # Local audio cache
 audio_cache/
 
+# Backups
+data/backups/
+
 # Scratch & logs
 scratch/
 logs/
 
 # Test screenshots
 screenshot_*.png
+desktop_*.png
 
 icons/qr_data_uri.txt
+

@@ -289,7 +289,7 @@ class SalonFlashcard {
     const shuffled = pool.sort(() => 0.5 - Math.random());
     this.sessionCards = shuffled.slice(0, Math.min(count, shuffled.length));
 
-    // Enrich sampled session cards with dictionary data, anatomy, smart table, and cloze
+    // Enrich sampled session cards with dictionary data, anatomy, smart table, notes, and collocation
     await Promise.all(this.sessionCards.map(async (card) => {
       try {
         if (window.API) {
@@ -298,37 +298,29 @@ class SalonFlashcard {
             const entry = results.find(r => r.word.toLowerCase() === card.word.toLowerCase() || (card.base && r.word.toLowerCase() === card.base.toLowerCase())) || results[0];
             if (entry) {
               if (!card.anatomy && entry.anatomy) card.anatomy = entry.anatomy;
+              if (!card.notes && entry.notes) card.notes = entry.notes;
               if (!card.declension_table && entry.declension_table) card.declension_table = entry.declension_table;
               if (!card.network && entry.network) card.network = entry.network;
-              if (!card.collocation_ru && entry.examples && entry.examples.length > 0) {
-                card.collocation_ru = entry.examples[0].ru;
-                card.collocation_ja = entry.examples[0].ja;
+              if (!card.alena_scene && entry.alena_scene) card.alena_scene = entry.alena_scene;
+              if (!card.example_ru && entry.example_ru) {
+                card.example_ru = entry.example_ru;
+                card.example_ja = entry.example_ja;
+              }
+              if (!card.collocation_ru && entry.collocation_ru) {
+                card.collocation_ru = entry.collocation_ru;
+                card.collocation_ja = entry.collocation_ja;
+              } else if (!card.collocation_ru && entry.examples && entry.examples.length > 0) {
+                const ex = entry.examples[0];
+                if (ex.ru && ex.ru.split(/\s+/).length <= 4) {
+                  card.collocation_ru = ex.ru;
+                  card.collocation_ja = ex.ja;
+                }
               }
             }
           }
         }
       } catch (err) {
         console.warn('Enriching card error for', card.word, err);
-      }
-
-      if (!card.collocation_ru && card.example_ru) {
-        card.collocation_ru = card.example_ru;
-        card.collocation_ja = card.example_ja;
-      }
-
-      if (!card.collocation_cloze) {
-        const sourceText = card.collocation_ru || card.example_ru || card.word || '';
-        const safeWord = String(card.word || '').trim();
-        const escaped = safeWord.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        try {
-          if (escaped && sourceText.toLowerCase().includes(safeWord.toLowerCase())) {
-            card.collocation_cloze = sourceText.replace(new RegExp(escaped, 'gi'), '[ ❓ ]');
-          } else {
-            card.collocation_cloze = `« [ ❓ ] »`;
-          }
-        } catch (_) {
-          card.collocation_cloze = `« [ ❓ ] »`;
-        }
       }
     }));
 
@@ -415,6 +407,206 @@ class SalonFlashcard {
   }
 
   /**
+   * Determine whether to present a Collocation Cloze or a clean Single-Word Recall Challenge
+   */
+  getFrontRecallData(card) {
+    if (!card) return { type: 'word', badge: '🎯 単語想起チャレンジ', badgeClass: 'badge-word', heading: '« [ ❓ ] »', hint: '' };
+
+    const word = String(card.word || '').trim();
+    const base = String(card.base || '').trim();
+    const colRu = String(card.collocation_ru || '').trim();
+    const colJa = String(card.collocation_ja || '').trim();
+    const exRu = String(card.example_ru || '').trim();
+
+    // Valid distinct collocation: 2 to 5 words, not equal to sentence or headword
+    const isDistinctCollocation = colRu &&
+      colRu.toLowerCase() !== word.toLowerCase() &&
+      colRu.toLowerCase() !== exRu.toLowerCase() &&
+      colRu.split(/\s+/).length >= 2 &&
+      colRu.split(/\s+/).length <= 5;
+
+    if (isDistinctCollocation) {
+      let cloze = colRu;
+      let replaced = false;
+
+      // 1. Exact match
+      const escWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      if (new RegExp(escWord, 'i').test(cloze)) {
+        cloze = cloze.replace(new RegExp(escWord, 'gi'), '[ ❓ ]');
+        replaced = true;
+      } else {
+        // 2. Inflected stem match
+        const stem = (base || word).replace(/(ться|тся|ся|сь|ть|ти|ный|ная|ное|ные|ого|ому|ом|ем|а|я|у|ю|о|е|ы|и|ой|ей|ью)$/i, '');
+        if (stem && stem.length >= 3) {
+          const escStem = stem.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const stemRegex = new RegExp(`\\b${escStem}[а-яё]*\\b`, 'gi');
+          if (stemRegex.test(cloze)) {
+            cloze = cloze.replace(stemRegex, '[ ❓ ]');
+            replaced = true;
+          }
+        }
+      }
+
+      if (replaced) {
+        return {
+          type: 'collocation',
+          badge: '💡 連語（コロケーション）想起',
+          badgeClass: 'badge-collocation',
+          heading: cloze,
+          hint: colJa || card.meaning || ''
+        };
+      }
+    }
+
+    // Single-Word Recall Challenge (Concise meaning only, NEVER long sentences)
+    return {
+      type: 'word',
+      badge: '🎯 単語想起チャレンジ',
+      badgeClass: 'badge-word',
+      heading: '« [ ❓ ] »',
+      hint: card.meaning || ''
+    };
+  }
+
+  /**
+   * Render Memory Tips Capsule for Desktop (Anatomy, Notes/Nuance, and Network chips)
+   */
+  getMemoryTipsHtml(card) {
+    if (!card) return '';
+    const parts = [];
+
+    if (card.anatomy) {
+      parts.push(`
+        <div class="flash-tip-row">
+          <span class="flash-tip-label">🔬 語根・形態素:</span>
+          <span class="flash-tip-val">${card.anatomy.replace(/\n/g, '<br>')}</span>
+        </div>
+      `);
+    }
+
+    if (card.notes && card.notes !== card.anatomy) {
+      parts.push(`
+        <div class="flash-tip-row">
+          <span class="flash-tip-label">📌 用法・ニュアンス:</span>
+          <span class="flash-tip-val">${card.notes.replace(/\n/g, '<br>')}</span>
+        </div>
+      `);
+    }
+
+    let networkChips = '';
+    if (card.network && Array.isArray(card.network) && card.network.length > 0) {
+      networkChips = `
+        <div class="flash-tip-network-row">
+          <span class="flash-tip-label">🌱 派生・関連語:</span>
+          <div class="flash-tip-chips-wrap">
+            ${card.network.map(w => `
+              <span class="flash-tip-chip" onclick="window.TTSPlayer && window.TTSPlayer.speakWord('${w.replace(/'/g, "\\'")}')" title="クリックして発音試聴">
+                <span class="chip-icon">🔊</span>
+                <span class="chip-text ru-text">${w}</span>
+              </span>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    if (parts.length === 0 && !networkChips) {
+      const fallback = this.generateFallbackTip(card);
+      if (fallback) {
+        parts.push(`
+          <div class="flash-tip-row">
+            <span class="flash-tip-label">💡 語彙のポイント:</span>
+            <span class="flash-tip-val">${fallback}</span>
+          </div>
+        `);
+      } else {
+        return '';
+      }
+    }
+
+    return `
+      <div class="flash-memory-tips-capsule">
+        <div class="flash-memory-tips-header">
+          <span class="tips-icon">💡</span>
+          <span class="tips-title">記憶のTips（語源・ニュアンス・関連語）</span>
+        </div>
+        <div class="flash-memory-tips-body">
+          ${parts.join('')}
+          ${networkChips}
+        </div>
+      </div>
+    `;
+  }
+
+  generateFallbackTip(card) {
+    const w = (card.word || '').toLowerCase();
+    const pos = (card.pos || '');
+    if (w.endsWith('ость') || w.endsWith('есть')) {
+      return '語尾 -ость / -есть は例外なく女性名詞。生格・与格・前置格はすべて -и、造格は -ью。';
+    }
+    if (w.endsWith('ение') || w.endsWith('ание')) {
+      return '語尾 -ение / -ание は中性名詞（前置格は -ии）。動作や結果・状態を表します。';
+    }
+    if (w.endsWith('тель') || w.endsWith('арь')) {
+      return '語尾 -тель / -арь は男性名詞。行為者や道具を表し、生格 -я、造格 -ем と変化します。';
+    }
+    if (pos.includes('動詞')) {
+      return '完了体(СВ)と不完了体(НСВ)のペアや、動詞の格支配（対格、与格、造格など）に注目しましょう。';
+    }
+    return null;
+  }
+
+  /**
+   * Tanya's Living Linguistic Coaching (Dynamic, word-specific guidance)
+   */
+  getTanyaPersonalizedAdvice(card) {
+    if (!card) return this.getRandomTanyaMessage();
+
+    // 1. If card has specific linguistic notes
+    if (card.notes) {
+      const cleanNotes = card.notes.trim().replace(/^・/, '');
+      return `«${card.word}» はね、${cleanNotes}。ここを意識して音とリズムを合わせると、ロシア語の響きがグッと深まるわよ♪`;
+    }
+
+    // 2. If card has morphological anatomy
+    if (card.anatomy) {
+      const cleanAnatomy = card.anatomy.trim().replace(/^・/, '');
+      return `«${card.word}» を解剖してみると、${cleanAnatomy}。語根の核となるイメージを掴むと、記憶がぐっと楽になるわよ☕`;
+    }
+
+    // 3. If -ь noun, give gender guidance
+    const w = (card.word || '').toLowerCase();
+    const pos = (card.pos || '');
+    if (w.endsWith('ь') && pos.includes('名詞')) {
+      if (w.endsWith('ость') || w.endsWith('есть')) {
+        return `«${card.word}» は語尾 -ость だから例外なく女性名詞よ！生・与・前置格はすべて -и、造格は -ью と変化する響きを味わってね✨`;
+      }
+      if (w.endsWith('тель') || w.endsWith('арь')) {
+        return `«${card.word}» は男性名詞よ！行為者や道具を表す語尾ね。生格は -я、造格は -ем としっかり男性型で格変化させましょう♪`;
+      }
+      if (pos.includes('女性')) {
+        return `«${card.word}» は第3変化の女性名詞よ。生格・与格・前置格がすべて -и で揃うから、音の響きで覚えてしまいましょう☕`;
+      }
+      if (pos.includes('男性')) {
+        return `«${card.word}» は男性名詞よ！軟子音で終わる男性名詞として、生格 -я、造格 -ем と変化するリズムを掴んでね🎹`;
+      }
+    }
+
+    // 4. If verb aspect
+    if (pos.includes('動詞')) {
+      if (pos.includes('完了体') || pos.includes('СВ')) {
+        return `«${card.word}» は「行為の完了・結果」を表す完了体(СВ)よ。ピアノで言えば、一つのパッセージをピシッと弾き終えるような決断力のある響きね♪`;
+      }
+      if (pos.includes('不完了体') || pos.includes('НСВ')) {
+        return `«${card.word}» は「行為の継続・反復」を表す不完了体(НСВ)よ。旋律が流れるように続いていくイメージで口ずさんでみて☕`;
+      }
+    }
+
+    // 5. Fallback with warm contextual encouragement mentioning the word
+    return `«${card.word}»（${card.meaning || '重要語'}）は音楽院の日常でもよく耳にする大切な響きよ。ピアノの鍵盤と同じで、触れるたびに指と耳が自然と覚えていくからね♪`;
+  }
+
+  /**
    * Render the current card (front or back) for Salon mode
    */
   renderCurrentCard() {
@@ -433,7 +625,11 @@ class SalonFlashcard {
 
     const total = this.sessionCards.length;
     const progressPercent = Math.round(((this.currentIndex) / total) * 100);
-    const tanyaMsg = card._tanyaMsg || (card._tanyaMsg = this.getRandomTanyaMessage());
+    const tanyaMsg = card._tanyaMsg || (card._tanyaMsg = this.getTanyaPersonalizedAdvice(card));
+    const recallData = this.getFrontRecallData(card);
+    const hasDistinctCollocation = card.collocation_ru &&
+      card.collocation_ru.trim().toLowerCase() !== card.word.trim().toLowerCase() &&
+      card.collocation_ru.trim().toLowerCase() !== (card.example_ru || '').trim().toLowerCase();
 
     const masteryBadge = (level) => {
       if (level === 3) return '<span class="mastery-pill level-3">🌸 染み込み</span>';
@@ -484,8 +680,11 @@ class SalonFlashcard {
             </div>
 
             <div class="flash-cloze-box">
-              <div class="flash-cloze-heading ru-text">${card.collocation_cloze || '[ ❓ ]'}</div>
-              <div class="flash-cloze-hint">${card.collocation_ja || card.meaning || ''}</div>
+              <div class="flash-cloze-type-badge ${recallData.badgeClass}">
+                ${recallData.badge}
+              </div>
+              <div class="flash-cloze-heading ru-text">${recallData.heading}</div>
+              <div class="flash-cloze-hint">${recallData.hint}</div>
             </div>
 
             <!-- Micro-Hints Bar (Generation Clues: 語根 & 音の頭出し) -->
@@ -542,15 +741,17 @@ class SalonFlashcard {
               </div>
             </div>
 
-            <!-- Collocation Chunk -->
+            <!-- Collocation Chunk (Rendered ONLY if distinct) -->
+            ${hasDistinctCollocation ? `
             <div class="flash-collocation-showcase">
-              <div class="flash-col-ru ru-text">${card.collocation_ru || card.word}</div>
+              <div class="flash-col-ru ru-text">${card.collocation_ru}</div>
               <div class="flash-col-ja">${card.collocation_ja || card.meaning || ''}</div>
               <button class="flash-col-speaker-btn" onclick="window.SalonFlashcard.speakCollocation()" title="コロケーションを聴く (C)">
                 <span>🔊 フレーズを聴く</span>
                 <span class="shortcut-key" style="margin-left: 4px;">C</span>
               </button>
             </div>
+            ` : ''}
 
             <!-- Alena's Scene & Sentence -->
             <div class="flash-alena-scene-box">
@@ -565,6 +766,9 @@ class SalonFlashcard {
               <div class="flash-alena-quote ru-text">«${card.example_ru || card.word}»</div>
               <div class="flash-alena-trans">「${card.example_ja || card.meaning}」</div>
             </div>
+
+            <!-- Memory Tips Capsule (Anatomy, Notes, Network) -->
+            ${this.getMemoryTipsHtml(card)}
 
             <!-- Vocal Shadowing & Trinity Recitation Bar -->
             <div class="flash-trinity-finish-bar">

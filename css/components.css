@@ -4080,6 +4080,29 @@
   box-sizing: border-box;
 }
 
+.flash-cloze-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 12px;
+  border-radius: 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.flash-cloze-type-badge.badge-collocation {
+  background: rgba(212, 175, 55, 0.16);
+  color: #fde68a;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+}
+
+.flash-cloze-type-badge.badge-word {
+  background: rgba(99, 102, 241, 0.18);
+  color: #c7d2fe;
+  border: 1px solid rgba(99, 102, 241, 0.45);
+}
+
 .flash-cloze-heading {
   font-size: 1.95rem;
   font-weight: 700;
@@ -4314,6 +4337,90 @@
   font-size: 0.88rem;
   color: #d8c6aa;
   line-height: 1.45;
+}
+
+/* Desktop Memory Tips Capsule */
+.flash-memory-tips-capsule {
+  background: rgba(25, 18, 14, 0.72);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.flash-memory-tips-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fde68a;
+  border-bottom: 1px dashed rgba(212, 175, 55, 0.2);
+  padding-bottom: 6px;
+}
+
+.flash-memory-tips-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.flash-tip-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.flash-tip-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #e2ce9c;
+  flex-shrink: 0;
+}
+
+.flash-tip-val {
+  color: #fef9c3;
+  word-break: break-word;
+}
+
+.flash-tip-network-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.flash-tip-chips-wrap {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.flash-tip-chip {
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: #fef08a;
+  font-size: 0.78rem;
+  padding: 2px 9px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.flash-tip-chip:hover {
+  background: rgba(212, 175, 55, 0.32);
+  border-color: var(--gold);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
 /* Shadowing Bar */
