@@ -5723,9 +5723,15 @@ class TanyaRequestHandler(http.server.SimpleHTTPRequestHandler):
             rate_percent = int((rate_val - 1.0) * 100)
             rate_str = f"{rate_percent:+d}%" if rate_percent != 0 else "+0%"
 
-            # Sanitize text for Edge-TTS: strip grammatical annotations and replace slashes with natural pause comma
+            # Sanitize text for Edge-TTS:
+            # 1. Strip grammatical annotations in parentheses (e.g. "(命令形・単数)")
             tts_text = re.sub(r'\s*\([^)]*\)', '', text).strip()
+            # 2. Replace slashes with natural pause comma
             tts_text = re.sub(r'\s*/\s*', ', ', tts_text).strip()
+            # 3. Strip combining accent marks (U+0300-U+036F, acute U+00B4, U+02CA)
+            # CRITICAL: Combining acute accents on vowels directly preceding -шь (e.g. -и́шь in звучи́шь, говори́шь)
+            # causes Edge-TTS neural tokenizer to voice trailing 'ь' aloud as "мягкий знак"!
+            tts_text = re.sub(r'[\u0300-\u036f\u00b4\u02ca]', '', tts_text).strip()
             if not tts_text:
                 tts_text = text
 

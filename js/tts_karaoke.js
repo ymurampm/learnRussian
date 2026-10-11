@@ -145,8 +145,13 @@ class TTSKaraokePlayer {
     this.onWordHighlightCallback = onWordHighlight;
     this.onEndCallback = onEnd;
 
-    // Sanitize any slashes in sentence text to prevent TTS voicing "slash / drob"
-    const cleanSentenceText = text.replace(/\s*\/\s*/g, ', ').trim();
+    // Sanitize text for TTS:
+    // 1. Strip combining acute/grave accents (U+0300-U+036F) to prevent TTS from reading trailing "ь" as "мягкий знак"
+    // 2. Replace slashes with natural pause comma to prevent TTS voicing "slash / drob"
+    const cleanSentenceText = text
+      .replace(/[\u0300-\u036f\u00b4\u02ca]/g, '')
+      .replace(/\s*\/\s*/g, ', ')
+      .trim();
 
     // Try Neural TTS via /api/tts
     if (this.useNeural) {
@@ -471,8 +476,12 @@ class TTSKaraokePlayer {
    */
   parseWordUnits(rawWord) {
     if (!rawWord) return [];
-    // 1. Remove parenthesized grammatical/government notes e.g. (+a), (i/p), (к +d)
-    let cleaned = String(rawWord).replace(/\s*\([^)]*\)/g, '').replace(/[«»]/g, '').trim();
+    // 1. Remove parenthesized grammatical/government notes e.g. (+a), (i/p), (к +d) and strip combining accents
+    let cleaned = String(rawWord)
+      .replace(/[\u0300-\u036f\u00b4\u02ca]/g, '')
+      .replace(/\s*\([^)]*\)/g, '')
+      .replace(/[«»]/g, '')
+      .trim();
     if (!cleaned) return [];
 
     // Remove stray punctuation except slash and hyphen
