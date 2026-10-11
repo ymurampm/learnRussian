@@ -17,29 +17,58 @@ const App = {
     await this.loadState();
   },
 
+  isAtTopPage() {
+    // 1. Must be on dashboard view (not actively studying in lesson player)
+    if (this.activeView !== 'dashboard') return false;
+
+    // 2. Salon Flashcard session must not be active
+    if (window.SalonFlashcard && window.SalonFlashcard.isOpen) return false;
+
+    // 3. No study modal should be open (e.g. bookmarks, handbook, parallel reader, skill tree)
+    const openModals = document.querySelectorAll('.modal-overlay.open');
+    for (const m of openModals) {
+      if (m.id !== 'mobileSyncModal') {
+        return false;
+      }
+    }
+
+    return true;
+  },
+
   setupRealtimeSync() {
-    // 1. Re-sync when user returns to or focuses the tab
+    // 1. Re-sync when user returns to or focuses the tab (ONLY when on the top page!)
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) {
+      if (!document.hidden && this.isAtTopPage()) {
         this.checkDateSync();
         this.checkMobileGistSync();
       }
     });
     window.addEventListener('focus', () => {
-      this.checkDateSync();
-      this.checkMobileGistSync();
+      if (this.isAtTopPage()) {
+        this.checkDateSync();
+        this.checkMobileGistSync();
+      }
     });
 
-    // 2. Initial silent sync check 2s after launch
-    setTimeout(() => this.checkMobileGistSync(), 2000);
+    // 2. Initial silent sync check 2s after launch (only if on top page)
+    setTimeout(() => {
+      if (this.isAtTopPage()) {
+        this.checkMobileGistSync();
+      }
+    }, 2000);
 
-    // 3. Periodic sync check every 60 seconds (for 01:00 AM cutoff transitions)
+    // 3. Periodic sync check every 60 seconds (only if on top page)
     setInterval(() => {
-      this.checkDateSync();
+      if (this.isAtTopPage()) {
+        this.checkDateSync();
+      }
     }, 60000);
   },
 
   async checkMobileGistSync() {
+    // STRICT GUARD: Only run sync check when user is on the top page (not studying)
+    if (!this.isAtTopPage()) return;
+
     const now = Date.now();
     if (this._lastGistCheck && (now - this._lastGistCheck < 45000)) return;
     this._lastGistCheck = now;
@@ -49,6 +78,8 @@ const App = {
       if (!res.ok) return;
       const data = await res.json();
       if (data.status === 'success' && data.reviews_processed > 0) {
+        // Re-verify that user is STILL on top page before updating state and re-rendering
+        if (!this.isAtTopPage()) return;
         this.showFloatingToast(data.tanya_message || `スマホでの復習（${data.reviews_processed}語）を取り込みました！`);
         await this.loadState();
       }
@@ -98,6 +129,9 @@ const App = {
   },
 
   async checkDateSync() {
+    // STRICT GUARD: Only run date transition check when user is on the top page
+    if (!this.isAtTopPage()) return;
+
     try {
       const freshState = await window.API.getState();
       if (!freshState) return;
@@ -105,7 +139,7 @@ const App = {
       const dateChanged = this.state && this.state.effective_date !== freshState.effective_date;
       const dayChanged = this.state && this.state.current_study_day !== freshState.current_study_day;
 
-      if (dateChanged || dayChanged) {
+      if ((dateChanged || dayChanged) && this.isAtTopPage()) {
         console.log('[Realtime Sync] Date or Day transition detected! Refreshing dashboard...', {
           oldDate: this.state?.effective_date,
           newDate: freshState.effective_date,
@@ -135,7 +169,10 @@ const App = {
       window.DistanceMeter.updateState(this.state);
     }
 
-    this.renderDashboard();
+    // Guard: Only re-render dashboard if activeView is 'dashboard' (never clobber active lesson player)
+    if (this.activeView === 'dashboard') {
+      this.renderDashboard();
+    }
   },
 
   setupHeaderControls() {
@@ -773,13 +810,16 @@ const App = {
     if (headerSessionBadge) headerSessionBadge.textContent = sessionData.title || 'レッスン中';
 
     window.LessonPlayer.init(main, sessionData, this.studyMode === 'non_graded', () => {
+      this.activeView = 'dashboard';
       this.loadState(this.selectedDay);
+      this.checkMobileGistSync();
     });
   },
 
   showDashboard() {
     this.activeView = 'dashboard';
     this.renderDashboard();
+    this.checkMobileGistSync();
   },
 
   openFeaturesMapModal() {
@@ -1615,4 +1655,5 @@ window.renderSoftSignGenderBadge = function(word, base = '', pos = '', role = ''
 };
 
 window.App = App;
+window.app = App;
 document.addEventListener('DOMContentLoaded', () => App.init());

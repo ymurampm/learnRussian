@@ -4,14 +4,14 @@
     "name_ru": "Юсукэ",
     "target_level": "A2後半 (A1後半スタート)",
     "started_date": "2026-09-12",
-    "last_active_date": "2026-10-10",
-    "consecutive_days": 27,
-    "total_sessions_completed": 128,
-    "current_streak": 27,
+    "last_active_date": "2026-10-11",
+    "consecutive_days": 28,
+    "total_sessions_completed": 131,
+    "current_streak": 28,
     "intimacy": {
-      "level": 6,
-      "exp": 308,
-      "max_exp": 378,
+      "level": 7,
+      "exp": 21,
+      "max_exp": 567,
       "title": "至高のアンサンブル",
       "description": "言葉を超えて心を通わせる、生涯の音楽の友として互いを深くリスペクトしています。"
     },
@@ -19,13 +19,13 @@
     "tts_voice": "default_ru_female",
     "tts_speed": 0.75,
     "daily_greeting": {
-      "date": "2026-10-10",
+      "date": "2026-10-11",
       "text": "Доброе утро, Юсукэ! 昨日は目的・譲歩の従属節 (чтобы, хотя)の練習、お疲れさまでした。難しい変化も、ピアノのスケールのように毎日少しずつ馴染ませていけば大丈夫です。今日も音楽院でお待ちしています♪",
       "days_gap": 1,
       "top_rusty_tag": "syntax.subordinate"
     },
-    "current_study_day": 29,
-    "last_advanced_date": "2026-10-10",
+    "current_study_day": 30,
+    "last_advanced_date": "2026-10-11",
     "completed_study_days": [
       1,
       2,
@@ -54,7 +54,8 @@
       25,
       26,
       27,
-      28
+      28,
+      29
     ],
     "encore_completed_today": true
   },
@@ -261,11 +262,18 @@
       "avg_rt_ms": 21952,
       "consecutive_correct": 5,
       "status": "stable"
+    },
+    "noun.soft_sign": {
+      "seen": 6,
+      "correct": 5,
+      "avg_rt_ms": 13102,
+      "consecutive_correct": 1,
+      "status": "stable"
     }
   },
   "behavior_logs": {
     "total_dwell_seconds": 120,
-    "branches_opened_count": 1125,
+    "branches_opened_count": 1154,
     "audio_replays_count": 8,
     "grammar_mutations_count": 128
   },
@@ -1188,6 +1196,27 @@
       "type": "salon",
       "quiz_count": 0,
       "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-11T09:45:44.754616",
+      "session_id": "day30_morning",
+      "type": "new_input",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-11T09:48:25.778585",
+      "session_id": "day30_noon",
+      "type": "weakness_check",
+      "quiz_count": 3,
+      "intimacy_gain": 5
+    },
+    {
+      "timestamp": "2026-10-11T09:50:43.989843",
+      "session_id": "day30_evening",
+      "type": "listening_bath",
+      "quiz_count": 0,
+      "intimacy_gain": 6
     }
   ],
   "bookmarked_words": [
@@ -1388,8 +1417,8 @@
       "collocation_cloze": "[ ❓ ] звука",
       "alena_scene": "アリョーナが奏でる一音一音の、透明感あふれる響きの美しさ",
       "mastery_level": 1,
-      "review_count": 17,
-      "last_reviewed_at": "2026-10-10 16:22"
+      "review_count": 32,
+      "last_reviewed_at": "2026-10-11 09:49"
     },
     {
       "word": "обладать",
@@ -1473,8 +1502,8 @@
       "collocation_cloze": "тихий [ ❓ ]",
       "alena_scene": "練習のあと、音楽院の裏手にある石畳の静かな小路を二人で歩く",
       "mastery_level": 1,
-      "review_count": 17,
-      "last_reviewed_at": "2026-10-10 16:22"
+      "review_count": 32,
+      "last_reviewed_at": "2026-10-11 09:49"
     },
     {
       "word": "зажигаться",
@@ -2809,10 +2838,60 @@
       "example_ru": "Вместе с пятью исследователями мы изучали авторские пометки великих композиторов на полях страниц.",
       "example_ja": "5人の研究者と共に、私たちはページの余白に残された大作曲家たちの直筆注記を丹念に調べました。",
       "saved_at": "2026-10-10 16:07"
+    },
+    {
+      "word": "оценить",
+      "base": "оценить",
+      "pos": "動詞",
+      "meaning": "評価した・過去男性",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-11 09:37"
+    },
+    {
+      "word": "тонкость",
+      "base": "тонкость",
+      "pos": "名詞",
+      "meaning": "繊細さ・対格",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-11 09:41"
+    },
+    {
+      "word": "открытие",
+      "base": "открытие",
+      "pos": "中性名詞",
+      "meaning": "発見, 開放, 開会",
+      "notes": "",
+      "example_ru": "",
+      "example_ja": "",
+      "saved_at": "2026-10-11 09:46"
+    },
+    {
+      "word": "царить",
+      "base": "царить",
+      "pos": "不完了体動詞",
+      "meaning": "満ちている、君臨する",
+      "notes": "述語動詞（царила тишина）",
+      "example_ru": "За окном консерватории тихо кружился снег. В тёплом классе царила тишина, наполненная любовью к музыке.",
+      "example_ja": "音楽院の窓の外では静かに雪が舞っていました。温かなレッスン室には、音楽への愛に満ちた静寂が漂っていました。",
+      "saved_at": "2026-10-11 09:49"
+    },
+    {
+      "word": "наполнить",
+      "base": "наполнить",
+      "pos": "完了体動詞",
+      "meaning": "満たす",
+      "notes": "受動過去形動詞（наполненная）",
+      "example_ru": "За окном консерватории тихо кружился снег. В тёплом классе царила тишина, наполненная любовью к музыке.",
+      "example_ja": "音楽院の窓の外では静かに雪が舞っていました。温かなレッスン室には、音楽への愛に満ちた静寂が漂っていました。",
+      "saved_at": "2026-10-11 09:49"
     }
   ],
   "milestone_progress": {
-    "last_audit_date": "2026-10-10",
+    "last_audit_date": "2026-10-11",
     "target_exam": {
       "name": "ロシア語能力検定2級",
       "target_date": "2027-10-15",
@@ -2858,7 +2937,7 @@
     },
     "pace_status": "ahead",
     "pace_label": "順調・先行中 (Ahead)",
-    "expected_pct": 43,
+    "expected_pct": 44,
     "actual_pct": 81,
     "coaching_message": "Юсукэ、素晴らしいペースです！2027年10月の2級合格に向けて、今のフェーズの定着が前倒しで進んでいます。この調子で、少し先の応用的な表現もリラックスして覗いてみましょうか♪",
     "recommended_tags": [
@@ -2933,17 +3012,17 @@
         "start_date": "2027-04-01",
         "end_date": "2027-07-31",
         "is_active": false,
-        "progress_pct": 71,
-        "passed_count": 5,
+        "progress_pct": 57,
+        "passed_count": 4,
         "total_focus_count": 7,
         "passed_tags": [
-          "numeral.declension_all",
           "verb.aspect_sv",
           "syntax.adverbial",
           "participle.active",
           "gerund.verbal_adverb"
         ],
         "unreached_tags": [
+          "numeral.declension_all",
           "syntax.conditional",
           "participle.passive"
         ],

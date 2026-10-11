@@ -5127,8 +5127,12 @@ class TanyaRequestHandler(http.server.SimpleHTTPRequestHandler):
         super().__init__(*args, directory=BASE_DIR, **kwargs)
 
     def end_headers(self):
-        # Prevent caching for dynamic API responses
-        if self.path.startswith('/api/'):
+        # Prevent caching for dynamic API responses and static assets (js, css, html)
+        clean_path = self.path.split('?')[0].lower()
+        if (self.path.startswith('/api/') or 
+            clean_path.endswith('.js') or 
+            clean_path.endswith('.css') or 
+            clean_path.endswith('.html')):
             self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
             self.send_header('Pragma', 'no-cache')
             self.send_header('Expires', '0')

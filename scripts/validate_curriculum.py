@@ -353,6 +353,11 @@ def validate_quiz_item(q, loc=""):
         if not isinstance(tokens, list) or len(tokens) < 2:
             errors.append(f"{prefix} sentence_builder requires tokens list with >= 2 words (got {len(tokens)})")
         else:
+            # Purity check: tokens must NEVER contain punctuation clues (periods, commas, etc.)
+            punc_tokens = [t for t in tokens if re.search(r'[,.?!;:…«»"]+$', t.strip())]
+            if punc_tokens:
+                errors.append(f"{prefix} sentence_builder tokens must not contain punctuation clues! Found: {punc_tokens}")
+
             # If explicit bank is provided, verify it contains all tokens
             bank = q.get('bank') or q.get('options')
             if bank:

@@ -1013,10 +1013,10 @@
       }
     }
 
-    async pushToGist() {
+    async pushToGist(silent = false) {
       const { gistId, token } = this.getGistConfig();
       if (!gistId || !token) {
-        alert('Gist ID と Personal Access Token (PAT) を入力してください。');
+        if (!silent) alert('Gist ID と Personal Access Token (PAT) を入力してください。');
         return;
       }
 
@@ -1056,11 +1056,11 @@
         const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         localStorage.setItem('tanya_last_sync_time', timeStr);
         this.updateSyncBadge();
-        this.showToast('✅ GitHub Gist へ送信完了！');
+        if (!silent) this.showToast('✅ GitHub Gist へ送信完了！');
         this.closeSyncModal();
       } catch (err) {
         console.error('Sync Error:', err);
-        alert(`送信に失敗しました: ${err.message}`);
+        if (!silent) alert(`送信に失敗しました: ${err.message}`);
       }
     }
 
@@ -1103,7 +1103,7 @@
     tryBackgroundAutoSync() {
       const { gistId, token } = this.getGistConfig();
       if (gistId && token && this.pendingReviews.length > 0) {
-        this.pushToGist();
+        this.pushToGist(true);
       }
     }
 
