@@ -469,16 +469,23 @@ class QuizEngine {
               });
             }
 
-            // 2. Intelligent linguistic heuristic for flexible temporal/spatial adverb positions
+            // 2. Intelligent linguistic heuristic for flexible temporal/spatial/manner adverb positions
             if (!isCorrect) {
               const adverbs = [
                 'вчера', 'сегодня', 'сейчас', 'завтра', 'впервые', 'часто', 'всегда',
-                'редко', 'уже', 'тоже', 'утром', 'вечером', 'днём', 'ночью', 'раньше', 'потом'
+                'редко', 'уже', 'тоже', 'утром', 'вечером', 'днём', 'ночью', 'раньше', 'потом',
+                'мастерски', 'великолепно', 'прекрасно', 'хорошо', 'быстро', 'медленно',
+                'тихо', 'громко', 'чутко', 'уверенно', 'безупречно', 'внимательно', 'глубоко',
+                'блестяще', 'виртуозно', 'вместе', 'отлично', 'красиво', 'легко', 'трудно',
+                'рано', 'поздно', 'здесь', 'там', 'всюду', 'везде', 'очень', 'снова', 'опять',
+                'полностью', 'постоянно', 'спокойно', 'радостно', 'увлечённо', 'нежно', 'ярко'
               ];
               const targetTokensClean = item.tokens.map(cleanNorm);
               const builtTokensClean = this.selectedBuilderTokens.map(t => cleanNorm(t.token));
               
-              const advToken = targetTokensClean.find(tok => adverbs.includes(tok));
+              const advToken = targetTokensClean.find(tok => 
+                adverbs.includes(tok) || tok.endsWith('ски')
+              );
               if (advToken) {
                 const targetWithoutAdv = targetTokensClean.filter(t => t !== advToken);
                 const builtWithoutAdv = builtTokensClean.filter(t => t !== advToken);
