@@ -134,12 +134,19 @@ class BranchExplorer {
       };
     }
 
-    // Participles (Причастие)
-    if (w.endsWith('щий') || w.endsWith('щая') || w.endsWith('щее') || w.endsWith('щие') ||
-        w.endsWith('нный') || w.endsWith('нная') || w.endsWith('нное') || w.endsWith('нные') ||
-        w.endsWith('мый') || w.endsWith('мая') ||
+    // Participles (Причастие) - only trigger if explicitly tagged or genuine active participle (never for regular adjectives!)
+    const isExplicitAdj = Boolean(
+      (tokenData && tokenData.tag && tokenData.tag.includes('adj.')) ||
+      (branchData.pos && branchData.pos.includes('形容詞') && !branchData.pos.includes('形動詞')) ||
+      (tokenData && tokenData.role && tokenData.role.includes('形容詞') && !tokenData.role.includes('形動詞'))
+    );
+    if (!isExplicitAdj && (
+        (tokenData && (tokenData.tag?.includes('participle') || tokenData.role?.includes('形動詞'))) ||
         (branchData.pos && branchData.pos.includes('形動詞')) ||
-        (branchData.notes && branchData.notes.includes('【形動詞】'))) {
+        (branchData.notes && branchData.notes.includes('【形動詞】')) ||
+        (w.endsWith('щий') || w.endsWith('щая') || w.endsWith('щее') || w.endsWith('щие') ||
+         w.endsWith('вший') || w.endsWith('вшая') || w.endsWith('вшее') || w.endsWith('вшие'))
+    )) {
       return {
         badge: '🎯 露検2級 必修：形動詞 (Причастие) の機能と格変化',
         detail: `«${w || base}» は動詞から作られた「動詞的形容詞」です。修飾する名詞の性・数・格に合わせて形容詞と同様に格変化し、関係代名詞節（который節）を一語で格調高くまとめます。`,
@@ -285,9 +292,13 @@ class BranchExplorer {
     // it is a linguistic axiom that it CANNOT have declension (格変化) or conjugation (活用).
     const tokenRole = tokenData?.role || tokenData?.grammar || '';
     const isUninflectedWord = this.isUninflected(tokenData?.tag, tokenRole);
-    const isParticipleToken = Boolean(
+    const isExplicitAdjToken = Boolean(
+      (tokenData && tokenData.tag && tokenData.tag.includes('adj.')) ||
+      (tokenRole && tokenRole.includes('形容詞') && !tokenRole.includes('形動詞'))
+    );
+    const isParticipleToken = !isExplicitAdjToken && Boolean(
       (tokenData && (tokenData.tag?.includes('participle') || tokenRole.includes('形動詞') || tokenRole.includes('短語尾'))) ||
-      /(?:ущ|ющ|ащ|ящ|вш|ш|нн|дан|дана|дано|даны)[а-яё]*$/i.test(cleanWord)
+      /(?:ущ|ющ|ащ|ящ|вш|дан|дана|дано|даны)[а-яё]*$/i.test(cleanWord)
     );
     const isPrep = (tokenData?.tag === 'syntax.prep') || (tokenRole && tokenRole.includes('前置詞')) ||
                    ['на', 'в', 'с', 'к', 'по', 'о', 'из', 'до', 'от', 'у', 'за', 'под', 'при', 'через', 'перед', 'без'].includes(cleanWord.toLowerCase());
@@ -434,10 +445,16 @@ class BranchExplorer {
       (tokenData && (tokenData.tag === 'participle.passive_short' || tokenData.tag === 'participle.short')) ||
       (branchData && (branchData.pos?.includes('短語尾') || branchData.pos?.includes('кратк') || (branchData.declension_table && branchData.declension_table[0] && String(branchData.declension_table[0][1]).includes('短語尾'))))
     );
+    const isExplicitAdj = Boolean(
+      (tokenData && tokenData.tag && tokenData.tag.includes('adj.')) ||
+      (branchData && branchData.pos && branchData.pos.includes('形容詞') && !branchData.pos.includes('形動詞')) ||
+      (tokenRole && tokenRole.includes('形容詞') && !tokenRole.includes('形動詞'))
+    );
     const isParticiple = Boolean(
-      !isShortParticiple && (
+      !isShortParticiple && !isExplicitAdj && (
         (tokenData && (tokenData.tag?.includes('participle') || tokenRole.includes('形動詞'))) ||
-        (branchData && (branchData.pos?.includes('形動詞') || branchData.pos?.includes('participle') || branchData.notes?.includes('【形動詞】') || (branchData.word && /(?:щий|щая|щее|щие|вший|вшая|вшее|вшие|нный|нная|нное|нные|мый|мая|мое|мые)$/i.test(branchData.word))))
+        (branchData && (branchData.pos?.includes('形動詞') || branchData.pos?.includes('participle') || branchData.notes?.includes('【形動詞】'))) ||
+        (branchData?.word && /(?:щий|щая|щее|щие|вший|вшая|вшее|вшие)$/i.test(branchData.word))
       )
     );
     const isExplicitNonVerb = Boolean(branchData?.pos && /名詞|形容詞|前置詞|副詞|代名詞|形動詞/.test(branchData.pos));
@@ -525,6 +542,17 @@ class BranchExplorer {
         </div>
       `;
     } else if (branchData) {
+      // Auto-generate full 6-case table for adjectives that lack pre-stored tables
+      const isWordAdj = isExplicitAdj || Boolean(branchData.pos && branchData.pos.includes('形容詞')) || Boolean(tokenData?.tag?.includes('adj')) || Boolean(tokenRole.includes('形容詞'));
+      if ((!branchData.declension_table || branchData.declension_table.length === 0) && isWordAdj) {
+        branchData.declension_table = this.generateAdjectiveTable(branchData.word || displayWord);
+      }
+
+      // Auto-generate participle table for participles that lack pre-stored tables
+      if ((!branchData.declension_table || branchData.declension_table.length === 0) && (isShortParticiple || isParticiple)) {
+        branchData.declension_table = this.generateParticipleTable(branchData.word || displayWord, isShortParticiple);
+      }
+
       if (branchData.declension_table && branchData.declension_table.length > 0) {
         let rows = branchData.declension_table;
 
@@ -676,8 +704,38 @@ class BranchExplorer {
             ${branchData.tip ? `<div style="color:var(--text-muted); margin-top:6px; font-size:0.82rem;">💡 ${branchData.tip}</div>` : ''}
           </div>
         `;
+      } else if (!isUninflected && (branchData.pos?.includes('名詞') || tokenData?.tag?.includes('noun') || tokenRole.includes('名詞'))) {
+        tableHtml = `
+          ${alertBannerHtml}
+          <div style="background:var(--bg-secondary); padding:12px; border-radius:6px; font-size:0.88rem; line-height:1.6; border:1px solid var(--border-color);">
+            <div style="font-weight:700; color:var(--gold-light); margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+              <span>🏛️ 名詞ノート «${displayWord}»</span>
+            </div>
+            <div style="font-size:0.85rem; color:#ffe599; font-weight:600; margin-bottom:6px;">
+              品詞：${branchData.pos || '名詞'} ${branchData.meaning ? `(${branchData.meaning})` : ''}
+            </div>
+            <div style="font-size:0.84rem; color:var(--text-secondary); line-height:1.6; margin-bottom:8px;">
+              ${branchData.anatomy || branchData.notes || '文中の格（主格・生格・与格・対格・造格・前置格）に応じて語尾が格変化します。'}
+            </div>
+          </div>
+        `;
+      } else if (isVerb || branchData.pos?.includes('動詞')) {
+        tableHtml = `
+          ${alertBannerHtml}
+          <div style="background:var(--bg-secondary); padding:12px; border-radius:6px; font-size:0.88rem; line-height:1.6; border:1px solid var(--border-color);">
+            <div style="font-weight:700; color:var(--gold-light); margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+              <span>⚡ 動詞ノート «${displayWord}»</span>
+            </div>
+            <div style="font-size:0.85rem; color:#ffe599; font-weight:600; margin-bottom:6px;">
+              品詞：${branchData.pos || '動詞'} ${branchData.meaning ? `(${branchData.meaning})` : ''}
+            </div>
+            <div style="font-size:0.84rem; color:var(--text-secondary); line-height:1.6; margin-bottom:8px;">
+              ${branchData.anatomy || branchData.notes || '主語の人称・数や時制に応じて語尾が人称変化（活用）します。'}
+            </div>
+          </div>
+        `;
       } else {
-        // Uninflected word fallback card (adverbs, conjunctions, particles)
+        // Strictly uninflected word fallback card (adverbs, conjunctions, particles, prepositions)
         const posText = branchData.pos || (tokenData?.tag?.includes('adv') ? '副詞 (Наречие)' : (tokenData?.tag?.includes('conj') ? '接続詞 (Союз)' : '不変化詞'));
         const meaningText = branchData.meaning || tokenData?.role || '';
         tableHtml = `
@@ -820,7 +878,7 @@ class BranchExplorer {
             </div>
           </div>
         `;
-      } else if (isShortParticiple || activeRole.includes('受動') || activeRole.includes('短語尾') || tokenData?.tag?.includes('participle.passive')) {
+      } else if (isShortParticiple || (!isExplicitAdj && (activeRole.includes('受動') || activeRole.includes('短語尾') || tokenData?.tag?.includes('participle.passive')))) {
         const curWord = branchData?.word || displayWord;
         contextualNoteHtml = `
           <div class="contextual-case-note" style="background:rgba(212,168,83,0.12); border-left:3px solid var(--gold); padding:10px 14px; border-radius:6px; margin-bottom:14px; line-height:1.6;">
@@ -836,7 +894,7 @@ class BranchExplorer {
             </div>
           </div>
         `;
-      } else if (tokenData?.tag?.includes('participle') || activeRole.includes('形動詞') || isParticiple) {
+      } else if (!isExplicitAdj && (tokenData?.tag?.includes('participle') || activeRole.includes('形動詞') || isParticiple)) {
         const curWord = branchData?.word || displayWord;
         contextualNoteHtml = `
           <div class="contextual-case-note" style="background:rgba(212,168,83,0.12); border-left:3px solid var(--gold); padding:10px 14px; border-radius:6px; margin-bottom:14px; line-height:1.6;">
@@ -849,6 +907,22 @@ class BranchExplorer {
             <div style="font-size:0.82rem; color:var(--text-secondary); line-height:1.5;">
               • <strong>動作主の造格を従える</strong>：受動形動詞の動作主（誰によって行われたか）は前置詞なしの【造格】で直結します。<br>
               • <strong>関係代名詞節との置き換え</strong>：который節を一語で引き締め、格調高い複文を作ります。
+            </div>
+          </div>
+        `;
+      } else if (isExplicitAdj || branchData?.pos?.includes('形容詞') || tokenData?.tag?.includes('adj') || activeRole.includes('形容詞')) {
+        const curWord = branchData?.word || displayWord;
+        contextualNoteHtml = `
+          <div class="contextual-case-note" style="background:rgba(212,168,83,0.12); border-left:3px solid var(--gold); padding:10px 14px; border-radius:6px; margin-bottom:14px; line-height:1.6;">
+            <div style="font-weight:700; color:var(--gold-light); font-size:0.92rem; margin-bottom:6px; display:flex; align-items:center; gap:6px;">
+              <span>🎨 形容詞（Прилагательное）の構文構造と性・数・格一致</span>
+            </div>
+            <div style="font-size:0.86rem; color:var(--text-primary); margin-bottom:6px;">
+              «${curWord}» は修飾先の名詞の<strong>性・数・格（Род, Число, Падеж）</strong>に完全に一致して語尾が変化します。
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-secondary); line-height:1.5;">
+              • <strong>名詞との固い結束</strong>：文中で名詞の前に置かれ、その名詞が要求されている格（主格・生格・与格・対格・造格・前置格）と全く同じ格変化をとります。<br>
+              • <strong>語尾の見極め</strong>：硬変化（-ый, -ая, -ое, -ые）や軟変化（-ий, -яя, -ее, -ие）の規則に沿って語尾を整えます。
             </div>
           </div>
         `;
@@ -1271,6 +1345,49 @@ class BranchExplorer {
     });
   }
 
+  generateAdjectiveTable(word) {
+    let clean = (word || '').replace(/[.,!?;:«»""'']/g, '').trim().toLowerCase();
+    let stem = clean;
+    // Strip endings if present to isolate stem
+    for (const end of [
+      'ого', 'ому', 'ым', 'ом', 'ой', 'ую', 'ых', 'ыми',
+      'его', 'ему', 'им', 'ем', 'ей', 'юю', 'их', 'ими',
+      'ый', 'ий', 'ой', 'ая', 'яя', 'ое', 'ее', 'ые', 'ие'
+    ]) {
+      if (clean.endsWith(end)) {
+        stem = clean.slice(0, -end.length);
+        break;
+      }
+    }
+    const lastCons = stem.slice(-1);
+    const isVelar = ['г', 'к', 'х'].includes(lastCons);
+    const isSibilant = ['ж', 'ч', 'ш', 'щ'].includes(lastCons);
+    const isTs = lastCons === 'ц';
+
+    let nom_m = `${stem}ый`;
+    let nom_f = `${stem}ая`;
+    let nom_n = `${stem}ое`;
+    let nom_pl = `${stem}ые`;
+
+    if (isVelar) {
+      nom_m = `${stem}ий`;
+      nom_pl = `${stem}ие`;
+    } else if (isSibilant) {
+      nom_m = `${stem}ий`;
+      nom_n = `${stem}ее`;
+      nom_pl = `${stem}ие`;
+    } else if (isTs) {
+      nom_m = `${stem}ый`;
+      nom_n = `${stem}ее`;
+      nom_pl = `${stem}ые`;
+    }
+
+    return this.expandAdjectiveTable([
+      ['男性', '女性', '中性', '複数'],
+      [nom_m, nom_f, nom_n, nom_pl]
+    ]);
+  }
+
   expandAdjectiveTable(rows) {
     if (!rows || rows.length !== 2) return rows;
     const vals = rows[1];
@@ -1378,13 +1495,32 @@ class BranchExplorer {
         else if (clean.endsWith('ить') || clean.endsWith('еть')) clean = clean.slice(0, -3) + 'ен';
         else clean = clean.slice(0, -2) + 'т';
       }
-      const stem = clean.replace(/(?:ана|ано|аны|ена|ено|ены|на|но|ны|та|то|ты|ан|ен|н|т)$/, '');
-      const isT = clean.endsWith('т') || clean.endsWith('та') || clean.endsWith('то') || clean.endsWith('ты');
-      const sfx = isT ? 'т' : 'н';
-      const m = `${stem}${sfx}`;
-      const f = `${stem}${sfx}а`;
-      const n = `${stem}${sfx}о`;
-      const pl = `${stem}${sfx}ы`;
+      let m = clean, f = '', n = '', pl = '';
+      if (clean.endsWith('ен') || clean.endsWith('ена') || clean.endsWith('ено') || clean.endsWith('ены')) {
+        const stem = clean.replace(/(?:ена|ено|ены|ен)$/, '');
+        m = `${stem}ен`;
+        f = `${stem}ена`;
+        n = `${stem}ено`;
+        pl = `${stem}ены`;
+      } else if (clean.endsWith('ан') || clean.endsWith('ана') || clean.endsWith('ано') || clean.endsWith('аны')) {
+        const stem = clean.replace(/(?:ана|ано|аны|ан)$/, '');
+        m = `${stem}ан`;
+        f = `${stem}ана`;
+        n = `${stem}ано`;
+        pl = `${stem}аны`;
+      } else if (clean.endsWith('т') || clean.endsWith('та') || clean.endsWith('то') || clean.endsWith('ты')) {
+        const stem = clean.replace(/(?:та|то|ты|т)$/, '');
+        m = `${stem}т`;
+        f = `${stem}та`;
+        n = `${stem}то`;
+        pl = `${stem}ты`;
+      } else {
+        const stem = clean.replace(/(?:на|но|ны|н)$/, '');
+        m = `${stem}н`;
+        f = `${stem}на`;
+        n = `${stem}но`;
+        pl = `${stem}ны`;
+      }
       return [
         ['性・数', '短語尾形 (Краткая форма)', '用例・語形補足'],
         ['男性', m, `Концерт был ${m}.`],
