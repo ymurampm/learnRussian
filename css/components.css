@@ -4371,16 +4371,52 @@
 
 .flash-tip-row {
   display: flex;
-  align-items: baseline;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  width: 100%;
 }
 
 .flash-tip-label {
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #e2ce9c;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.flash-tip-bullet-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+}
+
+.flash-tip-bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  color: #fef9c3;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.flash-tip-bullet-item .tip-bullet {
+  color: #d4af37;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.flash-tip-bullet-item .tip-text {
+  flex: 1;
 }
 
 .flash-tip-val {

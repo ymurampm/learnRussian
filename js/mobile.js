@@ -580,6 +580,26 @@
       }
     }
 
+    formatTipToBullets(text) {
+      if (!text) return [];
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      const items = [];
+      for (const line of lines) {
+        const sub = line
+          .replace(/([。!?！？])\s*[・•]\s*/g, '$1\n')
+          .replace(/\s+[・•]\s+/g, '\n')
+          .replace(/\s*(発展表現\s*:|体ペア\s*:|注意\s*:|関連表現\s*:|代表的連語\s*:|用例\s*:|補足\s*:)/g, '\n$1')
+          .replace(/\s*([①②③④⑤⑥⑦⑧⑨⑩])\s*/g, '\n$1 ');
+
+        for (const part of sub.split('\n')) {
+          let p = part.trim();
+          p = p.replace(/^[・•\-\*]\s*/, '').trim();
+          if (p) items.push(p);
+        }
+      }
+      return items;
+    }
+
     renderMemoryTips(card) {
       const tipsCapsule = document.getElementById('memoryTipsCapsule');
       const tipsContent = document.getElementById('tipsContent');
@@ -587,13 +607,35 @@
       if (!tipsCapsule || !tipsContent || !tipsChipsRow) return;
 
       tipsChipsRow.innerHTML = '';
-      let textParts = [];
+      tipsContent.innerHTML = '';
 
+      const sections = [];
       if (card.anatomy) {
-        textParts.push(card.anatomy);
+        const bullets = this.formatTipToBullets(card.anatomy);
+        if (bullets.length > 0) {
+          sections.push(`
+            <div class="mobile-tip-sec">
+              <div class="mobile-tip-label">🔬 語根・形態素:</div>
+              <ul class="mobile-tip-bullets">
+                ${bullets.map(b => `<li class="mobile-tip-item"><span class="tip-bullet">•</span><span class="tip-text">${b}</span></li>`).join('')}
+              </ul>
+            </div>
+          `);
+        }
       }
+
       if (card.notes && card.notes !== card.anatomy) {
-        textParts.push(card.notes);
+        const noteBullets = this.formatTipToBullets(card.notes);
+        if (noteBullets.length > 0) {
+          sections.push(`
+            <div class="mobile-tip-sec">
+              <div class="mobile-tip-label">📌 用法・ニュアンス:</div>
+              <ul class="mobile-tip-bullets">
+                ${noteBullets.map(b => `<li class="mobile-tip-item"><span class="tip-bullet">•</span><span class="tip-text">${b}</span></li>`).join('')}
+              </ul>
+            </div>
+          `);
+        }
       }
 
       if (card.network && Array.isArray(card.network) && card.network.length > 0) {
@@ -605,13 +647,21 @@
         });
       }
 
-      if (textParts.length > 0 || (card.network && card.network.length > 0)) {
-        tipsContent.textContent = textParts.join('\n\n');
+      if (sections.length > 0 || (card.network && card.network.length > 0)) {
+        tipsContent.innerHTML = sections.join('');
         tipsCapsule.style.display = 'block';
       } else {
         const fallbackTip = this.generateMorphologyTip(card);
         if (fallbackTip) {
-          tipsContent.textContent = fallbackTip;
+          const fbBullets = this.formatTipToBullets(fallbackTip);
+          tipsContent.innerHTML = `
+            <div class="mobile-tip-sec">
+              <div class="mobile-tip-label">💡 語彙のポイント:</div>
+              <ul class="mobile-tip-bullets">
+                ${fbBullets.map(b => `<li class="mobile-tip-item"><span class="tip-bullet">•</span><span class="tip-text">${b}</span></li>`).join('')}
+              </ul>
+            </div>
+          `;
           tipsCapsule.style.display = 'block';
         } else {
           tipsCapsule.style.display = 'none';

@@ -603,7 +603,50 @@ body {
 .tips-content {
   color: #cbd5e1;
   line-height: 1.45;
-  white-space: pre-line;
+}
+
+.mobile-tip-sec {
+  margin-bottom: 6px;
+}
+
+.mobile-tip-sec:last-child {
+  margin-bottom: 0;
+}
+
+.mobile-tip-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #e2ce9c;
+  margin-bottom: 2px;
+}
+
+.mobile-tip-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mobile-tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.mobile-tip-item .tip-bullet {
+  color: #d4af37;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  flex-shrink: 0;
+}
+
+.mobile-tip-item .tip-text {
+  flex: 1;
 }
 
 .tips-chips-row {

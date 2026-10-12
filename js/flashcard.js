@@ -469,6 +469,36 @@ class SalonFlashcard {
   }
 
   /**
+   * Helper to format anatomy/notes string into clean, structured bullet items with line breaks
+   */
+  formatTipToBullets(text) {
+    if (!text) return [];
+    const lines = text.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    const items = [];
+    for (const line of lines) {
+      // Split on inline bullet separators:
+      // 1. Sentence ending punctuation followed by bullet: ([。!?！？])\s*[・•]\s*
+      // 2. Spaces around bullets: \s+[・•]\s+
+      // 3. Before section keywords: (発展表現\s*:|体ペア\s*:|注意\s*:|関連表現\s*:|代表的連語\s*:|用例\s*:|補足\s*:)
+      // 4. Before circled numbers: ([①②③④⑤⑥⑦⑧⑨⑩])
+      const sub = line
+        .replace(/([。!?！？])\s*[・•]\s*/g, '$1\n')
+        .replace(/\s+[・•]\s+/g, '\n')
+        .replace(/\s*(発展表現\s*:|体ペア\s*:|注意\s*:|関連表現\s*:|代表的連語\s*:|用例\s*:|補足\s*:)/g, '\n$1')
+        .replace(/\s*([①②③④⑤⑥⑦⑧⑨⑩])\s*/g, '\n$1 ');
+
+      for (const part of sub.split('\n')) {
+        let p = part.trim();
+        p = p.replace(/^[・•\-\*]\s*/, '').trim();
+        if (p) {
+          items.push(p);
+        }
+      }
+    }
+    return items;
+  }
+
+  /**
    * Render Memory Tips Capsule for Desktop (Anatomy, Notes/Nuance, and Network chips)
    */
   getMemoryTipsHtml(card) {
@@ -476,21 +506,31 @@ class SalonFlashcard {
     const parts = [];
 
     if (card.anatomy) {
-      parts.push(`
-        <div class="flash-tip-row">
-          <span class="flash-tip-label">🔬 語根・形態素:</span>
-          <span class="flash-tip-val">${card.anatomy.replace(/\n/g, '<br>')}</span>
-        </div>
-      `);
+      const bullets = this.formatTipToBullets(card.anatomy);
+      if (bullets.length > 0) {
+        parts.push(`
+          <div class="flash-tip-row">
+            <span class="flash-tip-label">🔬 語根・形態素:</span>
+            <ul class="flash-tip-bullet-list">
+              ${bullets.map(b => `<li class="flash-tip-bullet-item"><span class="tip-bullet">•</span><span class="tip-text">${b}</span></li>`).join('')}
+            </ul>
+          </div>
+        `);
+      }
     }
 
     if (card.notes && card.notes !== card.anatomy) {
-      parts.push(`
-        <div class="flash-tip-row">
-          <span class="flash-tip-label">📌 用法・ニュアンス:</span>
-          <span class="flash-tip-val">${card.notes.replace(/\n/g, '<br>')}</span>
-        </div>
-      `);
+      const noteBullets = this.formatTipToBullets(card.notes);
+      if (noteBullets.length > 0) {
+        parts.push(`
+          <div class="flash-tip-row">
+            <span class="flash-tip-label">📌 用法・ニュアンス:</span>
+            <ul class="flash-tip-bullet-list">
+              ${noteBullets.map(b => `<li class="flash-tip-bullet-item"><span class="tip-bullet">•</span><span class="tip-text">${b}</span></li>`).join('')}
+            </ul>
+          </div>
+        `);
+      }
     }
 
     let networkChips = '';
@@ -513,10 +553,13 @@ class SalonFlashcard {
     if (parts.length === 0 && !networkChips) {
       const fallback = this.generateFallbackTip(card);
       if (fallback) {
+        const fbBullets = this.formatTipToBullets(fallback);
         parts.push(`
           <div class="flash-tip-row">
             <span class="flash-tip-label">💡 語彙のポイント:</span>
-            <span class="flash-tip-val">${fallback}</span>
+            <ul class="flash-tip-bullet-list">
+              ${fbBullets.map(b => `<li class="flash-tip-bullet-item"><span class="tip-bullet">•</span><span class="tip-text">${b}</span></li>`).join('')}
+            </ul>
           </div>
         `);
       } else {
@@ -1455,7 +1498,14 @@ class SalonFlashcard {
     // 2. Anatomical dictionary clue (strictly masked so target word is replaced with [ ❓ ])
     if (card.anatomy) {
       const maskedAnatomy = this.maskSecretWord(card.anatomy, card.word, card.base);
-      content += `<div class="hint-anatomy-text" style="font-size:0.88rem; line-height:1.55; color:#fef9c3;">${maskedAnatomy.replace(/\n/g, '<br>')}</div>`;
+      const bullets = this.formatTipToBullets(maskedAnatomy);
+      if (bullets.length > 0) {
+        content += `
+          <ul class="hint-bullet-list" style="margin:4px 0 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:3px;">
+            ${bullets.map(b => `<li style="display:flex; align-items:flex-start; gap:6px; font-size:0.86rem; line-height:1.5; color:#fef9c3;"><span style="color:#d4af37; flex-shrink:0;">•</span><span>${b}</span></li>`).join('')}
+          </ul>
+        `;
+      }
     }
 
     // 3. Related network words (filter out exact target word so it doesn't give away the answer)
