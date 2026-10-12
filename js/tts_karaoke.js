@@ -162,7 +162,7 @@ class TTSKaraokePlayer {
           const data = await res.json();
           if (this.playToken !== myPlayToken) return;
           if (data.audio_url) {
-            this.playNeuralAudio(data.audio_url, cleanSentenceText, tokens, data.word_boundaries || []);
+            this.playNeuralAudio(data.audio_url, cleanSentenceText, tokens, data.word_boundaries || [], data.engine);
             return;
           }
         }
@@ -290,11 +290,11 @@ class TTSKaraokePlayer {
     });
   }
 
-  playNeuralAudio(audioUrl, text, tokens = [], wordBoundaries = []) {
+  playNeuralAudio(audioUrl, text, tokens = [], wordBoundaries = [], engine = 'edge-tts') {
     this.clearSync();
     this.audioElement.src = audioUrl;
-    // CRITICAL: Edge-TTS renders audio at this.currentRate already; HTML5 audio plays at 1.0x to avoid double slowdown!
-    this.audioElement.playbackRate = 1.0;
+    // CRITICAL: Edge-TTS renders audio with rate pre-applied on server; Google TTS is 1.0x base, so apply currentRate
+    this.audioElement.playbackRate = (engine === 'google-tts') ? (this.currentRate || 1.0) : 1.0;
     this.isPlaying = true;
 
     this.audioElement.play().then(() => {

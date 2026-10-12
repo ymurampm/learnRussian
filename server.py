@@ -42,6 +42,44 @@ mimetypes.add_type('image/jpeg', '.jpeg')
 mimetypes.add_type('image/png', '.png')
 mimetypes.add_type('audio/mpeg', '.mp3')
 
+def fetch_google_tts(text_to_speak, lang='ru'):
+    """
+    Fetch Russian speech MP3 bytes from Google Translate Neural TTS as a high-quality fallback
+    when Microsoft Edge-TTS encounters 403 or handshake issues.
+    Splits longer sentences on whitespace/punctuation to remain within Google's character threshold.
+    """
+    clean = re.sub(r'[\u0300-\u036f\u00b4\u02ca]', '', text_to_speak)
+    clean = re.sub(r'\s*/\s*', ', ', clean).strip()
+    words = clean.split()
+    if not words:
+        words = [clean]
+    chunks = []
+    curr = []
+    curr_len = 0
+    for w in words:
+        if curr_len + len(w) + 1 > 120 and curr:
+            chunks.append(' '.join(curr))
+            curr = [w]
+            curr_len = len(w)
+        else:
+            curr.append(w)
+            curr_len += len(w) + 1
+    if curr:
+        chunks.append(' '.join(curr))
+
+    all_bytes = bytearray()
+    for chunk in chunks:
+        chunk_clean = chunk.strip()
+        if not chunk_clean:
+            continue
+        url = f"https://translate.google.com/translate_tts?ie=UTF-8&q={urllib.parse.quote(chunk_clean)}&tl={lang}&client=tw-ob"
+        req = urllib.request.Request(url, headers={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        })
+        with urllib.request.urlopen(req, timeout=8) as resp:
+            all_bytes.extend(resp.read())
+    return bytes(all_bytes)
+
 def load_json(rel_path, default=None):
     path = os.path.join(DATA_DIR, rel_path)
     if os.path.exists(path):
@@ -5742,20 +5780,24 @@ class TanyaRequestHandler(http.server.SimpleHTTPRequestHandler):
             meta_fpath = os.path.join(AUDIO_DIR, meta_fname)
 
             word_boundaries = []
+            engine_used = "edge-tts"
             if os.path.exists(meta_fpath):
                 try:
                     with open(meta_fpath, 'r', encoding='utf-8') as f:
                         meta = json.load(f)
                         word_boundaries = meta.get('word_boundaries', [])
+                        engine_used = meta.get('engine', 'edge-tts')
                 except Exception:
                     word_boundaries = []
 
-            is_multi_word = len(tts_text.split()) > 1
-            if not os.path.exists(fpath) or (is_multi_word and not word_boundaries):
+            if not os.path.exists(fpath) or os.path.getsize(fpath) < 100:
+                audio_bytes = bytearray()
+                word_boundaries = []
+                engine_used = None
+
+                # Tier 1: Try Microsoft Edge-TTS (ru-RU-SvetlanaNeural)
                 try:
                     communicate = edge_tts.Communicate(tts_text, 'ru-RU-SvetlanaNeural', rate=rate_str, boundary='WordBoundary')
-                    audio_bytes = bytearray()
-                    word_boundaries = []
                     async def _collect():
                         async for chunk in communicate.stream():
                             if chunk['type'] == 'audio':
@@ -5771,20 +5813,43 @@ class TanyaRequestHandler(http.server.SimpleHTTPRequestHandler):
                                 })
                     asyncio.run(_collect())
                     if audio_bytes:
+                        engine_used = "edge-tts"
+                except Exception as e:
+                    print(f"[TTS] Edge-TTS generation notice: {e}. Falling back to Google Neural TTS...")
+
+                # Tier 2: Fallback to Google Neural TTS
+                if not audio_bytes:
+                    try:
+                        g_audio = fetch_google_tts(tts_text, lang='ru')
+                        if g_audio:
+                            audio_bytes = bytearray(g_audio)
+                            engine_used = "google-tts"
+                            print(f"[TTS] Successfully synthesized {len(g_audio)} bytes via Google Neural TTS for: {tts_text[:35]}...")
+                    except Exception as e_google:
+                        print(f"[TTS] Google Neural TTS fallback failed: {e_google}")
+
+                # Save generated audio to persistent cache
+                if audio_bytes:
+                    try:
                         with open(fpath, 'wb') as f:
                             f.write(audio_bytes)
-                    with open(meta_fpath, 'w', encoding='utf-8') as f:
-                        json.dump({"word_boundaries": word_boundaries}, f, ensure_ascii=False)
-                except Exception as e:
-                    print(f"Edge-TTS generation error: {e}")
+                        with open(meta_fpath, 'w', encoding='utf-8') as f:
+                            json.dump({
+                                "word_boundaries": word_boundaries,
+                                "engine": engine_used
+                            }, f, ensure_ascii=False)
+                    except Exception as save_err:
+                        print(f"[TTS] Failed to write cache files: {save_err}")
+                else:
                     if not os.path.exists(fpath):
-                        self.send_json_response({"error": str(e)}, 500)
+                        self.send_json_response({"error": "TTS synthesis failed across all providers"}, 500)
                         return
 
             self.send_json_response({
                 "status": "ok",
                 "audio_url": f"/audio_cache/{fname}",
                 "voice": "ru-RU-SvetlanaNeural",
+                "engine": engine_used or "edge-tts",
                 "word_boundaries": word_boundaries
             })
 
