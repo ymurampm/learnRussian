@@ -457,7 +457,38 @@ class QuizEngine {
             const cleanNorm = (tok) => (tok || '').replace(/^[,.?!;:…«»"()]+|[,.?!;:…«»"()]+$/g, '').trim().toLowerCase();
             const builtNorm = this.selectedBuilderTokens.map(t => cleanNorm(t.token)).join(' ');
             const targetNorm = item.tokens.map(t => cleanNorm(t)).join(' ');
-            this.handleAnswer(builtNorm === targetNorm, item);
+            this.lastBuiltSentence = this.selectedBuilderTokens.map(t => t.token).join(' ');
+
+            let isCorrect = (builtNorm === targetNorm);
+
+            // 1. Explicit acceptable orders
+            if (!isCorrect && item.acceptable_orders && Array.isArray(item.acceptable_orders)) {
+              isCorrect = item.acceptable_orders.some(order => {
+                const orderNorm = (Array.isArray(order) ? order : String(order).split(' ')).map(t => cleanNorm(t)).join(' ');
+                return builtNorm === orderNorm;
+              });
+            }
+
+            // 2. Intelligent linguistic heuristic for flexible temporal/spatial adverb positions
+            if (!isCorrect) {
+              const adverbs = [
+                'вчера', 'сегодня', 'сейчас', 'завтра', 'впервые', 'часто', 'всегда',
+                'редко', 'уже', 'тоже', 'утром', 'вечером', 'днём', 'ночью', 'раньше', 'потом'
+              ];
+              const targetTokensClean = item.tokens.map(cleanNorm);
+              const builtTokensClean = this.selectedBuilderTokens.map(t => cleanNorm(t.token));
+              
+              const advToken = targetTokensClean.find(tok => adverbs.includes(tok));
+              if (advToken) {
+                const targetWithoutAdv = targetTokensClean.filter(t => t !== advToken);
+                const builtWithoutAdv = builtTokensClean.filter(t => t !== advToken);
+                if (targetWithoutAdv.join(' ') === builtWithoutAdv.join(' ')) {
+                  isCorrect = true;
+                }
+              }
+            }
+
+            this.handleAnswer(isCorrect, item);
           }
         };
       });
@@ -654,7 +685,12 @@ class QuizEngine {
         fullCorrectSentence = item.ru || item.ru_stem || "";
       }
     } else if (item.type === 'sentence_builder' && item.tokens) {
-      fullCorrectSentence = item.tokens.join(' ');
+      if (isCorrect && this.lastBuiltSentence) {
+        fullCorrectSentence = this.lastBuiltSentence;
+      } else {
+        fullCorrectSentence = item.tokens.join(' ');
+      }
+      this.lastSpokenSentence = fullCorrectSentence;
     } else if (item.type === 'error_spotter' && item.sentence_tokens) {
       fullCorrectSentence = item.sentence_tokens.map(t => t.correct || t.text).join(' ');
       wrongSentence = item.sentence_tokens.map(t => t.text).join(' ');
