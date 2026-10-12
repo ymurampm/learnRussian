@@ -440,15 +440,15 @@ class BranchExplorer {
     this.currentBranchData = branchData;
     const tokenRole = tokenData?.role || tokenData?.grammar || '';
     const isPreposition = isPrep || (branchData && (branchData.is_preposition || (branchData.pos && branchData.pos.includes('前置詞'))));
-    const isShortParticiple = Boolean(
-      (tokenRole && (tokenRole.includes('短語尾') || tokenRole.includes('кратк'))) ||
-      (tokenData && (tokenData.tag === 'participle.passive_short' || tokenData.tag === 'participle.short')) ||
-      (branchData && (branchData.pos?.includes('短語尾') || branchData.pos?.includes('кратк') || (branchData.declension_table && branchData.declension_table[0] && String(branchData.declension_table[0][1]).includes('短語尾'))))
-    );
     const isExplicitAdj = Boolean(
       (tokenData && tokenData.tag && tokenData.tag.includes('adj.')) ||
       (branchData && branchData.pos && branchData.pos.includes('形容詞') && !branchData.pos.includes('形動詞')) ||
       (tokenRole && tokenRole.includes('形容詞') && !tokenRole.includes('形動詞'))
+    );
+    const isShortParticiple = !isExplicitAdj && Boolean(
+      (tokenRole && (tokenRole.includes('短語尾') || tokenRole.includes('кратк'))) ||
+      (tokenData && (tokenData.tag === 'participle.passive_short' || tokenData.tag === 'participle.short')) ||
+      (branchData && (branchData.pos?.includes('短語尾') || branchData.pos?.includes('кратк') || (branchData.declension_table && branchData.declension_table[0] && String(branchData.declension_table[0][1]).includes('短語尾'))))
     );
     const isParticiple = Boolean(
       !isShortParticiple && !isExplicitAdj && (
