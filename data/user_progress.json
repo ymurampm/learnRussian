@@ -21,7 +21,7 @@
     "daily_greeting": {
       "date": "2026-10-20",
       "text": "Доброе утро, Юсукэ! 昨日はverb.governmentの練習、お疲れさまでした。難しい変化も、ピアノのスケールのように毎日少しずつ馴染ませていけば大丈夫です。今日も音楽院でお待ちしています♪",
-      "days_gap": 2,
+      "days_gap": 0,
       "top_rusty_tag": "verb.government"
     },
     "current_study_day": 39,

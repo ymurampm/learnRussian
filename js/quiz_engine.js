@@ -192,9 +192,12 @@ class QuizEngine {
 
   // 1. Grammaticality Judgment
   renderGrammaticality(item) {
+    const promptTag = item.prompt_tag || '文法性判断 (正しいロシア語文ですか？)';
+    const questionText = item.question ? `<div class="quiz-prompt-question" style="margin-bottom:8px; font-size:0.95rem; color:#ffe599; font-weight:600;">${item.question}</div>` : '';
     return `
       <div class="quiz-prompt-card">
-        <div class="quiz-prompt-tag">文法性判断 (正しいロシア語文ですか？)</div>
+        <div class="quiz-prompt-tag">${promptTag}</div>
+        ${questionText}
         <div class="quiz-prompt-ru ru-text">${item.ru}</div>
       </div>
       <div class="quiz-binary-group">
@@ -214,9 +217,11 @@ class QuizEngine {
   renderFillInBlank(item) {
     const rawStem = item.ru_stem || item.ru || (item.prompt ? item.prompt.replace(/\n/g, '<br>') : "") || "";
     const promptTag = item.prompt_tag || (item.type === 'single_choice' ? '選択問題 (適切な形を選んでください)' : '穴埋め選択 (空欄に入る適切な形を選んでください)');
+    const questionText = item.question ? `<div class="quiz-prompt-question" style="margin-bottom:8px; font-size:0.95rem; color:#ffe599; font-weight:600;">💡 ${item.question}</div>` : '';
     return `
       <div class="quiz-prompt-card">
         <div class="quiz-prompt-tag">${promptTag}</div>
+        ${questionText}
         <div class="quiz-prompt-ru ru-text">${rawStem}</div>
         ${item.translation ? `<div class="quiz-prompt-ja" style="margin-top:6px; font-size:0.9rem; color:var(--text-muted);">${item.translation}</div>` : ''}
       </div>
@@ -284,9 +289,12 @@ class QuizEngine {
 
   // 4. Error Spotter
   renderErrorSpotter(item) {
+    const promptTag = item.prompt_tag || '誤り探し (文法的に間違っている単語の数字キーまたはクリックしてください)';
+    const questionText = item.question ? `<div class="quiz-prompt-question" style="margin-bottom:8px; font-size:0.95rem; color:#ffe599; font-weight:600;">💡 ${item.question}</div>` : '';
     return `
       <div class="quiz-prompt-card">
-        <div class="quiz-prompt-tag">誤り探し (文法的に間違っている単語の数字キーまたはクリックしてください)</div>
+        <div class="quiz-prompt-tag">${promptTag}</div>
+        ${questionText}
         <div class="error-spotter-tokens">
           ${item.sentence_tokens.map((tok, idx) => `
             <button class="spotter-token ru-text" data-spot-idx="${idx}">
