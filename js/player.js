@@ -1207,9 +1207,26 @@ class LessonPlayer {
 
       <div class="explain-hero-card">
         <div class="explain-ru-text ru-text" id="modalHeroTokens">
-          ${tokens.map((t, idx) => `
-            <span class="bath-word-token ru-speakable" data-t-idx="${idx}" data-ru="${t.word}" title="${t.role ? t.role + ' (クリックで辞書・解説)' : 'クリックで辞書・解説'}">${t.word}</span>
-          `).join(' ')}
+          ${tokens.map((t, idx) => {
+            const rawW = (t.word || '').trim();
+            const cleanW = rawW.replace(/^[«"'(]+|[»"')!?,.:;]+$/g, '').toLowerCase();
+            const kv = keyVocab.find(v => {
+              const kw = (v.word || '').toLowerCase();
+              const kb = (v.base || '').toLowerCase();
+              return kw === cleanW || kb === cleanW;
+            });
+            const baseW = (t.base || kv?.base || '').toLowerCase();
+            const isBm = (cleanW && window.bookmarkedWordsSet?.has(cleanW)) ||
+                         (baseW && window.bookmarkedWordsSet?.has(baseW));
+            return `
+              <span class="bath-word-token ru-speakable ${isBm ? 'is-bookmarked-token' : ''}" 
+                data-t-idx="${idx}" 
+                data-ru="${t.word}" 
+                data-clean="${cleanW}" 
+                data-base="${baseW}"
+                title="${t.role ? t.role + ' (クリックで辞書・解説)' : 'クリックで辞書・解説'}">${t.word}</span>
+            `;
+          }).join(' ')}
         </div>
         <div class="explain-ja-text">${p.ja}</div>
         <div style="font-size:0.75rem; color:var(--text-muted); margin-top:6px; display:flex; align-items:center; gap:6px;">
@@ -1250,13 +1267,17 @@ class LessonPlayer {
       <div class="explain-vocab-grid">
         ${keyVocab.length > 0 ? keyVocab.map(v => {
           const targetWord = v.base || v.word || '';
-          const isBm = window.bookmarkedWordsSet?.has((targetWord || '').toLowerCase());
+          const wordLower = (v.word || '').toLowerCase();
+          const baseLower = (v.base || '').toLowerCase();
+          const isBm = (wordLower && window.bookmarkedWordsSet?.has(wordLower)) ||
+                       (baseLower && window.bookmarkedWordsSet?.has(baseLower));
           const cleanWord = (targetWord || '').replace(/"/g, '&quot;');
+          const cleanBase = (v.base || targetWord || '').replace(/"/g, '&quot;');
           const cleanPos = (v.pos || '').replace(/"/g, '&quot;');
           const cleanMeaning = (v.meaning || '').replace(/"/g, '&quot;');
           const cleanRole = (v.role_in_sentence || '').replace(/"/g, '&quot;');
           return `
-            <div class="explain-vocab-card" data-vocab-word="${(v.word || '').toLowerCase()}" data-vocab-base="${(v.base || '').toLowerCase()}">
+            <div class="explain-vocab-card" data-vocab-word="${wordLower}" data-vocab-base="${baseLower}">
               <div class="vocab-card-top">
                 <span class="vocab-word-ru ru-speakable" data-ru="${v.word}" title="クリックで発音 🔊">${v.word}</span>
                 <span class="vocab-pos-badge">${v.pos}</span>
@@ -1265,13 +1286,13 @@ class LessonPlayer {
               <div class="vocab-role">【文中での役割】${v.role_in_sentence}</div>
               <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px; border-top:1px dashed rgba(255,255,255,0.08); padding-top:6px;">
                 <span style="font-size:0.72rem; color:var(--text-muted);">原形: ${v.base}</span>
-                <button class="bookmark-toggle-btn" 
+                <button class="bookmark-toggle-btn ${isBm ? 'is-bookmarked' : ''}" 
                   data-word="${cleanWord}" 
-                  data-base="${cleanWord}" 
+                  data-base="${cleanBase}" 
                   data-pos="${cleanPos}" 
                   data-meaning="${cleanMeaning}" 
                   data-role="${cleanRole}"
-                  style="background:transparent; border:none; cursor:pointer; font-size:0.78rem; color:${isBm ? 'var(--gold-light)' : 'var(--text-muted)'};" title="単語帳にマーク (☆)">
+                  title="${isBm ? 'マークを解除' : '単語帳にマーク (☆)'}">
                   ${isBm ? '★ マーク済み' : '☆ マーク'}
                 </button>
               </div>
@@ -1385,6 +1406,51 @@ class LessonPlayer {
       modalSpeedUpBtn.onclick = () => this.adjustSpeedAndReplay(+0.05, p.ru, tokens);
     }
 
+    // Synchronize bookmark state across modal buttons and sentence tokens
+    const updateModalBookmarkState = (word, base, isBookmarked, count) => {
+      if (!window.bookmarkedWordsSet) {
+        window.bookmarkedWordsSet = new Set();
+      }
+      const wLow = (word || '').toLowerCase();
+      const bLow = (base || '').toLowerCase();
+      if (isBookmarked) {
+        if (wLow) window.bookmarkedWordsSet.add(wLow);
+        if (bLow) window.bookmarkedWordsSet.add(bLow);
+      } else {
+        if (wLow) window.bookmarkedWordsSet.delete(wLow);
+        if (bLow) window.bookmarkedWordsSet.delete(bLow);
+      }
+
+      // Update all matching bookmark buttons inside modal
+      body.querySelectorAll('.bookmark-toggle-btn').forEach(b => {
+        const bw = (b.dataset.word || '').toLowerCase();
+        const bb = (b.dataset.base || '').toLowerCase();
+        const matches = (wLow && (bw === wLow || bb === wLow)) || 
+                        (bLow && (bw === bLow || bb === bLow));
+        if (matches) {
+          b.classList.toggle('is-bookmarked', isBookmarked);
+          b.innerHTML = isBookmarked ? '★ マーク済み' : '☆ マーク';
+          b.title = isBookmarked ? 'マークを解除' : '単語帳にマーク (☆)';
+        }
+      });
+
+      // Update tokens in sentence
+      body.querySelectorAll('#modalHeroTokens .bath-word-token').forEach(span => {
+        const clean = (span.dataset.clean || '').toLowerCase();
+        const base = (span.dataset.base || '').toLowerCase();
+        const match = (wLow && (clean === wLow || base === wLow)) || 
+                      (bLow && (clean === bLow || base === bLow));
+        if (match) {
+          span.classList.toggle('is-bookmarked-token', isBookmarked);
+        }
+      });
+
+      // Update App header badge
+      if (window.App && typeof window.App.updateBookmarkBadge === 'function') {
+        window.App.updateBookmarkBadge(count);
+      }
+    };
+
     // Attach Interactive Token Inspection (Proposal ②: Jump to card or On-demand Lookup)
     modalTokens.forEach(tokenSpan => {
       tokenSpan.style.cursor = 'pointer';
@@ -1491,7 +1557,10 @@ class LessonPlayer {
           const isUninflected = !/participle|形動詞|причастие|動詞|\bverb\b|глагол/i.test(metaCombined) &&
                                 /(?:副詞|наречие|\badv\b|前置詞|предлог|\bprep\b|接続詞|союз|\bconj\b|助詞|小詞|частица|\bparticle\b|間投詞|\binterj\b|不変化)/i.test(metaCombined);
           const hasTable = !isUninflected && ((entry.declension_table && Array.isArray(entry.declension_table) && entry.declension_table.length > 1) || !!entry.declension_html);
-          const isBm = window.bookmarkedWordsSet?.has((entryWord || '').toLowerCase());
+          const entryWordLower = (entryWord || '').toLowerCase();
+          const cleanWordLower = (cleanWord || '').toLowerCase();
+          const isBm = (entryWordLower && window.bookmarkedWordsSet?.has(entryWordLower)) ||
+                       (cleanWordLower && window.bookmarkedWordsSet?.has(cleanWordLower));
 
           const cleanWordAttr = (entryWord || '').replace(/"/g, '&quot;');
           const cleanPosAttr = (entryPos || '').replace(/"/g, '&quot;');
@@ -1532,13 +1601,13 @@ class LessonPlayer {
                   ${window.renderSoftSignGenderBadge ? window.renderSoftSignGenderBadge(entryWord, cleanWord, entryPos, entryMeaning) : ''}
                 </div>
                 <div style="display:flex; align-items:center; gap:8px;">
-                  <button class="bookmark-toggle-btn ondemand-bm-btn"
+                  <button class="bookmark-toggle-btn ondemand-bm-btn ${isBm ? 'is-bookmarked' : ''}"
                     data-word="${cleanWordAttr}" 
-                    data-base="${cleanWordAttr}" 
+                    data-base="${(entryWord || cleanWord || '').replace(/"/g, '&quot;')}" 
                     data-pos="${cleanPosAttr}" 
                     data-meaning="${cleanMeaningAttr}" 
                     data-role="${cleanRoleAttr}"
-                    style="background:transparent; border:none; cursor:pointer; font-size:0.78rem; color:${isBm ? 'var(--gold-light)' : 'var(--text-muted)'};" title="単語帳にマーク (☆)">
+                    title="${isBm ? 'マークを解除' : '単語帳にマーク (☆)'}">
                     ${isBm ? '★ マーク済み' : '☆ マーク'}
                   </button>
                   <button class="ondemand-close-btn" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.1rem; padding:0 4px;" title="閉じる">✕</button>
@@ -1597,10 +1666,11 @@ class LessonPlayer {
             bmBtn.onclick = async (eBm) => {
               eBm.stopPropagation();
               const w = bmBtn.dataset.word;
+              const b = bmBtn.dataset.base || w;
               if (w && window.API) {
                 const res = await window.API.toggleBookmark({
                   word: w,
-                  base: bmBtn.dataset.base || w,
+                  base: b,
                   pos: bmBtn.dataset.pos || '',
                   meaning: bmBtn.dataset.meaning || '',
                   role: bmBtn.dataset.role || '',
@@ -1609,11 +1679,7 @@ class LessonPlayer {
                   example_ja: p.ja || ''
                 });
                 if (res && res.status === 'ok') {
-                  bmBtn.textContent = res.is_bookmarked ? '★ マーク済み' : '☆ マーク';
-                  bmBtn.style.color = res.is_bookmarked ? 'var(--gold-light)' : 'var(--text-muted)';
-                  if (window.App) {
-                    window.App.updateBookmarkBadge(res.bookmarks_count);
-                  }
+                  updateModalBookmarkState(w, b, res.is_bookmarked, res.bookmarks_count);
                 }
               }
             };
@@ -1655,12 +1721,14 @@ class LessonPlayer {
 
     // Attach bookmark buttons
     body.querySelectorAll('.bookmark-toggle-btn:not(.ondemand-bm-btn)').forEach(btn => {
-      btn.onclick = async () => {
+      btn.onclick = async (eBtn) => {
+        if (eBtn) eBtn.stopPropagation();
         const w = btn.dataset.word;
+        const b = btn.dataset.base || w;
         if (w && window.API) {
           const res = await window.API.toggleBookmark({
             word: w,
-            base: btn.dataset.base || w,
+            base: b,
             pos: btn.dataset.pos || '',
             meaning: btn.dataset.meaning || '',
             role: btn.dataset.role || '',
@@ -1669,11 +1737,7 @@ class LessonPlayer {
             example_ja: p.ja || ''
           });
           if (res && res.status === 'ok') {
-            btn.textContent = res.is_bookmarked ? '★ マーク済み' : '☆ マーク';
-            btn.style.color = res.is_bookmarked ? 'var(--gold-light)' : 'var(--text-muted)';
-            if (window.App) {
-              window.App.updateBookmarkBadge(res.bookmarks_count);
-            }
+            updateModalBookmarkState(w, b, res.is_bookmarked, res.bookmarks_count);
           }
         }
       };

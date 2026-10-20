@@ -174,7 +174,10 @@ class BranchExplorer {
       if (w === 'бежать' || fYa.includes('бегу')) {
         return { badge: '⚠️ 活用注意：混合変化動詞 (бежать)', detail: '1人称単数 бегу, 3人称複数 бегут ですが、他は бежишь, бежит, бежим と変化します。' };
       }
-      if (w === 'идти' || w === 'пойти' || fYa.includes('иду')) {
+      if (['пойти', 'пошла', 'пошёл', 'пошло', 'пошли'].includes(w) || base === 'пойти' || fYa.includes('пойду')) {
+        return { badge: '⚠️ 活用注意：不規則幹・過去形 (пошёл)', detail: '不定形 пойти は完了体動詞のため「現在形」は存在せず、人称変化は「単純未来（я пойду, ты пойдёшь...）」を表します。過去形は全く異なる語幹 пошёл, пошла, пошло, пошли になります。' };
+      }
+      if (w === 'идти' || fYa.includes('иду')) {
         return { badge: '⚠️ 活用注意：不規則幹・アクセント移動 (идти)', detail: '語尾母音にアクセント（иду́, идёшь...）。過去形は全く異なる語幹 шёл, шла, шли になります。' };
       }
       if (w === 'ехать' || w === 'поехать' || fYa.includes('еду')) {
@@ -556,6 +559,38 @@ class BranchExplorer {
       if (branchData.declension_table && branchData.declension_table.length > 0) {
         let rows = branchData.declension_table;
 
+        // Auto-fix for perfective verbs: replace erroneous (現在形) with (単純未来)
+        const isPerfectiveVerb = Boolean(
+          (branchData.pos && (branchData.pos.includes('完了体') || branchData.pos.includes('СВ'))) ||
+          ['пойти', 'пошла', 'пошёл', 'пошло', 'пошли', 'поехать', 'прийти', 'пришёл'].some(v => (branchData.word || displayWord || '').toLowerCase().includes(v))
+        );
+        if (isPerfectiveVerb && rows[0] && Array.isArray(rows[0])) {
+          rows = rows.map((r, rIdx) => {
+            if (rIdx === 0) {
+              return r.map(c => typeof c === 'string' ? c.replace(/現在形/g, '単純未来').replace(/現在/g, '単純未来') : c);
+            }
+            return r;
+          });
+          branchData.declension_table = rows;
+        }
+
+        // Auto-fix corrupted algorithmic forms: if пойти table has пойю / пойишь, replace with true forms!
+        if (['пойти', 'пошла', 'пошёл', 'пошли'].some(v => (branchData.word || displayWord || '').toLowerCase().includes(v))) {
+          const yaForm = rows[1] && rows[1][1];
+          if (typeof yaForm === 'string' && (yaForm.includes('пойю') || yaForm.includes('пою') || yaForm.includes('пойишь'))) {
+            rows = [
+              ['人称・性', 'пойти (単純未来)', '過去形 / 命令形'],
+              ['я', 'пойду́', 'Он пошёл'],
+              ['ты', 'пойдёшь', 'Ты пойди́! (命令・単数)'],
+              ['он/она', 'пойдёт', 'Она пошла́ / Оно пошло́'],
+              ['мы', 'пойдём', 'Мы пошли́'],
+              ['вы', 'пойдёте', 'Вы пойди́те! (命令・複数)'],
+              ['они', 'пойду́т', 'Они пошли́']
+            ];
+            branchData.declension_table = rows;
+          }
+        }
+
         // If word is a participle, NEVER display a verb conjugation table (with 人称)!
         if ((isParticiple || isShortParticiple) && rows[0] && String(rows[0][0]).includes('人称')) {
           rows = this.generateParticipleTable(branchData.word || displayWord, isShortParticiple);
@@ -603,11 +638,17 @@ class BranchExplorer {
                 labelCol2 = 'СВ (完了)';
                 toolbarTitle = 'アスペクト別 活用表';
               } else {
-                if (rawCol1.includes('現在')) labelCol1 = '現在形';
+                if (rawCol1.includes('未来')) labelCol1 = '単純未来';
+                else if (rawCol1.includes('現在')) labelCol1 = '現在形';
                 else labelCol1 = rawCol1.replace(/\(.*?\)/g, '').replace(/（.*?）/g, '').trim().slice(0, 8);
 
                 if (rawCol2.includes('過去')) labelCol2 = '過去形';
+                else if (rawCol2.includes('用例') || rawCol2.includes('補足')) labelCol2 = '用例';
                 else labelCol2 = rawCol2.replace(/\(.*?\)/g, '').replace(/（.*?）/g, '').trim().slice(0, 8);
+
+                if (rawCol1.includes('未来') || isPerfectiveVerb) {
+                  toolbarTitle = rawCol2.includes('過去') ? '時制別 活用表 (単純未来・過去)' : '動詞活用表 (単純未来)';
+                }
               }
 
               recitationToolbarHtml = `

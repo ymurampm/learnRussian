@@ -1,15 +1,15 @@
 {
-  "last_run": "2026-10-11 01:00:02",
+  "last_run": "2026-10-20 01:00:03",
   "status": "success",
   "purity_validation": "pass",
   "historical_facts_validation": "pass",
   "token_grammar_validation": "pass",
   "buffer": {
     "status": "ok",
-    "total_days": 35,
-    "max_buffer_day": 35,
-    "furthest_reached": 29,
-    "unconsumed_days": 6,
+    "total_days": 40,
+    "max_buffer_day": 40,
+    "furthest_reached": 37,
+    "unconsumed_days": 3,
     "day_indices": [
       1,
       2,
@@ -45,7 +45,12 @@
       32,
       33,
       34,
-      35
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
     ],
     "session_summary": [
       {
@@ -292,11 +297,46 @@
         "has_noon": true,
         "has_evening": true,
         "has_story": true
+      },
+      {
+        "day": 36,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 37,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 38,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 39,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
+      },
+      {
+        "day": 40,
+        "has_morning": true,
+        "has_noon": true,
+        "has_evening": true,
+        "has_story": true
       }
     ],
     "solvability": {
       "is_valid": true,
-      "total_questions": 199,
+      "total_questions": 229,
       "errors": [],
       "warnings": []
     }
@@ -304,12 +344,15 @@
   "buffer_stock_alert": null,
   "user_summary": {
     "user_name": "Yusuke",
-    "streak": 27,
-    "intimacy_level": 6,
+    "streak": 33,
+    "intimacy_level": 7,
     "intimacy_title": "至高のアンサンブル",
-    "days_gap": 1,
+    "days_gap": 2,
     "rusty_tags": [
+      "verb.government",
+      "pronoun.negative",
       "syntax.subordinate",
+      "participle.passive",
       "numeral.declension_all",
       "syntax.conditional"
     ],
@@ -324,7 +367,8 @@
       "participle.active",
       "verb.motion_prefixed",
       "gerund.imperfective",
-      "gerund.verbal_adverb"
+      "gerund.verbal_adverb",
+      "noun.soft_sign"
     ],
     "reflex_tags": [
       "case.prp",
@@ -341,10 +385,10 @@
       "syntax.impersonal",
       "gerund.perfective"
     ],
-    "daily_greeting": "Доброе утро, Юсукэ! 昨日は目的・譲歩の従属節 (чтобы, хотя)の練習、お疲れさまでした。難しい変化も、ピアノのスケールのように毎日少しずつ馴染ませていけば大丈夫です。今日も音楽院でお待ちしています♪"
+    "daily_greeting": "Доброе утро, Юсукэ! 昨日はverb.governmentの練習、お疲れさまでした。難しい変化も、ピアノのスケールのように毎日少しずつ馴染ませていけば大丈夫です。今日も音楽院でお待ちしています♪"
   },
   "milestone_audit": {
-    "last_audit_date": "2026-10-11",
+    "last_audit_date": "2026-10-20",
     "target_exam": {
       "name": "ロシア語能力検定2級",
       "target_date": "2027-10-15",
@@ -390,7 +434,7 @@
     },
     "pace_status": "ahead",
     "pace_label": "順調・先行中 (Ahead)",
-    "expected_pct": 44,
+    "expected_pct": 54,
     "actual_pct": 81,
     "coaching_message": "Юсукэ、素晴らしいペースです！2027年10月の2級合格に向けて、今のフェーズの定着が前倒しで進んでいます。この調子で、少し先の応用的な表現もリラックスして覗いてみましょうか♪",
     "recommended_tags": [
@@ -648,5 +692,5 @@
       }
     ]
   },
-  "backup_path": "c:\\Antigravity\\Projects\\learnRussian\\data\\backups\\20261011_010002"
+  "backup_path": "c:\\Antigravity\\Projects\\learnRussian\\data\\backups\\20261020_010003"
 }

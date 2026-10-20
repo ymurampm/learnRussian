@@ -321,11 +321,11 @@ class TestFutureLifecycleSimulation(unittest.TestCase):
         3. daily_batch sets 'buffer_stock_alert' in batch_status.json.
         """
         # Artificially set user at Day 34 after all modules up to Day 35 have been loaded
-        bg.replenish_buffer_if_needed(target_unconsumed=5)
-
+        report0 = bg.replenish_buffer_if_needed(target_unconsumed=5)
+        max_day = report0['max_buffer_day']
         progress = self.load_sandbox_json('user_progress.json')
-        progress['user_profile']['current_study_day'] = 34
-        progress['user_profile']['completed_study_days'] = list(range(1, 34))
+        progress['user_profile']['current_study_day'] = max_day - 1
+        progress['user_profile']['completed_study_days'] = list(range(1, max_day - 1))
         self.save_sandbox_json('user_progress.json', progress)
 
         report = bg.replenish_buffer_if_needed(target_unconsumed=5)
